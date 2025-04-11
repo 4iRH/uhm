@@ -19,790 +19,829 @@
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Inline Styles -->
   <style>
     /* 
-========================================
-CSS Variables & Reset
-========================================
-*/
-:root {
-  --color-black: #000000;
-  --color-dark-gray: #222222;
-  --color-medium-gray: #555555;
-  --color-light-gray: #888888;
-  --color-lighter-gray: #dddddd;
-  --color-white: #ffffff;
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --transition-speed: 0.3s;
-  --animation-duration: 0.8s;
-  --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 5rem;
-  --section-padding: 5rem 2rem;
-  --section-min-height: 100vh;
-}
-
-/* In the CSS section, update these base styles to ensure proper height and layout */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: var(--font-primary);
-  background-color: var(--color-black);
-  color: var(--color-white);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Fix the section height and overflow issues */
-.section {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--section-padding);
-  min-height: 100vh;
-  width: 100%;
-  overflow: visible;
-}
-
-/* Fix the section content visibility */
-.section-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  width: 100%;
-  opacity: 1; /* Change from 0 to ensure content is visible by default */
-  transform: translateY(0); /* Remove initial transform to prevent content hiding */
-  transition: opacity 1s var(--animation-timing), 
-              transform 1s var(--animation-timing);
-}
-
-/* Fix canvas positioning and sizing */
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* 
-body {
-  font-family: var(--font-primary);
-  background-color: var(--color-black);
-  color: var(--color-white);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*/
-
-/* 
-========================================
-Typography
-========================================
-*/
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md);
-}
-
-h1 {
-  font-size: 3.5rem;
-  letter-spacing: -1px;
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s var(--animation-timing), 
-              transform 0.8s var(--animation-timing);
-}
-
-.in-view h2 {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-}
-
-a {
-  color: var(--color-white);
-  text-decoration: none;
-  transition: color var(--transition-speed) ease;
-}
-
-a:hover {
-  color: var(--color-lighter-gray);
-}
-
-/* 
-========================================
-Layout & Container
-========================================
-*/
-/*
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-*/
-
-/*
-.section {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--section-padding);
-  min-height: var(--section-min-height);
-  overflow: hidden;
-}
-*/
-
-/*
-.section-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s var(--animation-timing), 
-              transform 1s var(--animation-timing);
-}
-*/
-
-.in-view .section-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 
-========================================
-Home Section
-========================================
-*/
-.home-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.profile-container {
-  margin-bottom: 2rem;
-}
-
-.profile-image {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background-color: var(--color-medium-gray);
-  /* Base64 encoded placeholder image */
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iIzU1NTU1NSIvPjx0ZXh0IHg9IjkwIiB5PSI5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiB0ZXh0LWFhbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiPlByb2ZpbGUgSW1hZ2U8L3RleHQ+PC9zdmc+=");
-  background-size: cover;
-  background-position: center;
-  transition: transform var(--transition-speed) ease, 
-              box-shadow var(--transition-speed) ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.profile-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-.name {
-  font-size: 3.5rem;
-  font-weight: 300;
-  letter-spacing: -1px;
-  margin-top: 1rem;
-  color: var(--color-white);
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 50px;
-  cursor: pointer;
-  animation: pulse 2s infinite;
-}
-
-.scroll-arrow {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.scroll-arrow:before, 
-.scroll-arrow:after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  width: 15px;
-  height: 2px;
-  background-color: var(--color-white);
-  border-radius: 2px;
-}
-
-.scroll-arrow:before {
-  left: 0;
-  transform: rotate(45deg);
-}
-
-.scroll-arrow:after {
-  right: 0;
-  transform: rotate(-45deg);
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateX(-50%) translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-/* 
-========================================
-About Section
-========================================
-*/
-.about-content {
-  position: relative;
-  max-width: 800px;
-  width: 100%;
-  padding: 3rem;
-  z-index: 2;
-}
-
-.circuit-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-  z-index: 1;
-  background: linear-gradient(90deg, var(--color-black) 21px, transparent 1%) center,
-    linear-gradient(var(--color-black) 21px, transparent 1%) center, var(--color-white);
-  background-size: 22px 22px;
-  animation: circuitAnimation 60s linear infinite;
-}
-
-@keyframes circuitAnimation {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 44px 44px;
-  }
-}
-
-.bio-container {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 3rem;
-  border-radius: 8px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.bio-container h2 {
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 1.5rem;
-  color: var(--color-white);
-}
-
-.bio {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--color-lighter-gray);
-}
-
-/* 
-========================================
-Skills Section
-========================================
-*/
-.skills-content {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  padding: 2rem;
-  z-index: 2;
-}
-
-.skills-content h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 3rem;
-  color: var(--color-white);
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform var(--transition-speed) ease;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.in-view .skill-item {
-  animation: fadeInUp 0.6s forwards;
-}
-
-.in-view .skill-item:nth-child(2n) {
-  animation-delay: 0.1s;
-}
-
-.in-view .skill-item:nth-child(3n) {
-  animation-delay: 0.2s;
-}
-
-.in-view .skill-item:nth-child(4n) {
-  animation-delay: 0.3s;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.skill-item:hover {
-  transform: translateY(-5px);
-}
-
-.skill-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
-  background-color: var(--color-dark-gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-light-gray);
-  margin-bottom: 0.8rem;
-  transition: all var(--transition-speed) ease;
-}
-
-.skill-item:hover .skill-icon {
-  background-color: var(--color-medium-gray);
-  color: var(--color-white);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.skill-name {
-  font-size: 0.9rem;
-  color: var(--color-light-gray);
-  transition: color var(--transition-speed) ease;
-}
-
-.skill-item:hover .skill-name {
-  color: var(--color-white);
-}
-
-#code-animation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.05;
-}
-
-/* 
-========================================
-Social Section
-========================================
-*/
-.social-content {
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-}
-
-.social-content h2 {
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 3rem;
-  color: var(--color-white);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.social-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  transition: transform var(--transition-speed) ease;
-}
-
-.social-link:hover {
-  transform: translateY(-5px);
-}
-
-.social-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background-color: var(--color-dark-gray);
-  margin-bottom: 1rem;
-  transition: background-color var(--transition-speed) ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.instagram-icon {
-  background-color: var(--color-dark-gray);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888888'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 30px;
-}
-
-.social-link:hover .social-icon {
-  background-color: var(--color-medium-gray);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
-}
-
-.social-username {
-  font-size: 1rem;
-  color: var(--color-light-gray);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all var(--transition-speed) ease;
-}
-
-.social-link:hover .social-username {
-  opacity: 1;
-  transform: translateY(0);
-  color: var(--color-white);
-}
-
-/* 
-========================================
-Back to Top Button
-========================================
-*/
-.back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--color-dark-gray);
-  color: var(--color-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  border: none;
-}
-
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  background-color: var(--color-medium-gray);
-}
-
-.back-to-top-arrow {
-  width: 12px;
-  height: 12px;
-  border-left: 2px solid var(--color-white);
-  border-top: 2px solid var(--color-white);
-  transform: rotate(45deg);
-  margin-top: 4px;
-}
-
-/* 
-========================================
-Footer
-========================================
-*/
-.footer {
-  padding: 2rem;
-  text-align: center;
-  background-color: var(--color-black);
-  border-top: 1px solid var(--color-dark-gray);
-}
-
-.footer p {
-  color: var(--color-light-gray);
-  font-size: 0.9rem;
-}
-
-/* 
-========================================
-Accessibility
-========================================
-*/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Focus styles for keyboard navigation */
-.keyboard-navigation :focus {
-  outline: 2px solid var(--color-white);
-  outline-offset: 4px;
-}
-
-/* 
-========================================
-Print Styles
-========================================
-*/
-@media print {
-  body {
-    background-color: white;
-    color: black;
-  }
-
-  .section {
-    page-break-inside: avoid;
-    min-height: auto;
-    padding: 2rem 0;
-  }
-
-  .back-to-top,
-  .scroll-indicator,
-  canvas {
-    display: none !important;
-  }
-
-  .bio-container {
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  .bio {
-    color: black;
-  }
-
-  .skill-icon {
-    border: 1px solid #ddd;
-  }
-
-  .skill-name {
-    color: black;
-  }
-}
-
-/* 
-========================================
-Responsive Styles
-========================================
-*/
-@media (max-width: 768px) {
-  :root {
-    --section-padding: 4rem 1.5rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .profile-image {
-    width: 150px;
-    height: 150px;
-  }
-
-  .bio-container {
-    padding: 2rem;
-  }
-
-  .bio {
-    font-size: 1rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 1rem;
-  }
-
-  .skill-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1rem;
-  }
-
-  .back-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --section-padding: 3rem 1rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  .profile-image {
-    width: 120px;
-    height: 120px;
-  }
-
-  .about-content,
-  .skills-content,
-  .social-content {
-    padding: 1rem;
-  }
-
-  .bio-container {
-    padding: 1.5rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    gap: 0.8rem;
-  }
-
-  .skill-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 0.9rem;
-  }
-
-  .skill-name {
-    font-size: 0.8rem;
-  }
-
-  .back-to-top {
-    bottom: 1rem;
-    right: 1rem;
-  }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .scroll-indicator {
-    animation: none !important;
-  }
-}
+    ========================================
+    CSS Variables & Reset
+    ========================================
+    */
+    :root {
+      --color-black: #000000;
+      --color-dark-gray: #222222;
+      --color-medium-gray: #555555;
+      --color-light-gray: #888888;
+      --color-lighter-gray: #dddddd;
+      --color-white: #ffffff;
+      --font-primary: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --transition-speed: 0.3s;
+      --animation-duration: 0.8s;
+      --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 3rem;
+      --spacing-xl: 5rem;
+      --section-padding: 5rem 2rem;
+      --section-min-height: 100vh;
+      --nav-height: 60px;
+    }
+
+    /* Base HTML and Body styles */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--color-black);
+      color: var(--color-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 
+    ========================================
+    Typography
+    ========================================
+    */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: var(--spacing-md);
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s var(--animation-timing), 
+                  transform 0.8s var(--animation-timing);
+    }
+
+    .in-view h2 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      margin-bottom: var(--spacing-md);
+    }
+
+    a {
+      color: var(--color-white);
+      text-decoration: none;
+      transition: color var(--transition-speed) ease;
+    }
+
+    a:hover {
+      color: var(--color-lighter-gray);
+    }
+
+    /* 
+    ========================================
+    Layout & Container
+    ========================================
+    */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      padding-top: var(--nav-height); /* Add space for fixed nav */
+    }
+
+    /* 
+    ========================================
+    Navigation
+    ========================================
+    */
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .main-nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-nav li {
+      margin: 0 1.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-light-gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color var(--transition-speed) ease;
+      position: relative;
+      padding: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-white);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-white);
+      transition: width var(--transition-speed) ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* 
+    ========================================
+    Section Styles
+    ========================================
+    */
+    .section {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: var(--section-padding);
+      min-height: 100vh;
+      width: 100%;
+      overflow: visible;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      opacity: 1; /* Ensure content is visible by default */
+      transform: translateY(0);
+      transition: opacity 1s var(--animation-timing), 
+                  transform 1s var(--animation-timing);
+    }
+
+    /* 
+    ========================================
+    Home Section
+    ========================================
+    */
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .profile-container {
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background-color: var(--color-medium-gray);
+      /* Updated profile image with a more reliable Base64 encoding */
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+PGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iOTAiIGZpbGw9IiM1NTU1NTUiLz48cGF0aCBkPSJNOTAgNjBjMTYuNTcgMCAzMCAxMy40MyAzMCAzMHMtMTMuNDMgMzAtMzAgMzAtMzAtMTMuNDMtMzAtMzAgMTMuNDMtMzAgMzAtMzBtMCA3NWMyNSAwIDQ1LjIyIDEyLjAyIDQ1LjIyIDIwLjg5djkuMjZIODQuNzh2LTkuMjFDNDQuNzggMTQ3LjA1IDY1IDEzNSA5MCAxMzV6IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+");
+      background-size: cover;
+      background-position: center;
+      transition: transform var(--transition-speed) ease, 
+                  box-shadow var(--transition-speed) ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .name {
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -1px;
+      margin-top: 1rem;
+      color: var(--color-white);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 50px;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+
+    .scroll-arrow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scroll-arrow:before, 
+    .scroll-arrow:after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 15px;
+      height: 2px;
+      background-color: var(--color-white);
+      border-radius: 2px;
+    }
+
+    .scroll-arrow:before {
+      left: 0;
+      transform: rotate(45deg);
+    }
+
+    .scroll-arrow:after {
+      right: 0;
+      transform: rotate(-45deg);
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* 
+    ========================================
+    About Section
+    ========================================
+    */
+    .about-content {
+      position: relative;
+      max-width: 800px;
+      width: 100%;
+      padding: 3rem;
+      z-index: 2;
+    }
+
+    .circuit-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      z-index: 1;
+      background: linear-gradient(90deg, var(--color-black) 21px, transparent 1%) center,
+        linear-gradient(var(--color-black) 21px, transparent 1%) center, var(--color-white);
+      background-size: 22px 22px;
+      animation: circuitAnimation 60s linear infinite;
+    }
+
+    @keyframes circuitAnimation {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 44px 44px;
+      }
+    }
+
+    .bio-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 3rem;
+      border-radius: 8px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bio-container h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: var(--color-white);
+    }
+
+    .bio {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--color-lighter-gray);
+    }
+
+    /* 
+    ========================================
+    Skills Section
+    ========================================
+    */
+    .skills-content {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      padding: 2rem;
+      z-index: 2;
+    }
+
+    .skills-content h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      color: var(--color-white);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform var(--transition-speed) ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .in-view .skill-item {
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    .in-view .skill-item:nth-child(2n) {
+      animation-delay: 0.1s;
+    }
+
+    .in-view .skill-item:nth-child(3n) {
+      animation-delay: 0.2s;
+    }
+
+    .in-view .skill-item:nth-child(4n) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      background-color: var(--color-dark-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-light-gray);
+      margin-bottom: 0.8rem;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .skill-item:hover .skill-icon {
+      background-color: var(--color-medium-gray);
+      color: var(--color-white);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      color: var(--color-light-gray);
+      transition: color var(--transition-speed) ease;
+    }
+
+    .skill-item:hover .skill-name {
+      color: var(--color-white);
+    }
+
+    #code-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.05;
+    }
+
+    /* 
+    ========================================
+    Social Section
+    ========================================
+    */
+    .social-content {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .social-content h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      color: var(--color-white);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background-color: var(--color-dark-gray);
+      margin-bottom: 1rem;
+      transition: background-color var(--transition-speed) ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .instagram-icon {
+      background-color: var(--color-dark-gray);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888888'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px;
+    }
+
+    .social-link:hover .social-icon {
+      background-color: var(--color-medium-gray);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
+    }
+
+    .social-username {
+      font-size: 1rem;
+      color: var(--color-light-gray);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--transition-speed) ease;
+    }
+
+    .social-link:hover .social-username {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--color-white);
+    }
+
+    /* 
+    ========================================
+    Back to Top Button
+    ========================================
+    */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--color-dark-gray);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border: none;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: var(--color-medium-gray);
+    }
+
+    .back-to-top-arrow {
+      width: 12px;
+      height: 12px;
+      border-left: 2px solid var(--color-white);
+      border-top: 2px solid var(--color-white);
+      transform: rotate(45deg);
+      margin-top: 4px;
+    }
+
+    /* 
+    ========================================
+    Footer
+    ========================================
+    */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      background-color: var(--color-black);
+      border-top: 1px solid var(--color-dark-gray);
+    }
+
+    .footer p {
+      color: var(--color-light-gray);
+      font-size: 0.9rem;
+    }
+
+    /* 
+    ========================================
+    Accessibility
+    ========================================
+    */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Focus styles for keyboard navigation */
+    .keyboard-navigation :focus {
+      outline: 2px solid var(--color-white);
+      outline-offset: 4px;
+    }
+
+    /* 
+    ========================================
+    Print Styles
+    ========================================
+    */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+      }
+
+      .section {
+        page-break-inside: avoid;
+        min-height: auto;
+        padding: 2rem 0;
+      }
+
+      .back-to-top,
+      .scroll-indicator,
+      canvas {
+        display: none !important;
+      }
+
+      .bio-container {
+        box-shadow: none;
+        background-color: transparent;
+      }
+
+      .bio {
+        color: black;
+      }
+
+      .skill-icon {
+        border: 1px solid #ddd;
+      }
+
+      .skill-name {
+        color: black;
+      }
+    }
+
+    /* 
+    ========================================
+    Responsive Styles
+    ========================================
+    */
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 4rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .profile-image {
+        width: 150px;
+        height: 150px;
+      }
+
+      .bio-container {
+        padding: 2rem;
+      }
+
+      .bio {
+        font-size: 1rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 1rem;
+      }
+
+      .skill-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+      }
+
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+      }
+      
+      .main-nav li {
+        margin: 0 0.8rem;
+      }
+      
+      .nav-link {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --section-padding: 3rem 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .about-content,
+      .skills-content,
+      .social-content {
+        padding: 1rem;
+      }
+
+      .bio-container {
+        padding: 1.5rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .skill-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+      }
+
+      .skill-name {
+        font-size: 0.8rem;
+      }
+
+      .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+      }
+      
+      .main-nav li {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .scroll-indicator {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- 
+  ========================================
+  Navigation
+  ========================================
+  -->
+  <nav class="main-nav" role="navigation" aria-label="Main navigation">
+    <ul>
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#social" class="nav-link">Connect</a></li>
+    </ul>
+  </nav>
+
   <!-- 
   ========================================
   Main Container
@@ -908,605 +947,748 @@ Responsive Styles
   <script>
     'use strict';
 
-// Add this to the JavaScript section to ensure all sections are visible even without JS */
-function ensureVisibility() {
-  // Make sure all sections are visible
-  $$('.section-content').forEach(content => {
-    content.style.opacity = '1';
-    content.style.transform = 'translateY(0)';
-  });
-  
-  // Make sure all skill items are visible
-  $$('.skill-item').forEach(item => {
-    item.style.opacity = '1';
-    item.style.transform = 'translateY(0)';
-  });
-  
-  // Make sure all headings are visible
-  $$('h2').forEach(heading => {
-    heading.style.opacity = '1';
-    heading.style.transform = 'translateY(0)';
-  });
-}
+    // 
+    // ========================================
+    // Configuration
+    // ========================================
+    //
+    const CONFIG = {
+      animationDuration: 500, // ms
+      typingSpeed: 30, // ms per character
+      codeAnimationFPS: 60,
+    };
 
-// Call this function after a short delay to ensure content is visible
-setTimeout(ensureVisibility, 500);
+    // 
+    // ========================================
+    // DOM Utility Functions
+    // ========================================
+    //
 
-// 
-// ========================================
-// Configuration
-// ========================================
-//
-const CONFIG = {
-  animationDuration: 500, // ms
-  typingSpeed: 30, // ms per character
-  codeAnimationFPS: 30,
-};
+    /**
+     * Shorthand for document.querySelector
+     * @param {string} selector - CSS selector
+     * @returns {Element} - The first matching element
+     */
+    const $ = selector => document.querySelector(selector);
 
-// 
-// ========================================
-// DOM Utility Functions
-// ========================================
-//
+    /**
+     * Shorthand for document.querySelectorAll
+     * @param {string} selector - CSS selector
+     * @returns {NodeList} - All matching elements
+     */
+    const $$ = selector => document.querySelectorAll(selector);
 
-/**
- * Shorthand for document.querySelector
- * @param {string} selector - CSS selector
- * @returns {Element} - The first matching element
- */
-const $ = selector => document.querySelector(selector);
+    /**
+     * Add event listener with delegation
+     * @param {string} eventType - Event type (e.g., 'click')
+     * @param {string} selector - CSS selector for target elements
+     * @param {Function} callback - Event handler function
+     */
+    const delegateEvent = (eventType, selector, callback) => {
+      document.addEventListener(eventType, e => {
+        if (e.target.closest(selector)) {
+          callback(e);
+        }
+      });
+    };
 
-/**
- * Shorthand for document.querySelectorAll
- * @param {string} selector - CSS selector
- * @returns {NodeList} - All matching elements
- */
-const $$ = selector => document.querySelectorAll(selector);
+    // 
+    // ========================================
+    // Skills Data
+    // ========================================
+    //
 
-/**
- * Add event listener with delegation
- * @param {string} eventType - Event type (e.g., 'click')
- * @param {string} selector - CSS selector for target elements
- * @param {Function} callback - Event handler function
- */
-const delegateEvent = (eventType, selector, callback) => {
-  document.addEventListener(eventType, e => {
-    if (e.target.closest(selector)) {
-      callback(e);
+    // Skills data
+    const skills = [
+      { name: 'HTML', shortName: 'HTML' },
+      { name: 'CSS', shortName: 'CSS' },
+      { name: 'JavaScript', shortName: 'JS' },
+      { name: 'TypeScript', shortName: 'TS' },
+      { name: 'TSX', shortName: 'TSX' },
+      { name: 'JSX', shortName: 'JSX' },
+      { name: 'Ruby', shortName: 'RB' },
+      { name: 'Python', shortName: 'PY' },
+      { name: 'SQL', shortName: 'SQL' },
+      { name: 'Kotlin', shortName: 'KT' },
+      { name: 'PHP', shortName: 'PHP' },
+      { name: 'C#', shortName: 'C#' },
+      { name: 'C++', shortName: 'C++' },
+      { name: 'Objective-C', shortName: 'OC' },
+      { name: 'Swift', shortName: 'SW' },
+      { name: 'SwiftUI', shortName: 'SUI' },
+      { name: 'React Native', shortName: 'RN' }
+    ];
+
+    // 
+    // ========================================
+    // Initialization
+    // ========================================
+    //
+
+    /**
+     * Initialize the application
+     */
+    function init() {
+      // Populate skills grid
+      populateSkills();
+      
+      // Initialize animations
+      initAnimations();
+      
+      // Initialize intersection observers
+      initIntersectionObservers();
+      
+      // Initialize back to top button
+      initBackToTop();
+      
+      // Initialize scroll indicator
+      initScrollIndicator();
+      
+      // Initialize navigation
+      initNavigation();
+      
+      // Initialize accessibility features
+      initAccessibility();
+      
+      // Ensure content is visible
+      ensureVisibility();
     }
-  });
-};
 
-// 
-// ========================================
-// Skills Data
-// ========================================
-//
-
-// Skills data
-const skills = [
-  { name: 'HTML', shortName: 'HTML' },
-  { name: 'CSS', shortName: 'CSS' },
-  { name: 'JavaScript', shortName: 'JS' },
-  { name: 'TypeScript', shortName: 'TS' },
-  { name: 'TSX', shortName: 'TSX' },
-  { name: 'JSX', shortName: 'JSX' },
-  { name: 'Ruby', shortName: 'RB' },
-  { name: 'Python', shortName: 'PY' },
-  { name: 'SQL', shortName: 'SQL' },
-  { name: 'Kotlin', shortName: 'KT' },
-  { name: 'PHP', shortName: 'PHP' },
-  { name: 'C#', shortName: 'C#' },
-  { name: 'C++', shortName: 'C++' },
-  { name: 'Objective-C', shortName: 'OC' },
-  { name: 'Swift', shortName: 'SW' },
-  { name: 'SwiftUI', shortName: 'SUI' },
-  { name: 'React Native', shortName: 'RN' }
-];
-
-// 
-// ========================================
-// Initialization
-// ========================================
-//
-
-/**
- * Initialize the application
- */
-function init() {
-  // Existing code...
-  populateSkills();
-  initAnimations();
-  initIntersectionObservers();
-  initBackToTop();
-  initScrollIndicator();
-  initAccessibility();
-  
-  // Add this line to ensure visibility
-  ensureVisibility();
-}
-
-/**
- * Populate the skills grid with skill items
- */
-function populateSkills() {
-  const skillsGrid = $('#skills-grid');
-  if (!skillsGrid) return;
-  
-  skillsGrid.innerHTML = '';
-  
-  skills.forEach(skill => {
-    const skillItem = document.createElement('div');
-    skillItem.className = 'skill-item';
-    skillItem.dataset.skill = skill.name.toLowerCase();
-    
-    skillItem.innerHTML = `
-      <div class="skill-icon">${skill.shortName}</div>
-      <span class="skill-name">${skill.name}</span>
-    `;
-    
-    skillsGrid.appendChild(skillItem);
-  });
-}
-
-/**
- * Initialize all canvas animations
- */
-function initAnimations() {
-  // Initialize home canvas animation
-  initHomeCanvas();
-  
-  // Initialize about canvas animation
-  initAboutCanvas();
-  
-  // Initialize code animation
-  initCodeAnimation();
-  
-  // Initialize social canvas animation
-  initSocialCanvas();
-}
-
-/**
- * Initialize intersection observers for animations
- */
-function initIntersectionObservers() {
-  try {
-    // Check if IntersectionObserver is supported
-    if (!('IntersectionObserver' in window)) {
-      // Fallback for browsers that don't support IntersectionObserver
+    /**
+     * Ensure all content is visible
+     */
+    function ensureVisibility() {
+      // Make sure all sections are visible
+      $$('.section-content').forEach(content => {
+        content.style.opacity = '1';
+        content.style.transform = 'translateY(0)';
+      });
+      
+      // Make sure all headings are visible
+      $$('h2').forEach(heading => {
+        heading.style.opacity = '1';
+        heading.style.transform = 'translateY(0)';
+      });
+      
+      // Add in-view class to all sections
       $$('.section').forEach(section => {
         section.classList.add('in-view');
       });
-      ensureVisibility();
-      return;
     }
-    
-    // Create observer for sections
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+
+    /**
+     * Populate the skills grid with skill items
+     */
+    function populateSkills() {
+      const skillsGrid = $('#skills-grid');
+      if (!skillsGrid) return;
+      
+      skillsGrid.innerHTML = '';
+      
+      skills.forEach(skill => {
+        const skillItem = document.createElement('div');
+        skillItem.className = 'skill-item';
+        skillItem.dataset.skill = skill.name.toLowerCase();
+        
+        skillItem.innerHTML = `
+          <div class="skill-icon">${skill.shortName}</div>
+          <span class="skill-name">${skill.name}</span>
+        `;
+        
+        skillsGrid.appendChild(skillItem);
+      });
+    }
+
+    /**
+     * Initialize navigation
+     */
+    function initNavigation() {
+      // Get all navigation links
+      const navLinks = $$('.nav-link');
+      
+      // Add click event listeners to navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get the target section ID from the href attribute
+          const targetId = this.getAttribute('href');
+          const targetSection = $(targetId);
+          
+          if (targetSection) {
+            // Smooth scroll to the target section
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Update active navigation link on scroll
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        
+        // Find the current section based on scroll position
+        $$('.section').forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (window.scrollY >= sectionTop - 200) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+        
+        // Update active class on navigation links
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    }
+
+    /**
+     * Initialize all canvas animations
+     */
+    function initAnimations() {
+      // Initialize home canvas animation
+      initHomeCanvas();
+      
+      // Initialize about canvas animation
+      initAboutCanvas();
+      
+      // Initialize code animation
+      initCodeAnimation();
+      
+      // Initialize social canvas animation
+      initSocialCanvas();
+    }
+
+    /**
+     * Initialize intersection observers for animations
+     */
+    function initIntersectionObservers() {
+      try {
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) {
+          // Fallback for browsers that don't support IntersectionObserver
+          $$('.section').forEach(section => {
+            section.classList.add('in-view');
+          });
+          return;
+        }
+        
+        // Create observer for sections
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -10% 0px' // Trigger slightly before element comes into view
+        });
+        
+        // Observe all sections
+        $$('.section').forEach(section => {
+          sectionObserver.observe(section);
+        });
+      } catch (error) {
+        console.error('Error initializing intersection observers:', error);
+        // Fallback if there's an error
+        $$('.section').forEach(section => {
+          section.classList.add('in-view');
+        });
+      }
+    }
+
+    /**
+     * Initialize back to top button
+     */
+    function initBackToTop() {
+      const backToTopBtn = $('#back-to-top');
+      if (!backToTopBtn) return;
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -10% 0px' // Trigger slightly before element comes into view
-    });
-    
-    // Observe all sections
-    $$('.section').forEach(section => {
-      sectionObserver.observe(section);
-    });
-  } catch (error) {
-    console.error('Error initializing intersection observers:', error);
-    // Fallback if there's an error
-    $$('.section').forEach(section => {
-      section.classList.add('in-view');
-    });
-    ensureVisibility();
-  }
-}
-
-/**
- * Initialize back to top button
- */
-function initBackToTop() {
-  const backToTopBtn = $('#back-to-top');
-  if (!backToTopBtn) return;
-  
-  // Show/hide back to top button based on scroll position
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > window.innerHeight) {
-      backToTopBtn.classList.add('visible');
-    } else {
-      backToTopBtn.classList.remove('visible');
-    }
-  });
-  
-  // Scroll to top when button is clicked
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-
-/**
- * Initialize scroll indicator
- */
-function initScrollIndicator() {
-  const scrollIndicator = $('.scroll-indicator');
-  if (!scrollIndicator) return;
-  
-  scrollIndicator.addEventListener('click', () => {
-    const aboutSection = $('#about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-}
-
-/**
- * Initialize accessibility features
- */
-function initAccessibility() {
-  // Add keyboard navigation class for focus styles
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Tab') {
-      document.body.classList.add('keyboard-navigation');
-    }
-  });
-
-  document.addEventListener('mousedown', () => {
-    document.body.classList.remove('keyboard-navigation');
-  });
-}
-
-// 
-// ========================================
-// Canvas Animations
-// ========================================
-//
-
-/* Enhance the canvas animations for better performance */
-function initHomeCanvas() {
-  const canvas = $('#home-canvas');
-  if (!canvas) return;
-  
-  // Set canvas dimensions with device pixel ratio for sharper rendering
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  canvas.style.width = `${window.innerWidth}px`;
-  canvas.style.height = `${window.innerHeight}px`;
-  
-  const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
-  
-  // Particles configuration
-  const particles = [];
-  const particleCount = Math.min(50, Math.floor(window.innerWidth / 20)); // Responsive particle count
-  
-  // Create particles
-  for (let i = 0; i < particleCount; i++) {
-    particles.push({
-      x: Math.random() * canvas.width / dpr,
-      y: Math.random() * canvas.height / dpr,
-      radius: Math.random() * 2 + 1,
-      color: `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.1})`,
-      speedX: Math.random() * 0.5 - 0.25,
-      speedY: Math.random() * 0.5 - 0.25
-    });
-  }
-  
-  // Animation loop with requestAnimationFrame timing
-  let lastTime = 0;
-  function animate(timestamp) {
-    if (!lastTime) lastTime = timestamp;
-    const deltaTime = timestamp - lastTime;
-    lastTime = timestamp;
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-    
-    // Update and draw particles
-    particles.forEach(particle => {
-      // Update position with delta time for consistent speed
-      particle.x += particle.speedX * (deltaTime / 16);
-      particle.y += particle.speedY * (deltaTime / 16);
       
-      // Wrap around edges
-      if (particle.x < 0) particle.x = canvas.width / dpr;
-      if (particle.x > canvas.width / dpr) particle.x = 0;
-      if (particle.y < 0) particle.y = canvas.height / dpr;
-      if (particle.y > canvas.height / dpr) particle.y = 0;
+      // Scroll to top when button is clicked
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    /**
+     * Initialize scroll indicator
+     */
+    function initScrollIndicator() {
+      const scrollIndicator = $('.scroll-indicator');
+      if (!scrollIndicator) return;
       
-      // Draw particle
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      ctx.fillStyle = particle.color;
-      ctx.fill();
-    });
-    
-    // Draw connections between particles
-    particles.forEach((particle, i) => {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particle.x - particles[j].x;
-        const dy = particle.y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
+      scrollIndicator.addEventListener('click', () => {
+        const aboutSection = $('#about');
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' });
         }
-      }
-    });
-    
-    requestAnimationFrame(animate);
-  }
-  
-  // Start animation
-  animate(0);
-  
-  // Resize canvas on window resize with debounce
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
+      });
+    }
+
+    /**
+     * Initialize accessibility features
+     */
+    function initAccessibility() {
+      // Add keyboard navigation class for focus styles
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-navigation');
+        }
+      });
+
+      document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+      });
+    }
+
+    // 
+    // ========================================
+    // Canvas Animations - Apple-inspired
+    // ========================================
+    //
+
+    /**
+     * Initialize the home canvas animation
+     * Apple-inspired floating particles with connections
+     */
+    function initHomeCanvas() {
+      const canvas = $('#home-canvas');
+      if (!canvas) return;
+      
+      // Set canvas dimensions with device pixel ratio for sharper rendering
+      const dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
+      
+      const ctx = canvas.getContext('2d');
       ctx.scale(dpr, dpr);
-    }, 250);
-  });
-}
-
-/**
- * Initialize the about canvas animation
- */
-function initAboutCanvas() {
-  const canvas = $('#about-canvas');
-  if (!canvas) return;
-  
-  // Set canvas dimensions
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  
-  const ctx = canvas.getContext('2d');
-  
-  // Grid configuration
-  const gridSize = 30;
-  const dotSize = 1;
-  const dotColor = 'rgba(255, 255, 255, 0.2)';
-  
-  // Animation loop
-  function animate() {
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw grid
-    for (let x = 0; x < canvas.width; x += gridSize) {
-      for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.arc(x, y, dotSize, 0, Math.PI * 2);
-        ctx.fillStyle = dotColor;
-        ctx.fill();
+      
+      // Particles configuration
+      const particles = [];
+      const particleCount = Math.min(50, Math.floor(window.innerWidth / 20)); // Responsive particle count
+      
+      // Create particles
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width / dpr,
+          y: Math.random() * canvas.height / dpr,
+          radius: Math.random() * 2 + 1,
+          color: `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.1})`,
+          speedX: Math.random() * 0.5 - 0.25,
+          speedY: Math.random() * 0.5 - 0.25
+        });
       }
-    }
-    
-    requestAnimationFrame(animate);
-  }
-  
-  // Start animation
-  animate();
-  
-  // Resize canvas on window resize
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-}
-
-/**
- * Initialize the code animation on the skills section
- */
-function initCodeAnimation() {
-  const codeCanvas = $('#code-animation');
-  if (!codeCanvas) return;
-
-  const ctx = codeCanvas.getContext('2d');
-  let width, height;
-
-  // Set canvas dimensions
-  function resizeCanvas() {
-    width = codeCanvas.width = window.innerWidth;
-    height = codeCanvas.height = window.innerHeight;
-  }
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  // Code rain configuration
-  const fontSize = 14;
-  const columns = Math.floor(width / fontSize);
-  const drops = [];
-
-  // Initialize drops
-  for (let i = 0; i < columns; i++) {
-    drops[i] = Math.floor(Math.random() * -100);
-  }
-
-  // Characters to display
-  const chars = '01010101010101010101';
-
-  // Animation loop
-  function draw() {
-    // Semi-transparent black background to create fade effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.fillStyle = '#555'; // Medium gray color for text
-    ctx.font = `${fontSize}px monospace`;
-
-    // Loop through drops
-    for (let i = 0; i < drops.length; i++) {
-      // Get random character
-      const text = chars[Math.floor(Math.random() * chars.length)];
-
-      // Draw character
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      // Move drop down
-      if (drops[i] * fontSize > height && Math.random() > 0.975) {
-        drops[i] = 0;
+      
+      // Animation loop with requestAnimationFrame timing
+      let lastTime = 0;
+      function animate(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+        
+        // Update and draw particles
+        particles.forEach(particle => {
+          // Update position with delta time for consistent speed
+          particle.x += particle.speedX * (deltaTime / 16);
+          particle.y += particle.speedY * (deltaTime / 16);
+          
+          // Wrap around edges
+          if (particle.x < 0) particle.x = canvas.width / dpr;
+          if (particle.x > canvas.width / dpr) particle.x = 0;
+          if (particle.y < 0) particle.y = canvas.height / dpr;
+          if (particle.y > canvas.height / dpr) particle.y = 0;
+          
+          // Draw particle
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color;
+          ctx.fill();
+        });
+        
+        // Draw connections between particles
+        particles.forEach((particle, i) => {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particle.x - particles[j].x;
+            const dy = particle.y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 100) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        });
+        
+        requestAnimationFrame(animate);
       }
-
-      drops[i]++;
+      
+      // Start animation
+      animate(0);
+      
+      // Resize canvas on window resize with debounce
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          canvas.width = window.innerWidth * dpr;
+          canvas.height = window.innerHeight * dpr;
+          canvas.style.width = `${window.innerWidth}px`;
+          canvas.style.height = `${window.innerHeight}px`;
+          ctx.scale(dpr, dpr);
+        }, 250);
+      });
     }
 
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-}
-
-/**
- * Initialize the social canvas animation
- */
-function initSocialCanvas() {
-  const canvas = $('#social-canvas');
-  if (!canvas) return;
-  
-  // Set canvas dimensions
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  
-  const ctx = canvas.getContext('2d');
-  
-  // Waves configuration
-  const waves = [];
-  const waveCount = 3;
-  
-  // Create waves
-  for (let i = 0; i < waveCount; i++) {
-    waves.push({
-      y: canvas.height / 2,
-      amplitude: 50 + i * 20,
-      frequency: 0.01 - i * 0.002,
-      speed: 0.05 + i * 0.01,
-      offset: 0,
-      color: `rgba(255, 255, 255, ${0.05 - i * 0.01})`
-    });
-  }
-  
-  // Animation loop
-  function animate() {
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Update and draw waves
-    waves.forEach(wave => {
-      // Update offset
-      wave.offset += wave.speed;
+    /**
+     * Initialize the about canvas animation
+     * Apple-inspired subtle grid pattern
+     */
+    function initAboutCanvas() {
+      const canvas = $('#about-canvas');
+      if (!canvas) return;
       
-      // Draw wave
-      ctx.beginPath();
-      ctx.moveTo(0, wave.y);
+      // Set canvas dimensions
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
       
-      for (let x = 0; x < canvas.width; x++) {
-        const y = wave.y + Math.sin(x * wave.frequency + wave.offset) * wave.amplitude;
-        ctx.lineTo(x, y);
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      
+      // Grid configuration
+      const gridSize = 30;
+      const dotSize = 1;
+      const dotColor = 'rgba(255, 255, 255, 0.2)';
+      
+      // Animation variables
+      let offset = 0;
+      
+      // Animation loop
+      function animate() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+        
+        // Update offset
+        offset += 0.1;
+        
+        // Draw grid
+        for (let x = 0; x < canvas.width / dpr; x += gridSize) {
+          for (let y = 0; y < canvas.height / dpr; y += gridSize) {
+            // Add subtle movement to dots
+            const offsetX = Math.sin((y / 100) + offset) * 2;
+            const offsetY = Math.cos((x / 100) + offset) * 2;
+            
+            ctx.beginPath();
+            ctx.arc(x + offsetX, y + offsetY, dotSize, 0, Math.PI * 2);
+            ctx.fillStyle = dotColor;
+            ctx.fill();
+          }
+        }
+        
+        requestAnimationFrame(animate);
       }
       
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.lineTo(0, canvas.height);
-      ctx.closePath();
+      // Start animation
+      animate();
       
-      ctx.fillStyle = wave.color;
-      ctx.fill();
-    });
-    
-    requestAnimationFrame(animate);
-  }
-  
-  // Start animation
-  animate();
-  
-  // Resize canvas on window resize
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    // Update wave positions
-    waves.forEach(wave => {
-      wave.y = canvas.height / 2;
-    });
-  });
-}
+      // Resize canvas on window resize
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        ctx.scale(dpr, dpr);
+      });
+    }
 
-// 
-// ========================================
-// Error Handling
-// ========================================
-//
+    /**
+     * Initialize the code animation on the skills section
+     * Apple-inspired matrix code rain effect
+     */
+    function initCodeAnimation() {
+      const codeCanvas = $('#code-animation');
+      if (!codeCanvas) return;
 
-/**
- * Global error handler
- */
-window.onerror = function(message, source, lineno, colno, error) {
-  console.error('Error:', message, 'at', source, lineno, colno);
-  return true; // Prevent default error handling
-};
+      const dpr = window.devicePixelRatio || 1;
+      codeCanvas.width = window.innerWidth * dpr;
+      codeCanvas.height = window.innerHeight * dpr;
+      codeCanvas.style.width = `${window.innerWidth}px`;
+      codeCanvas.style.height = `${window.innerHeight}px`;
+      
+      const ctx = codeCanvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      
+      const width = codeCanvas.width / dpr;
+      const height = codeCanvas.height / dpr;
 
-// 
-// ========================================
-// Initialize Application
-// ========================================
-//
+      // Code rain configuration
+      const fontSize = 14;
+      const columns = Math.floor(width / fontSize);
+      const drops = [];
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
-
-/* Add a fallback mechanism to ensure content is visible */
-// Add this to the end of the script section
-window.addEventListener('load', function() {
-  // Ensure all content is visible after page load
-  ensureVisibility();
-  
-  // Check if sections are visible after a delay
-  setTimeout(() => {
-    const sections = $$('.section-content');
-    let allVisible = true;
-    
-    sections.forEach(section => {
-      const style = window.getComputedStyle(section);
-      if (style.opacity < 0.5 || style.display === 'none' || style.visibility === 'hidden') {
-        allVisible = false;
+      // Initialize drops
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * -100);
       }
-    });
-    
-    // If any sections are not visible, force visibility
-    if (!allVisible) {
-      console.warn('Detected invisible sections, forcing visibility');
-      $$('.section').forEach(section => section.classList.add('in-view'));
+
+      // Characters to display
+      const chars = '01010101010101010101';
+
+      // Animation timing
+      let lastTime = 0;
+      const frameRate = 1000 / CONFIG.codeAnimationFPS;
+
+      // Animation loop
+      function draw(timestamp) {
+        // Throttle to target frame rate
+        if (timestamp - lastTime < frameRate) {
+          requestAnimationFrame(draw);
+          return;
+        }
+        lastTime = timestamp;
+        
+        // Semi-transparent black background to create fade effect
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = '#555'; // Medium gray color for text
+        ctx.font = `${fontSize}px monospace`;
+
+        // Loop through drops
+        for (let i = 0; i < drops.length; i++) {
+          // Get random character
+          const text = chars[Math.floor(Math.random() * chars.length)];
+
+          // Draw character
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          // Move drop down
+          if (drops[i] * fontSize > height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+
+          drops[i]++;
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      // Start animation
+      requestAnimationFrame(draw);
+      
+      // Resize handler
+      window.addEventListener('resize', () => {
+        codeCanvas.width = window.innerWidth * dpr;
+        codeCanvas.height = window.innerHeight * dpr;
+        codeCanvas.style.width = `${window.innerWidth}px`;
+        codeCanvas.style.height = `${window.innerHeight}px`;
+        ctx.scale(dpr, dpr);
+        
+        // Update dimensions
+        const width = codeCanvas.width / dpr;
+        const height = codeCanvas.height / dpr;
+        
+        // Recalculate columns
+        const newColumns = Math.floor(width / fontSize);
+        
+        // Adjust drops array
+        if (newColumns > columns) {
+          // Add new drops
+          for (let i = columns; i < newColumns; i++) {
+            drops[i] = Math.floor(Math.random() * -100);
+          }
+        } else {
+          // Remove excess drops
+          drops.length = newColumns;
+        }
+      });
+    }
+
+    /**
+     * Initialize the social canvas animation
+     * Apple-inspired smooth wave animation
+     */
+    function initSocialCanvas() {
+      const canvas = $('#social-canvas');
+      if (!canvas) return;
+      
+      // Set canvas dimensions
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      
+      const width = canvas.width / dpr;
+      const height = canvas.height / dpr;
+      
+      // Waves configuration
+      const waves = [];
+      const waveCount = 3;
+      
+      // Create waves
+      for (let i = 0; i < waveCount; i++) {
+        waves.push({
+          y: height / 2,
+          amplitude: 50 + i * 20,
+          frequency: 0.01 - i * 0.002,
+          speed: 0.05 + i * 0.01,
+          offset: 0,
+          color: `rgba(255, 255, 255, ${0.05 - i * 0.01})`
+        });
+      }
+      
+      // Animation timing
+      let lastTime = 0;
+      const frameRate = 1000 / 60; // Target 60fps
+      
+      // Animation loop
+      function animate(timestamp) {
+        // Throttle to target frame rate
+        if (timestamp - lastTime < frameRate) {
+          requestAnimationFrame(animate);
+          return;
+        }
+        lastTime = timestamp;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Update and draw waves
+        waves.forEach(wave => {
+          // Update offset
+          wave.offset += wave.speed;
+          
+          // Draw wave
+          ctx.beginPath();
+          ctx.moveTo(0, wave.y);
+          
+          for (let x = 0; x < width; x++) {
+            const y = wave.y + Math.sin(x * wave.frequency + wave.offset) * wave.amplitude;
+            ctx.lineTo(x, y);
+          }
+          
+          ctx.lineTo(width, height);
+          ctx.lineTo(0, height);
+          ctx.closePath();
+          
+          ctx.fillStyle = wave.color;
+          ctx.fill();
+        });
+        
+        requestAnimationFrame(animate);
+      }
+      
+      // Start animation
+      requestAnimationFrame(animate);
+      
+      // Resize canvas on window resize
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        ctx.scale(dpr, dpr);
+        
+        const width = canvas.width / dpr;
+        const height = canvas.height / dpr;
+        
+        // Update wave positions
+        waves.forEach(wave => {
+          wave.y = height / 2;
+        });
+      });
+    }
+
+    // 
+    // ========================================
+    // Error Handling
+    // ========================================
+    //
+
+    /**
+     * Global error handler
+     */
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error('Error:', message, 'at', source, lineno, colno);
+      // Ensure content is visible even if there's an error
       ensureVisibility();
-    }
-  }, 1000);
-});
+      return true; // Prevent default error handling
+    };
 
-// Add global error handler
-window.addEventListener('error', function(event) {
-  console.error('Caught error:', event.error);
-  // Ensure content is visible even if there's a JavaScript error
-  ensureVisibility();
-  return false;
-});
+    // 
+    // ========================================
+    // Initialize Application
+    // ========================================
+    //
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
+
+    // Add a fallback mechanism to ensure content is visible
+    window.addEventListener('load', function() {
+      // Ensure all content is visible after page load
+      ensureVisibility();
+      
+      // Check if sections are visible after a delay
+      setTimeout(() => {
+        const sections = $$('.section-content');
+        let allVisible = true;
+        
+        sections.forEach(section => {
+          const style = window.getComputedStyle(section);
+          if (style.opacity < 0.5 || style.display === 'none' || style.visibility === 'hidden') {
+            allVisible = false;
+          }
+        });
+        
+        // If any sections are not visible, force visibility
+        if (!allVisible) {
+          console.warn('Detected invisible sections, forcing visibility');
+          $$('.section').forEach(section => section.classList.add('in-view'));
+          ensureVisibility();
+        }
+      }, 1000);
+    });
+
+    // Add global error handler
+    window.addEventListener('error', function(event) {
+      console.error('Caught error:', event.error);
+      // Ensure content is visible even if there's a JavaScript error
+      ensureVisibility();
+      return false;
+    });
   </script>
 </body>
 </html>
