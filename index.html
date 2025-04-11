@@ -48,6 +48,67 @@ CSS Variables & Reset
   --section-min-height: 100vh;
 }
 
+/* In the CSS section, update these base styles to ensure proper height and layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Fix the section height and overflow issues */
+.section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--section-padding);
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Fix the section content visibility */
+.section-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  opacity: 1; /* Change from 0 to ensure content is visible by default */
+  transform: translateY(0); /* Remove initial transform to prevent content hiding */
+  transition: opacity 1s var(--animation-timing), 
+              transform 1s var(--animation-timing);
+}
+
+/* Fix canvas positioning and sizing */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -58,6 +119,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 
 body {
   font-family: var(--font-primary);
   background-color: var(--color-black);
@@ -67,6 +129,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*/
 
 /* 
 ========================================
@@ -117,12 +180,15 @@ a:hover {
 Layout & Container
 ========================================
 */
+/*
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+*/
 
+/*
 .section {
   position: relative;
   display: flex;
@@ -132,7 +198,9 @@ Layout & Container
   min-height: var(--section-min-height);
   overflow: hidden;
 }
+*/
 
+/*
 .section-content {
   position: relative;
   z-index: 2;
@@ -143,6 +211,7 @@ Layout & Container
   transition: opacity 1s var(--animation-timing), 
               transform 1s var(--animation-timing);
 }
+*/
 
 .in-view .section-content {
   opacity: 1;
@@ -172,7 +241,7 @@ Home Section
   border-radius: 50%;
   background-color: var(--color-medium-gray);
   /* Base64 encoded placeholder image */
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iIzU1NTU1NSIvPjx0ZXh0IHg9IjkwIiB5PSI5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiI+UHJvZmlsZSBJbWFnZTwvdGV4dD48L3N2Zz4=");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iIzU1NTU1NSIvPjx0ZXh0IHg9IjkwIiB5PSI5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiB0ZXh0LWFhbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiPlByb2ZpbGUgSW1hZ2U8L3RleHQ+PC9zdmc+=");
   background-size: cover;
   background-position: center;
   transition: transform var(--transition-speed) ease, 
@@ -839,6 +908,30 @@ Responsive Styles
   <script>
     'use strict';
 
+// Add this to the JavaScript section to ensure all sections are visible even without JS */
+function ensureVisibility() {
+  // Make sure all sections are visible
+  $$('.section-content').forEach(content => {
+    content.style.opacity = '1';
+    content.style.transform = 'translateY(0)';
+  });
+  
+  // Make sure all skill items are visible
+  $$('.skill-item').forEach(item => {
+    item.style.opacity = '1';
+    item.style.transform = 'translateY(0)';
+  });
+  
+  // Make sure all headings are visible
+  $$('h2').forEach(heading => {
+    heading.style.opacity = '1';
+    heading.style.transform = 'translateY(0)';
+  });
+}
+
+// Call this function after a short delay to ensure content is visible
+setTimeout(ensureVisibility, 500);
+
 // 
 // ========================================
 // Configuration
@@ -921,23 +1014,16 @@ const skills = [
  * Initialize the application
  */
 function init() {
-  // Populate skills grid
+  // Existing code...
   populateSkills();
-  
-  // Initialize animations
   initAnimations();
-  
-  // Initialize intersection observers
   initIntersectionObservers();
-  
-  // Initialize back to top button
   initBackToTop();
-  
-  // Initialize scroll indicator
   initScrollIndicator();
-  
-  // Initialize accessibility features
   initAccessibility();
+  
+  // Add this line to ensure visibility
+  ensureVisibility();
 }
 
 /**
@@ -984,30 +1070,41 @@ function initAnimations() {
  * Initialize intersection observers for animations
  */
 function initIntersectionObservers() {
-  // Check if IntersectionObserver is supported
-  if (!('IntersectionObserver' in window)) {
-    // Fallback for browsers that don't support IntersectionObserver
+  try {
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+      // Fallback for browsers that don't support IntersectionObserver
+      $$('.section').forEach(section => {
+        section.classList.add('in-view');
+      });
+      ensureVisibility();
+      return;
+    }
+    
+    // Create observer for sections
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px' // Trigger slightly before element comes into view
+    });
+    
+    // Observe all sections
+    $$('.section').forEach(section => {
+      sectionObserver.observe(section);
+    });
+  } catch (error) {
+    console.error('Error initializing intersection observers:', error);
+    // Fallback if there's an error
     $$('.section').forEach(section => {
       section.classList.add('in-view');
     });
-    return;
+    ensureVisibility();
   }
-  
-  // Create observer for sections
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-  
-  // Observe all sections
-  $$('.section').forEach(section => {
-    sectionObserver.observe(section);
-  });
 }
 
 /**
@@ -1072,28 +1169,30 @@ function initAccessibility() {
 // ========================================
 //
 
-/**
- * Initialize the home canvas animation
- */
+/* Enhance the canvas animations for better performance */
 function initHomeCanvas() {
   const canvas = $('#home-canvas');
   if (!canvas) return;
   
-  // Set canvas dimensions
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Set canvas dimensions with device pixel ratio for sharper rendering
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = `${window.innerWidth}px`;
+  canvas.style.height = `${window.innerHeight}px`;
   
   const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
   
   // Particles configuration
   const particles = [];
-  const particleCount = 50;
+  const particleCount = Math.min(50, Math.floor(window.innerWidth / 20)); // Responsive particle count
   
   // Create particles
   for (let i = 0; i < particleCount; i++) {
     particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * canvas.width / dpr,
+      y: Math.random() * canvas.height / dpr,
       radius: Math.random() * 2 + 1,
       color: `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.1})`,
       speedX: Math.random() * 0.5 - 0.25,
@@ -1101,22 +1200,27 @@ function initHomeCanvas() {
     });
   }
   
-  // Animation loop
-  function animate() {
+  // Animation loop with requestAnimationFrame timing
+  let lastTime = 0;
+  function animate(timestamp) {
+    if (!lastTime) lastTime = timestamp;
+    const deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
+    
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
     
     // Update and draw particles
     particles.forEach(particle => {
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
+      // Update position with delta time for consistent speed
+      particle.x += particle.speedX * (deltaTime / 16);
+      particle.y += particle.speedY * (deltaTime / 16);
       
       // Wrap around edges
-      if (particle.x < 0) particle.x = canvas.width;
-      if (particle.x > canvas.width) particle.x = 0;
-      if (particle.y < 0) particle.y = canvas.height;
-      if (particle.y > canvas.height) particle.y = 0;
+      if (particle.x < 0) particle.x = canvas.width / dpr;
+      if (particle.x > canvas.width / dpr) particle.x = 0;
+      if (particle.y < 0) particle.y = canvas.height / dpr;
+      if (particle.y > canvas.height / dpr) particle.y = 0;
       
       // Draw particle
       ctx.beginPath();
@@ -1147,12 +1251,19 @@ function initHomeCanvas() {
   }
   
   // Start animation
-  animate();
+  animate(0);
   
-  // Resize canvas on window resize
+  // Resize canvas on window resize with debounce
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
+    }, 250);
   });
 }
 
@@ -1361,6 +1472,41 @@ window.onerror = function(message, source, lineno, colno, error) {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
+
+/* Add a fallback mechanism to ensure content is visible */
+// Add this to the end of the script section
+window.addEventListener('load', function() {
+  // Ensure all content is visible after page load
+  ensureVisibility();
+  
+  // Check if sections are visible after a delay
+  setTimeout(() => {
+    const sections = $$('.section-content');
+    let allVisible = true;
+    
+    sections.forEach(section => {
+      const style = window.getComputedStyle(section);
+      if (style.opacity < 0.5 || style.display === 'none' || style.visibility === 'hidden') {
+        allVisible = false;
+      }
+    });
+    
+    // If any sections are not visible, force visibility
+    if (!allVisible) {
+      console.warn('Detected invisible sections, forcing visibility');
+      $$('.section').forEach(section => section.classList.add('in-view'));
+      ensureVisibility();
+    }
+  }, 1000);
+});
+
+// Add global error handler
+window.addEventListener('error', function(event) {
+  console.error('Caught error:', event.error);
+  // Ensure content is visible even if there's a JavaScript error
+  ensureVisibility();
+  return false;
+});
   </script>
 </body>
 </html>
