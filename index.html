@@ -206,21 +206,13 @@
     }
 
     body {
-      min-height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: var(--font-primary);
-      background-color: var(--color-white);
-      color: var(--color-dark-gray);
-      line-height: 1.47059;
-      letter-spacing: -0.021em;
+      line-height: 1.6;
+      background-color: var(--color-background);
+      color: var(--color-text);
       overflow-x: hidden;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
     }
 
     body.loaded {
@@ -255,12 +247,7 @@
 
     /* Typography */
     h1, h2, h3, h4, h5, h6 {
-      margin: 0;
-      padding: 0;
-      font-weight: var(--font-weight-semibold);
-      letter-spacing: -0.021em;
-      line-height: 1.1;
-      color: var(--color-black);
+      color: var(--color-text);
     }
 
     h1 {
@@ -523,14 +510,13 @@
     }
 
     a {
-      color: var(--color-white);
+      color: var(--color-accent);
       text-decoration: none;
-      transition: color var(--transition-medium) ease;
-      position: relative;
+      transition: color var(--transition-fast);
     }
 
     a:hover {
-      color: var(--color-lighter-gray);
+      color: var(--color-text);
     }
 
     /* 
@@ -565,21 +551,17 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: var(--nav-height);
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: var(--blur-subtle);
-      -webkit-backdrop-filter: var(--blur-subtle);
-      z-index: 1000;
+      right: 0;
+      background-color: var(--color-background);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 2rem;
+      z-index: 100;
+      transition: background-color var(--transition-normal);
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      transition: opacity 0.5s ease, 
-                  transform 0.5s ease,
-                  background-color 0.3s ease;
       opacity: 0;
       transform: translateY(-10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .main-nav.visible {
@@ -675,13 +657,13 @@
     */
     .section {
       min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      border-bottom: 1px solid var(--color-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       overflow: hidden;
-      padding: var(--section-padding);
-      background-color: var(--color-white);
     }
 
     .section:nth-child(even) {
@@ -689,10 +671,10 @@
     }
 
     .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 980px;
+      z-index: 1;
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
@@ -1657,21 +1639,23 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section" role="region" aria-labelledby="about-title">
-      <canvas class="circuit-canvas" id="circuit-canvas"></canvas>
-      <div class="section-content about-content">
-        <div class="bio-container">
-          <h2 id="about-title">About Me</h2>
-          <p class="bio">I'm a <span class="bio-highlight">cybersecurity specialist</span> with a passion for exploring the intricate world of digital security. My journey began with a fascination for understanding how systems work—and more importantly, how they can be compromised and protected.</p>
-          
-          <div class="bio-subsection">
-            <h3>My Approach</h3>
-            <p class="bio">I specialize in <span class="bio-highlight">penetration testing</span> and <span class="bio-highlight">iOS exploit development</span>, constantly pushing the boundaries of security research to stay ahead of emerging threats. My methodology combines technical precision with creative problem-solving, allowing me to identify vulnerabilities that others might miss.</p>
-          </div>
-          
-          <div class="bio-subsection">
-            <h3>Vision & Expertise</h3>
-            <p class="bio">By mastering <span class="bio-highlight">reverse engineering</span> techniques, I've developed a unique perspective on security architecture. I believe in building systems that are not just functionally sound but fundamentally secure by design. My goal is to contribute to a safer digital ecosystem through innovative security solutions and knowledge sharing.</p>
+    <section id="about" class="section">
+      <div class="section-inner">
+        <canvas id="circuitCanvas" class="circuit-canvas"></canvas>
+        <div class="section-content about-content">
+          <div class="bio-container">
+            <h2 id="about-title">About Me</h2>
+            <p class="bio">I'm a <span class="bio-highlight">cybersecurity specialist</span> with a passion for exploring the intricate world of digital security. My journey began with a fascination for understanding how systems work—and more importantly, how they can be compromised and protected.</p>
+            
+            <div class="bio-subsection">
+              <h3>My Approach</h3>
+              <p class="bio">I specialize in <span class="bio-highlight">penetration testing</span> and <span class="bio-highlight">iOS exploit development</span>, constantly pushing the boundaries of security research to stay ahead of emerging threats. My methodology combines technical precision with creative problem-solving, allowing me to identify vulnerabilities that others might miss.</p>
+            </div>
+            
+            <div class="bio-subsection">
+              <h3>Vision & Expertise</h3>
+              <p class="bio">By mastering <span class="bio-highlight">reverse engineering</span> techniques, I've developed a unique perspective on security architecture. I believe in building systems that are not just functionally sound but fundamentally secure by design. My goal is to contribute to a safer digital ecosystem through innovative security solutions and knowledge sharing.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -3092,6 +3076,9 @@
       
       console.log('Initializing application...');
       
+      // Detect low power mode
+      detectLowPowerMode();
+      
       // Set up navigation
       initNavigation();
       
@@ -3112,6 +3099,18 @@
         .catch(error => {
           console.warn('Could not load GitHub avatar:', error);
         });
+      
+      // Make content visible immediately
+      document.body.classList.add('loaded');
+      $('#app').classList.add('visible');
+      $('#main-nav').classList.add('visible');
+      ensureVisibility();
+      
+      // Initialize animations if motion is not reduced
+      if (!CONFIG.reducedMotion) {
+        // Start any animations here
+        const circuitAnimation = initializeCircuitAnimation();
+      }
         
       // Mark as initialized
       window.portfolioInitialized = true;
@@ -3219,6 +3218,164 @@
         }
       });
     };
+
+    // Add circuit animation and About section observer
+    function initializeCircuitAnimation() {
+      const canvas = document.getElementById('circuitCanvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+      
+      // Handle canvas resize
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      });
+      
+      // Circuit nodes and connections
+      const nodes = [];
+      const connections = [];
+      const nodeCount = 120;
+      const connectionDistance = 100;
+      const pulseSpeed = 0.5;
+      
+      // Colors
+      let primaryColor = '#ffffff';
+      let secondaryColor = '#999999';
+      const accentRedColor = '#b0121b';
+      let useAccentColor = false;
+      
+      // Create nodes
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.5 + 0.5,
+        });
+      }
+      
+      // Create connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < connectionDistance) {
+            connections.push({
+              start: i,
+              end: j,
+              distance: distance,
+              pulsePosition: Math.random(),
+              pulseDirection: Math.random() > 0.5 ? 1 : -1,
+              width: Math.random() * 0.5 + 0.5,
+            });
+          }
+        }
+      }
+      
+      // Animation variables
+      let animationStartTime = null;
+      let animationId = null;
+      
+      // Draw the circuit
+      function drawCircuit(timestamp) {
+        if (!animationStartTime) animationStartTime = timestamp;
+        const elapsedTime = timestamp - animationStartTime;
+        
+        // Switch to accent color after 45 seconds
+        if (elapsedTime > 45000 && !useAccentColor) {
+          useAccentColor = true;
+        }
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw connections
+        for (const conn of connections) {
+          const start = nodes[conn.start];
+          const end = nodes[conn.end];
+          
+          // Update pulse position
+          conn.pulsePosition += (pulseSpeed / conn.distance) * conn.pulseDirection;
+          if (conn.pulsePosition > 1 || conn.pulsePosition < 0) {
+            conn.pulseDirection *= -1;
+            conn.pulsePosition = Math.max(0, Math.min(1, conn.pulsePosition));
+          }
+          
+          // Draw connection line
+          ctx.beginPath();
+          ctx.moveTo(start.x, start.y);
+          ctx.lineTo(end.x, end.y);
+          ctx.strokeStyle = secondaryColor;
+          ctx.lineWidth = conn.width * 0.5;
+          ctx.stroke();
+          
+          // Draw pulse
+          const pulseX = start.x + (end.x - start.x) * conn.pulsePosition;
+          const pulseY = start.y + (end.y - start.y) * conn.pulsePosition;
+          
+          ctx.beginPath();
+          ctx.arc(pulseX, pulseY, conn.width * 2, 0, Math.PI * 2);
+          
+          // Use accent color for some pulses after 45 seconds
+          if (useAccentColor && Math.random() > 0.7) {
+            ctx.fillStyle = accentRedColor;
+          } else {
+            ctx.fillStyle = primaryColor;
+          }
+          
+          ctx.fill();
+        }
+        
+        // Draw nodes
+        for (const node of nodes) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = primaryColor;
+          ctx.fill();
+        }
+        
+        animationId = requestAnimationFrame(drawCircuit);
+      }
+      
+      // Start animation
+      animationId = requestAnimationFrame(drawCircuit);
+      
+      return {
+        start: () => {
+          if (!animationId) {
+            animationStartTime = null;
+            animationId = requestAnimationFrame(drawCircuit);
+          }
+        },
+        stop: () => {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+          }
+        }
+      };
+    }
+    
+    // Initialize Intersection Observer for animations
+    function initializeAboutObserver() {
+      const bioContainer = document.querySelector('.bio-container');
+      if (!bioContainer) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      observer.observe(bioContainer);
+    }
   </script>
 </body>
 </html>
