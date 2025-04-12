@@ -103,6 +103,92 @@
       --particle-size-max: 2;
       --particle-speed: 0.3;
       --particle-opacity: 0.5;
+      
+      /* Colors */
+      --color-primary: #1a1a1a;
+      --color-secondary: #333333;
+      --color-accent: #b0121b;
+      --color-text: #ffffff;
+      --color-text-muted: #999999;
+      --color-background: #000000;
+      --color-border: #333333;
+      --color-card: #1a1a1a;
+      --color-overlay: rgba(0, 0, 0, 0.8);
+      
+      /* Dark mode colors */
+      --dark-color-primary: #1a1a1a;
+      --dark-color-secondary: #333333;
+      --dark-color-accent: #b0121b;
+      --dark-color-text: #ffffff;
+      --dark-color-text-muted: #999999;
+      --dark-color-background: #000000;
+      --dark-color-border: #333333;
+      --dark-color-card: #1a1a1a;
+      --dark-color-overlay: rgba(0, 0, 0, 0.8);
+      
+      /* Light mode colors */
+      --light-color-primary: #f5f5f5;
+      --light-color-secondary: #e0e0e0;
+      --light-color-accent: #b0121b;
+      --light-color-text: #333333;
+      --light-color-text-muted: #666666;
+      --light-color-background: #ffffff;
+      --light-color-border: #dddddd;
+      --light-color-card: #ffffff;
+      --light-color-overlay: rgba(255, 255, 255, 0.8);
+      
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+      --space-xl: 4rem;
+      
+      /* Animation */
+      --transition-fast: 0.2s;
+      --transition-normal: 0.3s;
+      --transition-slow: 0.5s;
+    }
+    
+    /* Dark mode class that can be toggled */
+    .dark-mode {
+      --color-primary: var(--dark-color-primary);
+      --color-secondary: var(--dark-color-secondary);
+      --color-accent: var(--dark-color-accent);
+      --color-text: var(--dark-color-text);
+      --color-text-muted: var(--dark-color-text-muted);
+      --color-background: var(--dark-color-background);
+      --color-border: var(--dark-color-border);
+      --color-card: var(--dark-color-card);
+      --color-overlay: var(--dark-color-overlay);
+    }
+    
+    /* Light mode (default) */
+    :root:not(.dark-mode) {
+      --color-primary: var(--light-color-primary);
+      --color-secondary: var(--light-color-secondary);
+      --color-accent: var(--light-color-accent);
+      --color-text: var(--light-color-text);
+      --color-text-muted: var(--light-color-text-muted);
+      --color-background: var(--light-color-background);
+      --color-border: var(--light-color-border);
+      --color-card: var(--light-color-card);
+      --color-overlay: var(--light-color-overlay);
+    }
+    
+    /* Class for smooth color transitions */
+    .color-transition {
+      transition: background-color 0.8s ease, 
+                  color 0.8s ease,
+                  border-color 0.8s ease,
+                  box-shadow 0.8s ease;
+    }
+    
+    .color-transition * {
+      transition: background-color 0.8s ease, 
+                  color 0.8s ease,
+                  border-color 0.8s ease,
+                  box-shadow 0.8s ease;
     }
 
     /* Base HTML and Body styles */
@@ -1411,6 +1497,78 @@
         display: none !important;
       }
     }
+
+    /* Theme toggle styles */
+    .nav-theme-toggle {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+    
+    .theme-toggle {
+      background: var(--color-secondary);
+      border: none;
+      border-radius: 20px;
+      width: 60px;
+      height: 30px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    
+    .theme-toggle::after {
+      content: '';
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: var(--color-text);
+      left: 4px;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    /* When toggle is checked (dark mode) */
+    .theme-toggle[aria-checked="true"]::after {
+      transform: translateX(30px);
+    }
+    
+    .sun-icon, .moon-icon {
+      font-size: 14px;
+      z-index: 1;
+    }
+    
+    .sun-icon {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .moon-icon {
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+    
+    .theme-toggle[aria-checked="true"] .sun-icon {
+      opacity: 0.3;
+    }
+    
+    .theme-toggle[aria-checked="true"] .moon-icon {
+      opacity: 1;
+    }
+    
+    /* Adjust nav list for the toggle */
+    .nav-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -1460,14 +1618,19 @@
   Navigation
   ========================================
   -->
-  <nav class="main-nav" role="navigation" aria-label="Main navigation" id="main-nav">
-    <ul>
+  <nav id="main-nav" class="main-nav">
+    <ul class="nav-list">
       <li><a href="#home" class="nav-link active">Home</a></li>
       <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#social" class="nav-link">Connect</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li class="nav-theme-toggle">
+        <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-checked="false">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      </li>
     </ul>
-    <div class="nav-indicator" id="nav-indicator"></div>
   </nav>
 
   <!-- 
@@ -2142,19 +2305,34 @@
      */
     const fetchGitHubAvatar = async (username, size = 400) => {
       try {
-        // Try to fetch directly from GitHub
-        const url = `https://github.com/${username}.png?size=${size}`;
+        // Try primary method first - direct from GitHub
+        const primaryUrl = `https://github.com/${username}.png?size=${size}`;
         
         // Create a new image to test loading
         const img = new Image();
         img.crossOrigin = 'anonymous';
         
-        // Return a promise that resolves when the image loads
-        return new Promise((resolve, reject) => {
-          img.onload = () => resolve(url);
-          img.onerror = () => reject(new Error('Failed to load GitHub avatar'));
-          img.src = url;
+        // Return a promise that tries the primary URL
+        const result = await new Promise((resolve, reject) => {
+          img.onload = () => resolve(primaryUrl);
+          img.onerror = () => reject(new Error('Failed to load GitHub avatar from primary URL'));
+          img.src = primaryUrl;
+        }).catch(async (error) => {
+          // Try fallback method - using githubusercontent.com
+          console.log('Trying fallback avatar URL...');
+          const fallbackUrl = `https://avatars.githubusercontent.com/u/${username}?v=4&s=${size}`;
+          
+          const fallbackImg = new Image();
+          fallbackImg.crossOrigin = 'anonymous';
+          
+          return new Promise((resolve, reject) => {
+            fallbackImg.onload = () => resolve(fallbackUrl);
+            fallbackImg.onerror = () => reject(new Error('Failed to load GitHub avatar from fallback URL'));
+            fallbackImg.src = fallbackUrl;
+          });
         });
+        
+        return result;
       } catch (error) {
         console.error('Error fetching GitHub avatar:', error);
         throw error;
@@ -2905,25 +3083,26 @@
       }
     }
 
-    /**
-     * Initialize the application
-     */
+    // Main initialization function
     function init() {
-      console.log('Portfolio initialization started');
-      window.portfolioInitialized = true;
+      if (window.portfolioInitialized) {
+        console.log('Init already called, ignoring duplicate call');
+        return;
+      }
       
-      // Detect low power mode
-      detectLowPowerMode();
+      console.log('Initializing application...');
       
-      // Populate skills
-      populateSkills();
-      
-      // Initialize UI elements
+      // Set up navigation
       initNavigation();
+      
+      // Set up scroll indicator
       initScrollIndicator();
-      initBackToTop();
+      
+      // Set up accessibility
       initAccessibility();
-      initAnimationSettings();
+      
+      // Initialize dark mode
+      initDarkMode();
       
       // Try to fetch GitHub avatar
       fetchGitHubAvatar(CONFIG.githubUsername, CONFIG.githubAvatarSize)
@@ -2932,19 +3111,10 @@
         })
         .catch(error => {
           console.warn('Could not load GitHub avatar:', error);
-          // Keep the placeholder visible
         });
-      
-      // Initialize animations if motion is not reduced
-      if (!CONFIG.reducedMotion) {
-        initLaunchAnimation();
-      } else {
-        // If reduced motion, skip animations and show content
-        document.body.classList.add('loaded');
-        $('#app').classList.add('visible');
-        $('#main-nav').classList.add('visible');
-        ensureVisibility();
-      }
+        
+      // Mark as initialized
+      window.portfolioInitialized = true;
     }
 
     // 
@@ -2990,6 +3160,65 @@
         init();
       }
     });
+
+    /**
+     * Toggle dark mode with smooth transition
+     * @param {boolean} enableDark - Whether to enable dark mode
+     */
+    const toggleDarkMode = (enableDark) => {
+      const root = document.documentElement;
+      const darkModeToggle = $('#dark-mode-toggle');
+      
+      // Add transition class for smooth color changes
+      root.classList.add('color-transition');
+      
+      if (enableDark) {
+        root.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.setAttribute('aria-checked', 'true');
+        localStorage.setItem('prefersDarkMode', 'true');
+      } else {
+        root.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.setAttribute('aria-checked', 'false');
+        localStorage.setItem('prefersDarkMode', 'false');
+      }
+      
+      // Remove transition class after animation completes
+      setTimeout(() => {
+        root.classList.remove('color-transition');
+      }, 800);
+    };
+    
+    /**
+     * Initialize dark mode based on user preference
+     */
+    const initDarkMode = () => {
+      const darkModeToggle = $('#dark-mode-toggle');
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedPreference = localStorage.getItem('prefersDarkMode');
+      
+      // Set initial state based on saved preference or system preference
+      if (savedPreference !== null) {
+        toggleDarkMode(savedPreference === 'true');
+      } else {
+        toggleDarkMode(prefersDarkMode);
+      }
+      
+      // Add event listener to toggle
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+          const isDarkMode = document.documentElement.classList.contains('dark-mode');
+          toggleDarkMode(!isDarkMode);
+        });
+      }
+      
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only change if user hasn't set a preference
+        if (localStorage.getItem('prefersDarkMode') === null) {
+          toggleDarkMode(e.matches);
+        }
+      });
+    };
   </script>
 </body>
 </html>
