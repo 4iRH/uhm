@@ -221,8 +221,8 @@
       z-index: 2;
       max-width: 1200px;
       width: 100%;
-      opacity: 1; /* Ensure content is visible by default */
-      transform: translateY(0);
+      opacity: 1 !important; /* Force visibility */
+      transform: translateY(0) !important; /* Force position */
       transition: opacity 1s var(--animation-timing), 
                   transform 1s var(--animation-timing);
     }
@@ -825,6 +825,31 @@
         animation: none !important;
       }
     }
+
+    /* Add this to the CSS section */
+    .home-section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #222 0%, #000 100%);
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: twinkle 4s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.8; }
+    }
   </style>
 </head>
 <body>
@@ -1029,6 +1054,28 @@
      * Initialize the application
      */
     function init() {
+      console.log('Portfolio initialization started');
+      window.portfolioInitialized = true;
+
+      // Force content visibility immediately
+      document.querySelectorAll('.section-content').forEach(content => {
+        content.style.opacity = '1';
+        content.style.transform = 'translateY(0)';
+      });
+
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('in-view');
+      });
+
+      document.querySelectorAll('h2').forEach(heading => {
+        heading.style.opacity = '1';
+        heading.style.transform = 'translateY(0)';
+      });
+
+      document.querySelectorAll('.skill-item').forEach(item => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+      });
       // Populate skills grid
       populateSkills();
       
@@ -1052,6 +1099,9 @@
       
       // Ensure content is visible
       ensureVisibility();
+
+      // Call this function
+      createStars();
     }
 
     /**
@@ -1631,6 +1681,27 @@
       });
     }
 
+    // Create static stars as fallback for canvas animation
+    function createStars() {
+      const homeSection = document.getElementById('home');
+      if (!homeSection) return;
+      
+      // Add background div
+      const bg = document.createElement('div');
+      bg.className = 'home-section-bg';
+      homeSection.appendChild(bg);
+      
+      // Add stars
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 4}s`;
+        homeSection.appendChild(star);
+      }
+    }
+
     // 
     // ========================================
     // Error Handling
@@ -1653,41 +1724,24 @@
     // ========================================
     //
 
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', init);
+    // Replace the DOMContentLoaded listener with this more robust version
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      // DOM already loaded, run init immediately
+      console.log('DOM already loaded, initializing now');
+      init();
+    }
 
-    // Add a fallback mechanism to ensure content is visible
+    // Also add a window load event as backup
     window.addEventListener('load', function() {
-      // Ensure all content is visible after page load
+      console.log('Window loaded');
+      // If init hasn't run yet for some reason, run it now
+      if (!window.portfolioInitialized) {
+        console.log('Running init from window load event');
+        init();
+      }
       ensureVisibility();
-      
-      // Check if sections are visible after a delay
-      setTimeout(() => {
-        const sections = $$('.section-content');
-        let allVisible = true;
-        
-        sections.forEach(section => {
-          const style = window.getComputedStyle(section);
-          if (style.opacity < 0.5 || style.display === 'none' || style.visibility === 'hidden') {
-            allVisible = false;
-          }
-        });
-        
-        // If any sections are not visible, force visibility
-        if (!allVisible) {
-          console.warn('Detected invisible sections, forcing visibility');
-          $$('.section').forEach(section => section.classList.add('in-view'));
-          ensureVisibility();
-        }
-      }, 1000);
-    });
-
-    // Add global error handler
-    window.addEventListener('error', function(event) {
-      console.error('Caught error:', event.error);
-      // Ensure content is visible even if there's a JavaScript error
-      ensureVisibility();
-      return false;
     });
   </script>
 </body>
