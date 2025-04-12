@@ -27,8 +27,9 @@
     ========================================
     PORTFOLIO WEBSITE ENHANCED STYLES
     ========================================
-    - Dynamic animated launch sequence
-    - Interactive particle animations
+    - Dynamic animated wave background
+    - Interactive particle system
+    - GitHub profile integration
     - Apple-inspired UI and interactions
     - Optimized for performance
     - Enhanced typography and layout
@@ -41,6 +42,7 @@
     ========================================
     */
     :root {
+      /* Color Palette */
       --color-black: #000000;
       --color-dark-gray: #1d1d1f;
       --color-medium-gray: #555555;
@@ -50,22 +52,36 @@
       --color-accent: rgba(255, 255, 255, 0.8);
       --color-accent-glow: rgba(255, 255, 255, 0.15);
       
+      /* Gradients */
       --gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
       --gradient-subtle: linear-gradient(to right, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 100%);
       --gradient-glow: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       
+      /* Wave Animation Colors */
+      --wave-color-1: rgba(40, 40, 45, 0.6);
+      --wave-color-2: rgba(60, 60, 65, 0.4);
+      --wave-color-3: rgba(80, 80, 85, 0.2);
+      
+      /* Circuit Animation Colors */
+      --circuit-color-1: rgba(100, 100, 110, 0.15);
+      --circuit-color-2: rgba(120, 120, 130, 0.1);
+      --circuit-color-glow: rgba(150, 150, 160, 0.05);
+      
+      /* Typography */
       --font-primary: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Inter, sans-serif;
       --font-weight-light: 300;
       --font-weight-regular: 400;
       --font-weight-medium: 500;
       --font-weight-semibold: 600;
       
+      /* Timing */
       --transition-fast: 0.2s;
       --transition-medium: 0.3s;
       --transition-slow: 0.6s;
       --animation-duration: 0.8s;
       --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
       
+      /* Spacing */
       --spacing-xs: 0.5rem;
       --spacing-sm: 1rem;
       --spacing-md: 2rem;
@@ -74,6 +90,7 @@
       --section-padding: 5rem 2rem;
       --nav-height: 60px;
       
+      /* Effects */
       --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.1);
       --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.2);
       --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -82,10 +99,22 @@
       --blur-medium: blur(20px);
       --blur-strong: blur(30px);
       
+      /* Shapes */
       --border-radius-sm: 8px;
       --border-radius-md: 12px;
       --border-radius-lg: 20px;
       --border-radius-round: 50%;
+      
+      /* Animation */
+      --wave-amplitude: 20;
+      --wave-frequency: 0.02;
+      --wave-speed: 0.05;
+      --particle-count: 100;
+      --particle-connection-distance: 150;
+      --particle-size-min: 1;
+      --particle-size-max: 3;
+      --particle-speed: 0.5;
+      --particle-opacity: 0.7;
     }
 
     /* Base HTML and Body styles */
@@ -130,9 +159,11 @@
 
     /* 
     ========================================
-    Launch Animation Overlay
+    Canvas Animations
     ========================================
     */
+    
+    /* Launch Animation Overlay */
     .launch-overlay {
       position: fixed;
       top: 0;
@@ -178,11 +209,7 @@
       z-index: -1;
     }
 
-    /* 
-    ========================================
-    Background Canvas
-    ========================================
-    */
+    /* Background Canvas */
     .background-canvas {
       position: fixed;
       top: 0;
@@ -198,12 +225,115 @@
       opacity: 1;
     }
 
+    /* Circuit Canvas */
+    .circuit-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .circuit-canvas.active {
+      opacity: 1;
+    }
+
+    /* Debug Panel */
+    .debug-panel {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+      z-index: 9999;
+      display: none;
+    }
+
+    .debug-panel.visible {
+      display: block;
+    }
+
+    /* Animation Settings Panel */
+    .animation-settings {
+      position: fixed;
+      top: 70px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: var(--font-primary);
+      font-size: 14px;
+      z-index: 9999;
+      width: 250px;
+      display: none;
+      backdrop-filter: var(--blur-medium);
+      -webkit-backdrop-filter: var(--blur-medium);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .animation-settings.visible {
+      display: block;
+    }
+
+    .animation-settings h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .animation-settings label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: var(--color-light-gray);
+    }
+
+    .animation-settings input[type="range"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .animation-settings select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(40, 40, 45, 0.8);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .animation-settings button {
+      background-color: rgba(60, 60, 65, 0.8);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      transition: background-color 0.2s ease;
+    }
+
+    .animation-settings button:hover {
+      background-color: rgba(80, 80, 85, 0.8);
+    }
+
     /* 
     ========================================
     Typography
     ========================================
     */
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h5 {
       font-weight: var(--font-weight-medium);
       line-height: 1.2;
       margin-bottom: var(--spacing-md);
@@ -444,15 +574,15 @@
       position: relative;
       overflow: hidden;
       background-color: var(--color-medium-gray);
-      /* Updated profile image with a more reliable Base64 encoding */
-      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+PGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iOTAiIGZpbGw9IiM1NTU1NTUiLz48cGF0aCBkPSJNOTAgNjBjMTYuNTcgMCAzMCAxMy40MyAzMCAzMHMtMTMuNDMgMzAtMzAgMzAtMzAtMTMuNDMtMzAtMzAgMTMuNDMtMzAgMzAtMzBtMCA3NWMyNSAwIDQ1LjIyIDEyLjAyIDQ1LjIyIDIwLjg5djkuMjZIODQuNzh2LTkuMjFDNDQuNzggMTQ3LjA1IDY1IDEzNSA5MCAxMzV6IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+");
       background-size: cover;
       background-position: center;
       transition: transform var(--transition-medium) ease, 
-                  box-shadow var(--transition-medium) ease;
+                  box-shadow var(--transition-medium) ease,
+                  filter var(--transition-medium) ease;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
                   0 0 0 1px rgba(255, 255, 255, 0.1);
       margin: 0 auto;
+      filter: brightness(1);
     }
 
     .profile-image::before {
@@ -472,10 +602,22 @@
       transform: scale(1.05) translateY(-5px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
                   0 0 0 1px rgba(255, 255, 255, 0.15);
+      filter: brightness(1.1);
     }
 
     .profile-image:hover::before {
       opacity: 0.6;
+    }
+
+    .profile-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--color-light-gray);
+      background-color: var(--color-dark-gray);
     }
 
     .name {
@@ -601,27 +743,6 @@
       padding: 3rem;
       z-index: 10;
       margin: 0 auto;
-    }
-
-    .circuit-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.1;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .digital-wave {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      opacity: 0.15;
     }
 
     .bio-container {
@@ -1041,7 +1162,10 @@
       .scroll-indicator,
       canvas,
       .launch-overlay,
-      .background-canvas {
+      .background-canvas,
+      .circuit-canvas,
+      .debug-panel,
+      .animation-settings {
         display: none !important;
       }
 
@@ -1079,6 +1203,7 @@
       .scroll-indicator,
       .launch-overlay,
       .background-canvas,
+      .circuit-canvas,
       .digital-wave,
       .skills-network-canvas {
         display: none !important;
@@ -1111,6 +1236,9 @@
     @media (max-width: 768px) {
       :root {
         --section-padding: 4rem 1.5rem;
+        --wave-amplitude: 15;
+        --particle-count: 70;
+        --particle-connection-distance: 100;
       }
 
       h1 {
@@ -1163,11 +1291,19 @@
       .social-links {
         flex-wrap: wrap;
       }
+
+      .animation-settings {
+        width: 200px;
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 480px) {
       :root {
         --section-padding: 3rem 1rem;
+        --wave-amplitude: 10;
+        --particle-count: 40;
+        --particle-connection-distance: 80;
       }
 
       h1 {
@@ -1224,6 +1360,11 @@
       .launch-logo {
         font-size: 3rem;
       }
+
+      .debug-panel,
+      .animation-settings {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -1236,6 +1377,38 @@
 
   <!-- Background Canvas -->
   <canvas class="background-canvas" id="background-canvas"></canvas>
+  
+  <!-- Debug Panel -->
+  <div class="debug-panel" id="debug-panel">
+    <div>FPS: <span id="fps-counter">0</span></div>
+    <div>Particles: <span id="particle-counter">0</span></div>
+    <div>Wave Points: <span id="wave-counter">0</span></div>
+  </div>
+
+  <!-- Animation Settings Panel -->
+  <div class="animation-settings" id="animation-settings">
+    <h3>Background Settings</h3>
+    <label for="animation-type">Animation Type</label>
+    <select id="animation-type">
+      <option value="wave">Wave</option>
+      <option value="particles">Particles</option>
+      <option value="circuit">Circuit</option>
+      <option value="combined">Combined</option>
+    </select>
+    
+    <label for="particle-density">Particle Density</label>
+    <input type="range" id="particle-density" min="20" max="200" value="100">
+    
+    <label for="wave-amplitude">Wave Amplitude</label>
+    <input type="range" id="wave-amplitude" min="5" max="40" value="20">
+    
+    <label for="animation-speed">Animation Speed</label>
+    <input type="range" id="animation-speed" min="0.01" max="0.2" step="0.01" value="0.05">
+    
+    <button id="toggle-debug">Toggle Debug</button>
+    <button id="reset-settings">Reset</button>
+    <button id="close-settings">Close</button>
+  </div>
   
   <!-- 
   ========================================
@@ -1262,7 +1435,9 @@
     <section id="home" class="section" role="region" aria-labelledby="home-title">
       <div class="section-content home-content">
         <div class="profile-container" id="profile-container">
-          <div class="profile-image" aria-label="Profile picture"></div>
+          <div class="profile-image" id="profile-image">
+            <div class="profile-image-placeholder" id="profile-image-placeholder">mw3s</div>
+          </div>
         </div>
         
         <h1 id="home-title" class="name">mw3s</h1>
@@ -1275,7 +1450,7 @@
 
     <!-- About Section -->
     <section id="about" class="section" role="region" aria-labelledby="about-title">
-      <canvas class="digital-wave" id="digital-wave-canvas"></canvas>
+      <canvas class="circuit-canvas" id="circuit-canvas"></canvas>
       <div class="section-content about-content">
         <div class="bio-container">
           <h2 id="about-title">About Me</h2>
@@ -1383,17 +1558,51 @@
     // ========================================
     //
     const CONFIG = {
+      // Animation Settings
       launchDuration: 2000, // ms
-      typingSpeed: 80, // ms per character
-      particleCount: 150,
-      skillsParticleCount: 100,
+      waveAmplitude: 20,
+      waveFrequency: 0.02,
+      waveSpeed: 0.05,
+      waveCount: 3,
+      waveColors: [
+        'rgba(40, 40, 45, 0.6)',
+        'rgba(60, 60, 65, 0.4)',
+        'rgba(80, 80, 85, 0.2)'
+      ],
+      particleCount: 100,
+      particleConnectionDistance: 150,
+      particleSizeMin: 1,
+      particleSizeMax: 3,
       particleSpeed: 0.5,
-      particleSize: 2,
       particleOpacity: 0.7,
-      connectionDistance: 100,
-      textCharDelay: 50, // ms delay between each character animation
+      
+      // Circuit Animation
+      circuitLineCount: 20,
+      circuitNodeCount: 30,
+      circuitColors: [
+        'rgba(100, 100, 110, 0.15)',
+        'rgba(120, 120, 130, 0.1)',
+        'rgba(150, 150, 160, 0.05)'
+      ],
+      
+      // Profile Image
+      githubUsername: 'mw3s',
+      githubAvatarSize: 400,
+      
+      // Performance
       fps: 60,
-      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      fpsUpdateInterval: 500, // ms
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      lowPowerMode: false, // Will be detected
+      
+      // Debug
+      debugMode: false,
+      
+      // Animation Type
+      animationType: 'combined', // 'wave', 'particles', 'circuit', 'combined'
+      
+      // Text Animation
+      textCharDelay: 50 // ms delay between each character animation
     };
 
     // 
@@ -1418,8 +1627,7 @@
 
     /**
      * Check if an element is in the viewport
-     * @param {Element} el - The element to check
-     * @param {number} offset - Offset from the viewport edge
+     * @param {string} selector - CSS selector
      * @returns {boolean} - Whether the element is in the viewport
      */
     const isInViewport = (el, offset = 100) => {
@@ -1432,6 +1640,24 @@
         rect.left <= (window.innerWidth - offset) &&
         rect.right >= offset
       );
+    };
+
+    /**
+     * Debounce function to limit function calls
+     * @param {Function} func - Function to debounce
+     * @param {number} wait - Wait time in ms
+     * @returns {Function} - Debounced function
+     */
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
     };
 
     /**
@@ -1520,6 +1746,137 @@
       }
     };
 
+    /**
+     * Check if WebGL is supported
+     * @returns {boolean} - Whether WebGL is supported
+     */
+    const isWebGLSupported = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext && 
+                 (canvas.getContext('webgl') || 
+                  canvas.getContext('experimental-webgl')));
+      } catch (e) {
+        return false;
+      }
+    };
+
+    /**
+     * FPS counter
+     */
+    class FPSCounter {
+      constructor(updateInterval = 500) {
+        this.updateInterval = updateInterval;
+        this.frames = 0;
+        this.lastTime = performance.now();
+        this.fps = 0;
+      }
+      
+      update() {
+        this.frames++;
+        const now = performance.now();
+        const elapsed = now - this.lastTime;
+        
+        if (elapsed >= this.updateInterval) {
+          this.fps = Math.round((this.frames * 1000) / elapsed);
+          this.lastTime = now;
+          this.frames = 0;
+        }
+        
+        return this.fps;
+      }
+    }
+
+    // 
+    // ========================================
+    // Wave Animation
+    // ========================================
+    //
+    
+    /**
+     * Create wave points
+     * @param {number} width - Canvas width
+     * @param {number} count - Number of points
+     * @returns {Array} - Array of wave points
+     */
+    const createWavePoints = (width, count) => {
+      const points = [];
+      const step = width / (count - 1);
+      
+      for (let i = 0; i < count; i++) {
+        points.push({
+          x: i * step,
+          y: 0,
+          originalY: 0
+        });
+      }
+      
+      return points;
+    };
+    
+    /**
+     * Update wave points
+     * @param {Array} points - Array of wave points
+     * @param {number} height - Canvas height
+     * @param {number} time - Current time
+     * @param {number} amplitude - Wave amplitude
+     * @param {number} frequency - Wave frequency
+     */
+    const updateWavePoints = (points, height, time, amplitude, frequency) => {
+      const centerY = height / 2;
+      
+      for (let i = 0; i < points.length; i++) {
+        const point = points[i];
+        const x = point.x;
+        
+        // Calculate wave offset
+        const offset = Math.sin(x * frequency + time) * amplitude;
+        
+        // Add some noise for natural movement
+        const noise = Math.sin(x * 0.02 + time * 0.1) * (amplitude * 0.2);
+        
+        point.y = centerY + offset + noise;
+        point.originalY = centerY;
+      }
+    };
+    
+    /**
+     * Draw waves on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * @param {Array} points - Array of wave points
+     * @param {number} height - Canvas height
+     * @param {string} color - Wave color
+     */
+    const drawWave = (ctx, points, height, color) => {
+      if (points.length < 2) return;
+      
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      
+      // Draw curve through points
+      for (let i = 1; i < points.length - 1; i++) {
+        const xc = (points[i].x + points[i + 1].x) / 2;
+        const yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+      }
+      
+      // Last point
+      ctx.quadraticCurveTo(
+        points[points.length - 2].x, 
+        points[points.length - 2].y, 
+        points[points.length - 1].x, 
+        points[points.length - 1].y
+      );
+      
+      // Complete the wave by drawing to the bottom corners
+      ctx.lineTo(points[points.length - 1].x, height);
+      ctx.lineTo(points[0].x, height);
+      ctx.closePath();
+      
+      ctx.fillStyle = color;
+      ctx.fill();
+    };
+
     // 
     // ========================================
     // Particle Systems
@@ -1540,7 +1897,7 @@
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          size: random(1, 3),
+          size: random(CONFIG.particleSizeMin, CONFIG.particleSizeMax),
           speedX: random(-CONFIG.particleSpeed, CONFIG.particleSpeed),
           speedY: random(-CONFIG.particleSpeed, CONFIG.particleSpeed),
           opacity: random(0.1, CONFIG.particleOpacity)
@@ -1575,9 +1932,11 @@
           }
         }
         
-        // Boundary check
-        if (p.x < 0 || p.x > width) p.speedX *= -1;
-        if (p.y < 0 || p.y > height) p.speedY *= -1;
+        // Boundary check with wrap-around
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
       }
     };
     
@@ -1590,8 +1949,6 @@
      * @param {Object} mouse - Mouse position object
      */
     const drawParticles = (ctx, particles, width, height, mouse) => {
-      ctx.clearRect(0, 0, width, height);
-      
       // Draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -1613,11 +1970,11 @@
           const p2 = particles[j];
           const dist = distance(p1.x, p1.y, p2.x, p2.y);
           
-          if (dist < CONFIG.connectionDistance) {
+          if (dist < CONFIG.particleConnectionDistance) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / CONFIG.connectionDistance)})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / CONFIG.particleConnectionDistance)})`;
             ctx.stroke();
           }
         }
@@ -1625,131 +1982,153 @@
         // Connect to mouse
         if (mouse.x && mouse.y) {
           const dist = distance(p1.x, p1.y, mouse.x, mouse.y);
-          if (dist < CONFIG.connectionDistance * 1.5) {
+          if (dist < CONFIG.particleConnectionDistance * 1.5) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist / (CONFIG.connectionDistance * 1.5))})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist / (CONFIG.particleConnectionDistance * 1.5))})`;
             ctx.stroke();
           }
         }
       }
     };
 
+    // 
+    // ========================================
+    // Circuit Animation
+    // ========================================
+    //
+    
     /**
-     * Draw digital wave animation
-     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * Create circuit nodes
+     * @param {number} count - Number of nodes
      * @param {number} width - Canvas width
      * @param {number} height - Canvas height
+     * @returns {Array} - Array of circuit nodes
+     */
+    const createCircuitNodes = (count, width, height) => {
+      const nodes = [];
+      
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          connections: []
+        });
+      }
+      
+      // Create connections between nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        const connectionCount = Math.floor(Math.random() * 3) + 1; // 1-3 connections
+        
+        for (let j = 0; j < connectionCount; j++) {
+          const targetIndex = Math.floor(Math.random() * nodes.length);
+          if (targetIndex !== i) {
+            node.connections.push(targetIndex);
+          }
+        }
+      }
+      
+      return nodes;
+    };
+    
+    /**
+     * Draw circuit on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * @param {Array} nodes - Array of circuit nodes
      * @param {number} time - Current time
      */
-    const drawDigitalWave = (ctx, width, height, time) => {
-      ctx.clearRect(0, 0, width, height);
-      
-      const lines = 5;
-      const lineSpacing = height / (lines + 1);
-      const amplitude = 20;
-      const frequency = 0.01;
-      
-      for (let i = 0; i < lines; i++) {
-        const y = lineSpacing * (i + 1);
+    const drawCircuit = (ctx, nodes, time) => {
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
         
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        
-        for (let x = 0; x < width; x += 5) {
-          const offset = Math.sin((x * frequency) + (time * 0.001) + (i * 0.5)) * amplitude;
-          ctx.lineTo(x, y + offset);
-        }
-        
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - i * 0.01})`;
-        ctx.lineWidth = 1.5 - i * 0.2;
-        ctx.stroke();
-        
-        // Draw digital "glitches"
-        if (Math.random() < 0.01) {
-          const glitchX = Math.random() * width;
-          const glitchWidth = Math.random() * 50 + 20;
+        for (let j = 0; j < node.connections.length; j++) {
+          const targetNode = nodes[node.connections[j]];
           
+          // Calculate pulse position
+          const dist = distance(node.x, node.y, targetNode.x, targetNode.y);
+          const pulseSpeed = 0.0005;
+          const pulsePos = (time * pulseSpeed) % 1;
+          const pulseX = node.x + (targetNode.x - node.x) * pulsePos;
+          const pulseY = node.y + (targetNode.y - node.y) * pulsePos;
+          
+          // Draw line
           ctx.beginPath();
-          ctx.moveTo(glitchX, y);
-          ctx.lineTo(glitchX + glitchWidth, y);
-          ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 - i * 0.02})`;
-          ctx.lineWidth = 3 - i * 0.5;
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(targetNode.x, targetNode.y);
+          ctx.strokeStyle = CONFIG.circuitColors[0];
+          ctx.lineWidth = 1;
           ctx.stroke();
+          
+          // Draw pulse
+          ctx.beginPath();
+          ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
+          ctx.fillStyle = CONFIG.circuitColors[1];
+          ctx.fill();
         }
       }
       
-      // Draw digital particles
-      for (let i = 0; i < 20; i++) {
-        const x = Math.random() * width;
-        const y = Math.random() * height;
-        const size = Math.random() * 2 + 1;
+      // Draw nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
         
         ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2})`;
+        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = CONFIG.circuitColors[2];
         ctx.fill();
       }
     };
 
+    // 
+    // ========================================
+    // GitHub Profile Image
+    // ========================================
+    //
+    
     /**
-     * Draw the skills network
-     * @param {CanvasRenderingContext2D} ctx - Canvas context
-     * @param {number} width - Canvas width
-     * @param {number} height - Canvas height
-     * @param {Array} skillNodes - Array of skill node elements with positions
+     * Fetch GitHub profile image
+     * @param {string} username - GitHub username
+     * @param {number} size - Image size
+     * @returns {Promise} - Promise that resolves with the image URL
      */
-    const drawSkillsNetwork = (ctx, width, height, skillNodes, mouse) => {
-      ctx.clearRect(0, 0, width, height);
-      
-      // Draw connections between skills
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.lineWidth = 1;
-      
-      for (let i = 0; i < skillNodes.length; i++) {
-        const node1 = skillNodes[i];
-        if (!node1.x || !node1.y) continue;
+    const fetchGitHubAvatar = async (username, size = 400) => {
+      try {
+        // Try to fetch directly from GitHub
+        const url = `https://github.com/${username}.png?size=${size}`;
         
-        for (let j = i + 1; j < skillNodes.length; j++) {
-          const node2 = skillNodes[j];
-          if (!node2.x || !node2.y) continue;
-          
-          const dist = distance(node1.x, node1.y, node2.x, node2.y);
-          const maxDist = 200;
-          
-          if (dist < maxDist) {
-            ctx.beginPath();
-            ctx.moveTo(node1.x, node1.y);
-            ctx.lineTo(node2.x, node2.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 * (1 - dist / maxDist)})`;
-            ctx.stroke();
-          }
-        }
+        // Create a new image to test loading
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
         
-        // Connect to mouse if nearby
-        if (mouse.x && mouse.y) {
-          const dist = distance(node1.x, node1.y, mouse.x, mouse.y);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(node1.x, node1.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / 150)})`;
-            ctx.stroke();
-          }
-        }
+        // Return a promise that resolves when the image loads
+        return new Promise((resolve, reject) => {
+          img.onload = () => resolve(url);
+          img.onerror = () => reject(new Error('Failed to load GitHub avatar'));
+          img.src = url;
+        });
+      } catch (error) {
+        console.error('Error fetching GitHub avatar:', error);
+        throw error;
       }
+    };
+    
+    /**
+     * Set profile image from URL
+     * @param {string} url - Image URL
+     */
+    const setProfileImage = (url) => {
+      const profileImage = $('#profile-image');
+      const placeholder = $('#profile-image-placeholder');
       
-      // Draw small particles
-      for (let i = 0; i < 50; i++) {
-        const x = Math.random() * width;
-        const y = Math.random() * height;
-        const size = Math.random() * 1.5 + 0.5;
+      if (profileImage) {
+        profileImage.style.backgroundImage = `url(${url})`;
         
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.1})`;
-        ctx.fill();
+        // Hide placeholder when image is loaded
+        if (placeholder) {
+          placeholder.style.display = 'none';
+        }
       }
     };
 
@@ -1808,6 +2187,7 @@
       // Animation loop
       let frameId;
       const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         resizeCanvas(canvas, ctx);
         updateParticles(particles, width, height, mouse);
         drawParticles(ctx, particles, width, height, mouse);
@@ -1831,6 +2211,7 @@
             revealHomeElements();
             initIntersectionObservers();
             initBackgroundAnimation();
+            initCircuitAnimation();
           }, 500);
         }, 800);
       }, CONFIG.launchDuration);
@@ -1849,6 +2230,8 @@
       if (CONFIG.reducedMotion) return;
       
       const canvas = $('#background-canvas');
+      if (!canvas) return;
+      
       const ctx = canvas.getContext('2d');
       
       // Set up canvas
@@ -1857,7 +2240,20 @@
       // Create particles
       const width = canvas.offsetWidth;
       const height = canvas.offsetHeight;
-      const particles = createParticles(CONFIG.particleCount / 2, width, height);
+      const particles = createParticles(CONFIG.particleCount, width, height);
+      
+      // Create wave points
+      const wavePointCount = Math.floor(width / 20); // One point every 20px
+      const waves = [];
+      
+      for (let i = 0; i < CONFIG.waveCount; i++) {
+        waves.push({
+          points: createWavePoints(width, wavePointCount),
+          color: CONFIG.waveColors[i % CONFIG.waveColors.length],
+          amplitude: CONFIG.waveAmplitude * (1 - i * 0.2),
+          frequency: CONFIG.waveFrequency * (1 + i * 0.1)
+        });
+      }
       
       // Mouse tracking
       const mouse = { x: null, y: null };
@@ -1872,137 +2268,131 @@
         mouse.y = null;
       });
       
+      // FPS counter
+      const fpsCounter = new FPSCounter();
+      
       // Animation loop
+      let startTime = Date.now();
       const animate = () => {
+        const time = Date.now() - startTime;
+        
+        // Update FPS counter
+        if (CONFIG.debugMode) {
+          const fps = fpsCounter.update();
+          $('#fps-counter').textContent = fps;
+          $('#particle-counter').textContent = particles.length;
+          $('#wave-counter').textContent = waves.reduce((acc, wave) => acc + wave.points.length, 0);
+        }
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Resize canvas if needed
         resizeCanvas(canvas, ctx);
-        updateParticles(particles, width, height, mouse);
-        drawParticles(ctx, particles, width, height, mouse);
+        
+        // Draw based on animation type
+        if (CONFIG.animationType === 'wave' || CONFIG.animationType === 'combined') {
+          // Update and draw waves
+          for (let i = 0; i < waves.length; i++) {
+            const wave = waves[i];
+            updateWavePoints(
+              wave.points, 
+              canvas.height, 
+              time * CONFIG.waveSpeed, 
+              wave.amplitude, 
+              wave.frequency
+            );
+            drawWave(ctx, wave.points, canvas.height, wave.color);
+          }
+        }
+        
+        if (CONFIG.animationType === 'particles' || CONFIG.animationType === 'combined') {
+          // Update and draw particles
+          updateParticles(particles, canvas.width, canvas.height, mouse);
+          drawParticles(ctx, particles, canvas.width, canvas.height, mouse);
+        }
+        
         raf(animate);
       };
       
       animate();
       canvas.classList.add('active');
+      
+      // Handle window resize
+      window.addEventListener('resize', debounce(() => {
+        resizeCanvas(canvas, ctx);
+      }, 200));
     }
 
     // 
     // ========================================
-    // Digital Wave Animation
+    // Circuit Animation
     // ========================================
     //
     
     /**
-     * Initialize digital wave animation
+     * Initialize circuit animation
      */
-    function initDigitalWaveAnimation() {
+    function initCircuitAnimation() {
       if (CONFIG.reducedMotion) return;
       
-      const canvas = $('#digital-wave-canvas');
+      const canvas = $('#circuit-canvas');
+      if (!canvas) return;
+      
       const ctx = canvas.getContext('2d');
       
       // Set up canvas
       resizeCanvas(canvas, ctx);
+      
+      // Create circuit nodes
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const nodes = createCircuitNodes(CONFIG.circuitNodeCount, width, height);
       
       // Animation loop
       let startTime = Date.now();
       const animate = () => {
-        resizeCanvas(canvas, ctx);
-        drawDigitalWave(ctx, canvas.offsetWidth, canvas.offsetHeight, Date.now() - startTime);
-        raf(animate);
-      };
-      
-      animate();
-    }
-
-    // 
-    // ========================================
-    // Skills Network Animation
-    // ========================================
-    //
-    
-    /**
-     * Initialize skills network animation
-     */
-    function initSkillsNetworkAnimation() {
-      if (CONFIG.reducedMotion) return;
-      
-      const canvas = $('#skills-network-canvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Set up canvas
-      resizeCanvas(canvas, ctx);
-      
-      // Mouse tracking
-      const mouse = { x: null, y: null };
-      
-      window.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        if (
-          e.clientX >= rect.left &&
-          e.clientX <= rect.right &&
-          e.clientY >= rect.top &&
-          e.clientY <= rect.bottom
-        ) {
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
-        } else {
-          mouse.x = null;
-          mouse.y = null;
-        }
-      });
-      
-      // Get skill node positions
-      function getSkillNodePositions() {
-        const skillNodes = Array.from($$('.skill-item')).map(item => {
-          const rect = item.getBoundingClientRect();
-          const canvasRect = canvas.getBoundingClientRect();
-          
-          return {
-            x: rect.left + rect.width / 2 - canvasRect.left,
-            y: rect.top + rect.height / 2 - canvasRect.top,
-            element: item
-          };
-        });
+        const time = Date.now() - startTime;
         
-        return skillNodes;
-      }
-      
-      // Animation loop
-      const animate = () => {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Resize canvas if needed
         resizeCanvas(canvas, ctx);
-        const skillNodes = getSkillNodePositions();
-        drawSkillsNetwork(ctx, canvas.offsetWidth, canvas.offsetHeight, skillNodes, mouse);
+        
+        // Only draw if animation type includes circuit
+        if (CONFIG.animationType === 'circuit' || CONFIG.animationType === 'combined') {
+          // Draw circuit
+          drawCircuit(ctx, nodes, time);
+        }
+        
         raf(animate);
       };
       
       animate();
+      canvas.classList.add('active');
+      
+      // Handle window resize
+      window.addEventListener('resize', debounce(() => {
+        resizeCanvas(canvas, ctx);
+      }, 200));
+      
+      // Handle section visibility
+      const aboutSection = $('#about');
+      if (aboutSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              canvas.style.opacity = '1';
+            } else {
+              canvas.style.opacity = '0';
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        observer.observe(aboutSection);
+      }
     }
-
-    // 
-    // ========================================
-    // Skills Data
-    // ========================================
-    //
-
-    // Skills data
-    const skills = [
-      { name: 'HTML', shortName: 'HTML' },
-      { name: 'CSS', shortName: 'CSS' },
-      { name: 'JavaScript', shortName: 'JS' },
-      { name: 'TypeScript', shortName: 'TS' },
-      { name: 'TSX', shortName: 'TSX' },
-      { name: 'JSX', shortName: 'JSX' },
-      { name: 'Ruby', shortName: 'RB' },
-      { name: 'Python', shortName: 'PY' },
-      { name: 'SQL', shortName: 'SQL' },
-      { name: 'Kotlin', shortName: 'KT' },
-      { name: 'PHP', shortName: 'PHP' },
-      { name: 'C#', shortName: 'C#' },
-      { name: 'C++', shortName: 'C++' },
-      { name: 'Objective-C', shortName: 'OC' },
-      { name: 'Swift', shortName: 'SW' },
-      { name: 'SwiftUI', shortName: 'SUI' },
-      { name: 'React Native', shortName: 'RN' }
-    ];
 
     // 
     // ========================================
@@ -2154,6 +2544,33 @@
         socialObserver.observe(socialLinks);
       }
     }
+
+    // 
+    // ========================================
+    // Skills Data
+    // ========================================
+    //
+
+    // Skills data
+    const skills = [
+      { name: 'HTML', shortName: 'HTML' },
+      { name: 'CSS', shortName: 'CSS' },
+      { name: 'JavaScript', shortName: 'JS' },
+      { name: 'TypeScript', shortName: 'TS' },
+      { name: 'TSX', shortName: 'TSX' },
+      { name: 'JSX', shortName: 'JSX' },
+      { name: 'Ruby', shortName: 'RB' },
+      { name: 'Python', shortName: 'PY' },
+      { name: 'SQL', shortName: 'SQL' },
+      { name: 'Kotlin', shortName: 'KT' },
+      { name: 'PHP', shortName: 'PHP' },
+      { name: 'C#', shortName: 'C#' },
+      { name: 'C++', shortName: 'C++' },
+      { name: 'Objective-C', shortName: 'OC' },
+      { name: 'Swift', shortName: 'SW' },
+      { name: 'SwiftUI', shortName: 'SUI' },
+      { name: 'React Native', shortName: 'RN' }
+    ];
 
     // 
     // ========================================
@@ -2316,6 +2733,72 @@
     }
 
     /**
+     * Initialize animation settings panel
+     */
+    function initAnimationSettings() {
+      const settingsPanel = $('#animation-settings');
+      const debugPanel = $('#debug-panel');
+      const toggleDebugBtn = $('#toggle-debug');
+      const resetBtn = $('#reset-settings');
+      const closeBtn = $('#close-settings');
+      const animationTypeSelect = $('#animation-type');
+      const particleDensityInput = $('#particle-density');
+      const waveAmplitudeInput = $('#wave-amplitude');
+      const animationSpeedInput = $('#animation-speed');
+      
+      // Toggle debug panel
+      toggleDebugBtn.addEventListener('click', () => {
+        debugPanel.classList.toggle('visible');
+        CONFIG.debugMode = debugPanel.classList.contains('visible');
+      });
+      
+      // Reset settings
+      resetBtn.addEventListener('click', () => {
+        CONFIG.animationType = 'combined';
+        CONFIG.particleCount = 100;
+        CONFIG.waveAmplitude = 20;
+        CONFIG.waveSpeed = 0.05;
+        
+        animationTypeSelect.value = CONFIG.animationType;
+        particleDensityInput.value = CONFIG.particleCount;
+        waveAmplitudeInput.value = CONFIG.waveAmplitude;
+        animationSpeedInput.value = CONFIG.waveSpeed;
+      });
+      
+      // Close settings panel
+      closeBtn.addEventListener('click', () => {
+        settingsPanel.classList.remove('visible');
+      });
+      
+      // Animation type change
+      animationTypeSelect.addEventListener('change', () => {
+        CONFIG.animationType = animationTypeSelect.value;
+      });
+      
+      // Particle density change
+      particleDensityInput.addEventListener('input', () => {
+        CONFIG.particleCount = parseInt(particleDensityInput.value);
+      });
+      
+      // Wave amplitude change
+      waveAmplitudeInput.addEventListener('input', () => {
+        CONFIG.waveAmplitude = parseInt(waveAmplitudeInput.value);
+      });
+      
+      // Animation speed change
+      animationSpeedInput.addEventListener('input', () => {
+        CONFIG.waveSpeed = parseFloat(animationSpeedInput.value);
+      });
+      
+      // Secret key combo to show settings panel (Shift + Alt + S)
+      document.addEventListener('keydown', (e) => {
+        if (e.shiftKey && e.altKey && e.key === 'S') {
+          settingsPanel.classList.toggle('visible');
+        }
+      });
+    }
+
+    /**
      * Ensure all content is visible (fallback)
      */
     function ensureVisibility() {
@@ -2352,11 +2835,38 @@
     }
 
     /**
+     * Detect low power mode
+     */
+    function detectLowPowerMode() {
+      // Check battery API if available
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+          CONFIG.lowPowerMode = battery.charging === false && battery.level < 0.2;
+          
+          // Reduce effects if in low power mode
+          if (CONFIG.lowPowerMode) {
+            CONFIG.particleCount = Math.floor(CONFIG.particleCount * 0.5);
+            CONFIG.waveCount = Math.min(CONFIG.waveCount, 2);
+            CONFIG.fps = 30;
+          }
+        });
+      }
+      
+      // Also check for reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        CONFIG.reducedMotion = true;
+      }
+    }
+
+    /**
      * Initialize the application
      */
     function init() {
       console.log('Portfolio initialization started');
       window.portfolioInitialized = true;
+      
+      // Detect low power mode
+      detectLowPowerMode();
       
       // Populate skills
       populateSkills();
@@ -2366,12 +2876,21 @@
       initScrollIndicator();
       initBackToTop();
       initAccessibility();
+      initAnimationSettings();
+      
+      // Try to fetch GitHub avatar
+      fetchGitHubAvatar(CONFIG.githubUsername, CONFIG.githubAvatarSize)
+        .then(url => {
+          setProfileImage(url);
+        })
+        .catch(error => {
+          console.warn('Could not load GitHub avatar:', error);
+          // Keep the placeholder visible
+        });
       
       // Initialize animations if motion is not reduced
       if (!CONFIG.reducedMotion) {
         initLaunchAnimation();
-        initDigitalWaveAnimation();
-        initSkillsNetworkAnimation();
       } else {
         // If reduced motion, skip animations and show content
         document.body.classList.add('loaded');
