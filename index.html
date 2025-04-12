@@ -1,0 +1,3434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="mw3s - Cybersecurity Professional Portfolio">
+  <meta property="og:title" content="mw3s | Portfolio">
+  <meta property="og:description" content="Cybersecurity professional with expertise in penetration testing, iOS exploit development, and reverse engineering">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mw3s.github.io/portfolio/">
+  <meta property="og:image" content="https://github.com/mw3s.png?size=400">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="mw3s | Portfolio">
+  <meta name="twitter:description" content="Cybersecurity professional with expertise in penetration testing, iOS exploit development, and reverse engineering">
+  <meta name="twitter:image" content="https://github.com/mw3s.png?size=400">
+  <meta name="theme-color" content="#000000">
+  <title>mw3s | Portfolio</title>
+  
+  <!-- Apple System Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Inline Styles -->
+  <style>
+    /* 
+    ========================================
+    PORTFOLIO WEBSITE ENHANCED STYLES
+    ========================================
+    - Dynamic animated wave background
+    - Interactive particle system
+    - GitHub profile integration
+    - Apple-inspired UI and interactions
+    - Optimized for performance
+    - Enhanced typography and layout
+    - Responsive and accessible design
+    */
+    
+    /* 
+    ========================================
+    CSS Variables & Reset
+    ========================================
+    */
+    :root {
+      /* Color Palette - Apple-inspired monochrome */
+      --color-black: #000000;
+      --color-dark-gray: #1d1d1f;
+      --color-medium-gray: #6e6e73;
+      --color-light-gray: #86868b;
+      --color-lighter-gray: #f5f5f7;
+      --color-white: #ffffff;
+      --color-accent: rgba(0, 0, 0, 0.8);
+      
+      /* Gradients */
+      --gradient-dark: linear-gradient(180deg, #1d1d1f 0%, #000000 100%);
+      --gradient-light: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+      --gradient-button: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+      
+      /* Typography */
+      --font-primary: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --font-weight-light: 300;
+      --font-weight-regular: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      
+      /* Timing */
+      --transition-fast: 0.2s;
+      --transition-medium: 0.3s;
+      --transition-slow: 0.6s;
+      --animation-duration: 0.8s;
+      --animation-timing: cubic-bezier(0.25, 0.1, 0.25, 1);
+      
+      /* Spacing */
+      --spacing-xs: 8px;
+      --spacing-sm: 16px;
+      --spacing-md: 24px;
+      --spacing-lg: 48px;
+      --spacing-xl: 80px;
+      --section-padding: 80px 24px;
+      --nav-height: 44px;
+      
+      /* Effects */
+      --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.12);
+      
+      --blur-subtle: blur(10px);
+      --blur-medium: blur(20px);
+      
+      /* Shapes */
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --border-radius-lg: 16px;
+      --border-radius-round: 50%;
+      
+      /* Animation */
+      --wave-amplitude: 20;
+      --wave-frequency: 0.02;
+      --wave-speed: 0.05;
+      --particle-count: 80;
+      --particle-connection-distance: 150;
+      --particle-size-min: 1;
+      --particle-size-max: 2;
+      --particle-speed: 0.3;
+      --particle-opacity: 0.5;
+      
+      /* Colors */
+      --color-primary: #f5f5f5;
+      --color-secondary: #e0e0e0;
+      --color-accent: #b0121b;
+      --color-text: #333333;
+      --color-text-muted: #666666;
+      --color-background: #ffffff;
+      --color-border: #dddddd;
+      --color-card: #ffffff;
+      --color-overlay: rgba(255, 255, 255, 0.8);
+      
+      /* Dark mode colors */
+      --dark-color-primary: #1a1a1a;
+      --dark-color-secondary: #333333;
+      --dark-color-accent: #b0121b;
+      --dark-color-text: #ffffff;
+      --dark-color-text-muted: #999999;
+      --dark-color-background: #000000;
+      --dark-color-border: #333333;
+      --dark-color-card: #1a1a1a;
+      --dark-color-overlay: rgba(0, 0, 0, 0.8);
+      
+      /* Light mode colors */
+      --light-color-primary: #f5f5f5;
+      --light-color-secondary: #e0e0e0;
+      --light-color-accent: #b0121b;
+      --light-color-text: #333333;
+      --light-color-text-muted: #666666;
+      --light-color-background: #ffffff;
+      --light-color-border: #dddddd;
+      --light-color-card: #ffffff;
+      --light-color-overlay: rgba(255, 255, 255, 0.8);
+      
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+      --space-xl: 4rem;
+      
+      /* Animation */
+      --transition-fast: 0.2s;
+      --transition-normal: 0.3s;
+      --transition-slow: 0.5s;
+    }
+    
+    /* Dark mode class that can be toggled */
+    .dark-mode {
+      --color-primary: var(--dark-color-primary);
+      --color-secondary: var(--dark-color-secondary);
+      --color-accent: var(--dark-color-accent);
+      --color-text: var(--dark-color-text);
+      --color-text-muted: var(--dark-color-text-muted);
+      --color-background: var(--dark-color-background);
+      --color-border: var(--dark-color-border);
+      --color-card: var(--dark-color-card);
+      --color-overlay: var(--dark-color-overlay);
+    }
+    
+    /* Light mode (default) */
+    :root:not(.dark-mode) {
+      --color-primary: var(--light-color-primary);
+      --color-secondary: var(--light-color-secondary);
+      --color-accent: var(--light-color-accent);
+      --color-text: var(--light-color-text);
+      --color-text-muted: var(--light-color-text-muted);
+      --color-background: var(--light-color-background);
+      --color-border: var(--light-color-border);
+      --color-card: var(--light-color-card);
+      --color-overlay: var(--light-color-overlay);
+    }
+    
+    /* Class for smooth color transitions */
+    .color-transition {
+      transition: background-color 0.8s ease, 
+                  color 0.8s ease,
+                  border-color 0.8s ease,
+                  box-shadow 0.8s ease;
+    }
+    
+    .color-transition * {
+      transition: background-color 0.8s ease, 
+                  color 0.8s ease,
+                  border-color 0.8s ease,
+                  box-shadow 0.8s ease;
+    }
+
+    /* Base HTML and Body styles */
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      overflow-x: hidden;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    body.loaded {
+      opacity: 1 !important;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+
+    @media (min-width: 1068px) {
+      .container {
+        max-width: 1024px;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .container {
+        max-width: 1280px;
+      }
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--color-text);
+    }
+
+    h1 {
+      font-size: 48px;
+      letter-spacing: -0.003em;
+    }
+
+    h2 {
+      font-size: 40px;
+      letter-spacing: 0.002em;
+    }
+
+    h3 {
+      font-size: 28px;
+      letter-spacing: 0.004em;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-medium-gray);
+    }
+
+    @media (max-width: 734px) {
+      h1 {
+        font-size: 32px;
+      }
+      
+      h2 {
+        font-size: 28px;
+      }
+      
+      h3 {
+        font-size: 21px;
+      }
+      
+      p {
+        font-size: 17px;
+      }
+    }
+
+    /* 
+    ========================================
+    Canvas Animations
+    ========================================
+    */
+    
+    /* Launch Animation Overlay */
+    .launch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-black);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: opacity 0.8s var(--animation-timing);
+    }
+
+    .launch-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .launch-logo {
+      font-size: 4rem;
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: -2px;
+      color: var(--color-white);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s var(--animation-timing),
+                  transform 0.6s var(--animation-timing);
+    }
+
+    .launch-overlay.active .launch-logo {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .launch-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Background Canvas */
+    .background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .background-canvas.active {
+      opacity: 1;
+    }
+
+    /* Circuit Canvas */
+    .circuit-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .circuit-canvas.active {
+      opacity: 1;
+    }
+
+    /* Debug Panel */
+    .debug-panel {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+      z-index: 9999;
+      display: none;
+    }
+
+    .debug-panel.visible {
+      display: block;
+    }
+
+    /* Animation Settings Panel */
+    .animation-settings {
+      position: fixed;
+      top: 70px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: var(--font-primary);
+      font-size: 14px;
+      z-index: 9999;
+      width: 250px;
+      display: none;
+      backdrop-filter: var(--blur-medium);
+      -webkit-backdrop-filter: var(--blur-medium);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .animation-settings.visible {
+      display: block;
+    }
+
+    .animation-settings h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .animation-settings label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: var(--color-light-gray);
+    }
+
+    .animation-settings input[type="range"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .animation-settings select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(40, 40, 45, 0.8);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .animation-settings button {
+      background-color: rgba(60, 60, 65, 0.8);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      transition: background-color 0.2s ease;
+    }
+
+    .animation-settings button:hover {
+      background-color: rgba(80, 80, 85, 0.8);
+    }
+
+    /* 
+    ========================================
+    Typography
+    ========================================
+    */
+    h1, h2, h3, h4, h5, h5 {
+      font-weight: var(--font-weight-medium);
+      line-height: 1.2;
+      margin-bottom: var(--spacing-md);
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      letter-spacing: -0.03em;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s var(--animation-timing), 
+                  transform 0.8s var(--animation-timing);
+    }
+
+    h2.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      margin-bottom: var(--spacing-md);
+      font-weight: var(--font-weight-regular);
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.8s var(--animation-timing),
+                  transform 0.8s var(--animation-timing);
+      transition-delay: 0.1s;
+    }
+
+    p.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-text);
+    }
+
+    /* 
+    ========================================
+    Layout & Container
+    ========================================
+    */
+    .app-container {
+      width: 100%;
+      height: 100%;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    .app-container.visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    /* Make sure sections are visible */
+    .section {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* 
+    ========================================
+    Navigation
+    ========================================
+    */
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--color-background);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 2rem;
+      z-index: 100;
+      transition: background-color var(--transition-normal);
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    .main-nav.visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+    }
+    
+    .main-nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 980px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .main-nav li {
+      margin: 0 var(--spacing-md);
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: var(--font-weight-regular);
+      text-decoration: none;
+      color: var(--color-black);
+      padding: var(--spacing-xs) 0;
+      position: relative;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+      text-transform: capitalize;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-black);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-black);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-indicator {
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      background-color: var(--color-black);
+      transition: left 0.3s ease, width 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .nav-indicator.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 734px) {
+      .main-nav ul {
+        justify-content: space-around;
+        padding: 0 var(--spacing-xs);
+      }
+      
+      .main-nav li {
+        margin: 0 var(--spacing-xs);
+      }
+      
+      .nav-link {
+        font-size: 11px;
+      }
+    }
+
+    /* 
+    ========================================
+    Section Styles
+    ========================================
+    */
+    .section {
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .section:nth-child(even) {
+      background-color: var(--color-lighter-gray);
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    @media (min-width: 1068px) {
+      .section-content {
+        max-width: 1024px;
+      }
+    }
+
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      padding-top: var(--spacing-lg);
+    }
+
+    .profile-container {
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1s ease, transform 1s ease;
+      transition-delay: 0.2s;
+    }
+
+    .profile-container.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .profile-image {
+      width: 160px;
+      height: 160px;
+      border-radius: var(--border-radius-round);
+      position: relative;
+      overflow: hidden;
+      background-color: var(--color-lighter-gray);
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease, 
+                  box-shadow 0.3s ease;
+      box-shadow: var(--shadow-subtle);
+      margin: 0 auto;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .profile-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-medium-gray);
+      background-color: var(--color-lighter-gray);
+    }
+
+    .name {
+      font-size: 56px;
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: -0.003em;
+      margin-top: var(--spacing-md);
+      margin-bottom: var(--spacing-xs);
+      color: var(--color-black);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition-delay: 0.4s;
+    }
+
+    .name.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tagline {
+      font-size: 27px;
+      font-weight: var(--font-weight-regular);
+      color: var(--color-medium-gray);
+      margin-top: var(--spacing-xs);
+      margin-bottom: var(--spacing-lg);
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition-delay: 0.6s;
+      max-width: 600px;
+    }
+
+    .tagline.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 50px;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      transition-delay: 1s;
+    }
+
+    .scroll-indicator.visible {
+      opacity: 1;
+    }
+
+    .scroll-arrow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scroll-arrow:before, 
+    .scroll-arrow:after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 15px;
+      height: 1px;
+      background-color: var(--color-black);
+      border-radius: 1px;
+      transition: background-color 0.2s ease;
+    }
+
+    .scroll-arrow:before {
+      left: 0;
+      transform: rotate(45deg);
+    }
+
+    .scroll-arrow:after {
+      right: 0;
+      transform: rotate(-45deg);
+    }
+
+    .scroll-indicator:hover .scroll-arrow:before,
+    .scroll-indicator:hover .scroll-arrow:after {
+      background-color: var(--color-medium-gray);
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @media (max-width: 734px) {
+      .name {
+        font-size: 40px;
+      }
+      
+      .tagline {
+        font-size: 21px;
+      }
+      
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    /* 
+    ========================================
+    About Section
+    ========================================
+    */
+    .about-content {
+      position: relative;
+      max-width: 980px;
+      width: 100%;
+      padding: 0;
+      z-index: 2;
+      margin: 0 auto;
+    }
+
+    .bio-container {
+      padding: 0;
+      position: relative;
+    }
+
+    .bio-container h2 {
+      font-size: 40px;
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-md);
+      color: var(--color-black);
+      letter-spacing: -0.003em;
+      text-align: center;
+    }
+
+    .bio {
+      font-size: 21px;
+      line-height: 1.38105;
+      letter-spacing: 0.011em;
+      color: var(--color-medium-gray);
+      font-weight: var(--font-weight-regular);
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bio-highlight {
+      color: var(--color-dark-gray);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .bio-subsection {
+      margin-top: var(--spacing-xl);
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    @media (min-width: 734px) {
+      .bio-subsection {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .bio-subsection h3 {
+      font-size: 28px;
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-black);
+      letter-spacing: 0.004em;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.8s var(--animation-timing),
+                  transform 0.8s var(--animation-timing);
+    }
+
+    .bio-subsection h3.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bio-subsection p {
+      font-size: 17px;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      color: var(--color-medium-gray);
+    }
+
+    @media (max-width: 734px) {
+      .bio-container h2 {
+        font-size: 32px;
+      }
+      
+      .bio {
+        font-size: 19px;
+      }
+      
+      .bio-subsection h3 {
+        font-size: 24px;
+      }
+    }
+
+    /* 
+    ========================================
+    Skills Section
+    ========================================
+    */
+    .skills-content {
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      padding: 0;
+      z-index: 2;
+      margin: 0 auto;
+    }
+
+    .skills-content h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-black);
+      letter-spacing: -0.003em;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, 
+                  opacity 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .skill-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background-color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-medium-gray);
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
+    }
+
+    .skill-item:hover .skill-icon {
+      box-shadow: var(--shadow-medium);
+      color: var(--color-black);
+      background-color: var(--color-white);
+    }
+
+    .skill-name {
+      font-size: 14px;
+      text-align: center;
+      color: var(--color-medium-gray);
+      transition: color 0.3s ease,
+                  opacity 0.3s ease,
+                  transform 0.3s ease;
+      transition-delay: 0.05s;
+      margin-top: var(--spacing-xs);
+    }
+
+    .skill-item.in-view .skill-name {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skill-item:hover .skill-name {
+      color: var(--color-black);
+    }
+
+    @media (max-width: 734px) {
+      .skills-content h2 {
+        font-size: 32px;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: var(--spacing-md);
+      }
+      
+      .skill-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      
+      .skill-name {
+        font-size: 12px;
+      }
+    }
+
+    .skills-network-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    /* 
+    ========================================
+    Social Section
+    ========================================
+    */
+    .social-content {
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .social-content h2 {
+      font-size: 40px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-black);
+      margin-bottom: var(--spacing-lg);
+      letter-spacing: -0.003em;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background-color: var(--color-white);
+      border-radius: var(--border-radius-md);
+      text-decoration: none;
+      color: var(--color-black);
+      font-weight: var(--font-weight-medium);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-subtle);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: transform 0.3s ease, 
+                  box-shadow 0.3s ease, 
+                  opacity 0.8s ease;
+    }
+
+    .social-link.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: var(--spacing-sm);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.8;
+    }
+
+    .social-username {
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .instagram-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>');
+    }
+
+    .social-link:hover .social-username {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--color-white);
+    }
+
+    /* 
+    ========================================
+    Back to Top Button
+    ========================================
+    */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-round);
+      background-color: rgba(29, 29, 31, 0.7);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+                  0 0 0 1px rgba(255, 255, 255, 0.05);
+      border: none;
+      transform: translateY(10px);
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background-color: rgba(85, 85, 85, 0.7);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+                  0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .back-to-top-arrow {
+      width: 12px;
+      height: 12px;
+      border-left: 2px solid var(--color-white);
+      border-top: 2px solid var(--color-white);
+      transform: rotate(45deg);
+      margin-top: 4px;
+      transition: border-color var(--transition-medium) ease;
+    }
+
+    /* 
+    ========================================
+    Footer
+    ========================================
+    */
+    .footer {
+      padding: var(--spacing-lg) var(--spacing-md);
+      background-color: var(--color-white);
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: var(--color-medium-gray);
+      margin: 0;
+    }
+
+    /* 
+    ========================================
+    Accessibility
+    ========================================
+    */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Focus styles for keyboard navigation */
+    .keyboard-navigation :focus {
+      outline: 2px solid var(--color-white);
+      outline-offset: 4px;
+    }
+
+    /* 
+    ========================================
+    Print Styles
+    ========================================
+    */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+      }
+
+      .section {
+        page-break-inside: avoid;
+        min-height: auto;
+        padding: 2rem 0;
+      }
+
+      .back-to-top,
+      .scroll-indicator,
+      canvas,
+      .launch-overlay,
+      .background-canvas,
+      .circuit-canvas,
+      .debug-panel,
+      .animation-settings {
+        display: none !important;
+      }
+
+      .bio-container {
+        box-shadow: none;
+        background-color: transparent;
+      }
+
+      .bio {
+        color: black;
+      }
+
+      .skill-icon {
+        border: 1px solid #ddd;
+      }
+
+      .skill-name {
+        color: black;
+      }
+    }
+
+    /* 
+    ========================================
+    Reduced Motion
+    ========================================
+    */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .scroll-indicator,
+      .launch-overlay,
+      .background-canvas,
+      .circuit-canvas,
+      .digital-wave,
+      .skills-network-canvas {
+        display: none !important;
+      }
+
+      body,
+      .app-container,
+      .main-nav,
+      .section-content,
+      .profile-container,
+      .name,
+      .tagline,
+      h2,
+      p,
+      .bio-subsection h3,
+      .skill-item,
+      .skill-name,
+      .social-link {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* 
+    ========================================
+    Responsive Styles
+    ========================================
+    */
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 4rem 1.5rem;
+        --wave-amplitude: 15;
+        --particle-count: 70;
+        --particle-connection-distance: 100;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .profile-image {
+        width: 150px;
+        height: 150px;
+      }
+
+      .bio-container {
+        padding: 2rem;
+      }
+
+      .bio {
+        font-size: 1rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 1rem;
+      }
+
+      .skill-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+      }
+
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+      }
+      
+      .main-nav li {
+        margin: 0 0.8rem;
+      }
+      
+      .nav-link {
+        font-size: 0.8rem;
+      }
+
+      .social-links {
+        flex-wrap: wrap;
+      }
+
+      .animation-settings {
+        width: 200px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --section-padding: 3rem 1rem;
+        --wave-amplitude: 10;
+        --particle-count: 40;
+        --particle-connection-distance: 80;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .about-content,
+      .skills-content,
+      .social-content {
+        padding: 1rem;
+      }
+
+      .bio-container {
+        padding: 1.5rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .skill-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+      }
+
+      .skill-name {
+        font-size: 0.8rem;
+      }
+
+      .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+      }
+      
+      .main-nav li {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link {
+        font-size: 0.7rem;
+      }
+
+      .launch-logo {
+        font-size: 3rem;
+      }
+
+      .debug-panel,
+      .animation-settings {
+        display: none !important;
+      }
+    }
+
+    /* Theme toggle styles */
+    .nav-theme-toggle {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+    
+    .theme-toggle {
+      background: var(--color-secondary);
+      border: none;
+      border-radius: 20px;
+      width: 60px;
+      height: 30px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    
+    .theme-toggle::after {
+      content: '';
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: var(--color-text);
+      left: 4px;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    /* When toggle is checked (dark mode) */
+    .theme-toggle[aria-checked="true"]::after {
+      transform: translateX(30px);
+    }
+    
+    .sun-icon, .moon-icon {
+      font-size: 14px;
+      z-index: 1;
+    }
+    
+    .sun-icon {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .moon-icon {
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+    
+    .theme-toggle[aria-checked="true"] .sun-icon {
+      opacity: 0.3;
+    }
+    
+    .theme-toggle[aria-checked="true"] .moon-icon {
+      opacity: 1;
+    }
+    
+    /* Adjust nav list for the toggle */
+    .nav-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Launch Animation Overlay -->
+  <div class="launch-overlay" id="launch-overlay">
+    <canvas class="launch-canvas" id="launch-canvas"></canvas>
+    <div class="launch-logo" id="launch-logo">mw3s</div>
+  </div>
+
+  <!-- Background Canvas -->
+  <canvas class="background-canvas" id="background-canvas"></canvas>
+  
+  <!-- Debug Panel -->
+  <div class="debug-panel" id="debug-panel">
+    <div>FPS: <span id="fps-counter">0</span></div>
+    <div>Particles: <span id="particle-counter">0</span></div>
+    <div>Wave Points: <span id="wave-counter">0</span></div>
+  </div>
+
+  <!-- Animation Settings Panel -->
+  <div class="animation-settings" id="animation-settings">
+    <h3>Background Settings</h3>
+    <label for="animation-type">Animation Type</label>
+    <select id="animation-type">
+      <option value="wave">Wave</option>
+      <option value="particles">Particles</option>
+      <option value="circuit">Circuit</option>
+      <option value="combined">Combined</option>
+    </select>
+    
+    <label for="particle-density">Particle Density</label>
+    <input type="range" id="particle-density" min="20" max="200" value="100">
+    
+    <label for="wave-amplitude">Wave Amplitude</label>
+    <input type="range" id="wave-amplitude" min="5" max="40" value="20">
+    
+    <label for="animation-speed">Animation Speed</label>
+    <input type="range" id="animation-speed" min="0.01" max="0.2" step="0.01" value="0.05">
+    
+    <button id="toggle-debug">Toggle Debug</button>
+    <button id="reset-settings">Reset</button>
+    <button id="close-settings">Close</button>
+  </div>
+  
+  <!-- 
+  ========================================
+  Navigation
+  ========================================
+  -->
+  <nav id="main-nav" class="main-nav visible" style="opacity: 1; visibility: visible;">
+    <ul class="nav-list">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li class="nav-theme-toggle">
+        <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-checked="false">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 
+  ========================================
+  Main Container
+  ========================================
+  -->
+  <div id="app" class="app-container visible" style="opacity: 1; visibility: visible;">
+    <!-- Home Section -->
+    <section id="home" class="section" role="region" aria-labelledby="home-title">
+      <div class="section-content home-content">
+        <div class="profile-container" id="profile-container">
+          <div class="profile-image" id="profile-image">
+            <div class="profile-image-placeholder" id="profile-image-placeholder">mw3s</div>
+          </div>
+        </div>
+        
+        <h1 id="home-title" class="name">mw3s</h1>
+        <div class="tagline" id="tagline">Cybersecurity & Development Specialist</div>
+      </div>
+      <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true">
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="section-inner">
+        <canvas id="circuitCanvas" class="circuit-canvas"></canvas>
+        <div class="section-content about-content">
+          <div class="bio-container">
+            <h2 id="about-title">About Me</h2>
+            <p class="bio">I'm a <span class="bio-highlight">cybersecurity specialist</span> with a passion for exploring the intricate world of digital security. My journey began with a fascination for understanding how systems work—and more importantly, how they can be compromised and protected.</p>
+            
+            <div class="bio-subsection">
+              <h3>My Approach</h3>
+              <p class="bio">I specialize in <span class="bio-highlight">penetration testing</span> and <span class="bio-highlight">iOS exploit development</span>, constantly pushing the boundaries of security research to stay ahead of emerging threats. My methodology combines technical precision with creative problem-solving, allowing me to identify vulnerabilities that others might miss.</p>
+            </div>
+            
+            <div class="bio-subsection">
+              <h3>Vision & Expertise</h3>
+              <p class="bio">By mastering <span class="bio-highlight">reverse engineering</span> techniques, I've developed a unique perspective on security architecture. I believe in building systems that are not just functionally sound but fundamentally secure by design. My goal is to contribute to a safer digital ecosystem through innovative security solutions and knowledge sharing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section" role="region" aria-labelledby="skills-title">
+      <canvas class="skills-network-canvas" id="skills-network-canvas"></canvas>
+      <div class="section-content skills-content">
+        <h2 id="skills-title">Technical Skills</h2>
+        <div class="skills-grid" id="skills-grid">
+          <!-- Skills will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="section" role="region" aria-labelledby="social-title">
+      <div class="section-content social-content">
+        <h2 id="social-title">Connect With Me</h2>
+        <div class="social-links" id="social-links">
+          <a href="https://instagram.com/mw3s" class="social-link" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon instagram-icon" aria-label="Instagram"></div>
+            <span class="social-username">@mw3s</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 mw3s. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <div class="back-to-top-arrow"></div>
+    </button>
+  </div>
+
+  <!-- Fallback for no JavaScript -->
+  <noscript>
+    <style>
+      .launch-overlay {
+        display: none;
+      }
+      
+      body {
+        opacity: 1;
+      }
+      
+      .app-container {
+        opacity: 1;
+        transform: none;
+      }
+      
+      .section {
+        opacity: 1;
+      }
+      
+      .section-content,
+      .profile-container,
+      .name,
+      .tagline,
+      h2,
+      p,
+      .bio-subsection h3,
+      .skill-item,
+      .skill-name,
+      .social-link {
+        opacity: 1;
+        transform: none;
+      }
+      
+      .main-nav {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+    <div style="padding: 20px; background-color: #333; color: white; text-align: center;">
+      <p>This website works best with JavaScript enabled. Please enable JavaScript for the best experience.</p>
+    </div>
+  </noscript>
+
+  <!-- Inline JavaScript -->
+  <script>
+    'use strict';
+
+    // 
+    // ========================================
+    // Configuration
+    // ========================================
+    //
+    const CONFIG = {
+      // Animation Settings
+      launchDuration: 1500, // ms
+      waveAmplitude: 15,
+      waveFrequency: 0.02,
+      waveSpeed: 0.03,
+      waveCount: 3,
+      waveColors: [
+        'rgba(200, 200, 200, 0.1)',
+        'rgba(180, 180, 180, 0.08)',
+        'rgba(160, 160, 160, 0.06)'
+      ],
+      particleCount: 80,
+      particleConnectionDistance: 120,
+      particleSizeMin: 1,
+      particleSizeMax: 2,
+      particleSpeed: 0.3,
+      particleOpacity: 0.5,
+      
+      // Circuit Animation
+      circuitLineCount: 20,
+      circuitNodeCount: 25,
+      circuitColors: [
+        'rgba(180, 180, 180, 0.1)',
+        'rgba(160, 160, 160, 0.08)',
+        'rgba(140, 140, 140, 0.06)'
+      ],
+      
+      // Profile Image
+      githubUsername: 'mw3s',
+      githubAvatarSize: 400,
+      
+      // Performance
+      fps: 60,
+      fpsUpdateInterval: 500, // ms
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      lowPowerMode: false, // Will be detected
+      
+      // Debug
+      debugMode: false,
+      
+      // Animation Type
+      animationType: 'particles', // 'wave', 'particles', 'circuit', 'combined'
+      
+      // Text Animation
+      textCharDelay: 30 // ms delay between each character animation
+    };
+
+    // 
+    // ========================================
+    // DOM Utility Functions
+    // ========================================
+    //
+
+    /**
+     * Shorthand for document.querySelector
+     * @param {string} selector - CSS selector
+     * @returns {Element} - The first matching element
+     */
+    const $ = selector => document.querySelector(selector);
+
+    /**
+     * Shorthand for document.querySelectorAll
+     * @param {string} selector - CSS selector
+     * @returns {NodeList} - All matching elements
+     */
+    const $$ = selector => document.querySelectorAll(selector);
+
+    /**
+     * Check if an element is in the viewport
+     * @param {string} selector - CSS selector
+     * @returns {boolean} - Whether the element is in the viewport
+     */
+    const isInViewport = (el, offset = 100) => {
+      if (!el) return false;
+      
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight - offset) &&
+        rect.bottom >= offset &&
+        rect.left <= (window.innerWidth - offset) &&
+        rect.right >= offset
+      );
+    };
+
+    /**
+     * Debounce function to limit function calls
+     * @param {Function} func - Function to debounce
+     * @param {number} wait - Wait time in ms
+     * @returns {Function} - Debounced function
+     */
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    };
+
+    /**
+     * Add event listener with delegation
+     * @param {string} eventType - Event type (e.g., 'click')
+     * @param {string} selector - CSS selector for target elements
+     * @param {Function} callback - Event handler function
+     */
+    const delegateEvent = (eventType, selector, callback) => {
+      document.addEventListener(eventType, e => {
+        if (e.target.closest(selector)) {
+          callback(e);
+        }
+      });
+    };
+
+    // 
+    // ========================================
+    // Animation and Canvas Utilities
+    // ========================================
+    //
+    
+    /**
+     * RequestAnimationFrame with fallback
+     */
+    const raf = window.requestAnimationFrame || 
+                window.webkitRequestAnimationFrame || 
+                window.mozRequestAnimationFrame || 
+                (callback => setTimeout(callback, 1000 / CONFIG.fps));
+    
+    /**
+     * Cancel animation frame with fallback
+     */
+    const caf = window.cancelAnimationFrame || 
+                window.webkitCancelAnimationFrame || 
+                window.mozCancelAnimationFrame || 
+                clearTimeout;
+    
+    /**
+     * Linear interpolation
+     * @param {number} start - Start value
+     * @param {number} end - End value
+     * @param {number} amount - Amount to interpolate (0-1)
+     * @returns {number} - Interpolated value
+     */
+    const lerp = (start, end, amount) => start * (1 - amount) + end * amount;
+    
+    /**
+     * Get random number between min and max
+     * @param {number} min - Minimum value
+     * @param {number} max - Maximum value
+     * @returns {number} - Random number between min and max
+     */
+    const random = (min, max) => Math.random() * (max - min) + min;
+    
+    /**
+     * Calculate distance between two points
+     * @param {number} x1 - X coordinate of first point
+     * @param {number} y1 - Y coordinate of first point
+     * @param {number} x2 - X coordinate of second point
+     * @param {number} y2 - Y coordinate of second point
+     * @returns {number} - Distance between the two points
+     */
+    const distance = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    
+    /**
+     * Resize canvas to match display size
+     * @param {HTMLCanvasElement} canvas - Canvas element
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     */
+    const resizeCanvas = (canvas, ctx) => {
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Set canvas display size
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      
+      // Set canvas resolution
+      const width = canvas.offsetWidth * dpr;
+      const height = canvas.offsetHeight * dpr;
+      
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        ctx.scale(dpr, dpr);
+      }
+    };
+
+    /**
+     * Check if WebGL is supported
+     * @returns {boolean} - Whether WebGL is supported
+     */
+    const isWebGLSupported = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext && 
+                 (canvas.getContext('webgl') || 
+                  canvas.getContext('experimental-webgl')));
+      } catch (e) {
+        return false;
+      }
+    };
+
+    /**
+     * FPS counter
+     */
+    class FPSCounter {
+      constructor(updateInterval = 500) {
+        this.updateInterval = updateInterval;
+        this.frames = 0;
+        this.lastTime = performance.now();
+        this.fps = 0;
+      }
+      
+      update() {
+        this.frames++;
+        const now = performance.now();
+        const elapsed = now - this.lastTime;
+        
+        if (elapsed >= this.updateInterval) {
+          this.fps = Math.round((this.frames * 1000) / elapsed);
+          this.lastTime = now;
+          this.frames = 0;
+        }
+        
+        return this.fps;
+      }
+    }
+
+    // 
+    // ========================================
+    // Wave Animation
+    // ========================================
+    //
+    
+    /**
+     * Create wave points
+     * @param {number} width - Canvas width
+     * @param {number} count - Number of points
+     * @returns {Array} - Array of wave points
+     */
+    const createWavePoints = (width, count) => {
+      const points = [];
+      const step = width / (count - 1);
+      
+      for (let i = 0; i < count; i++) {
+        points.push({
+          x: i * step,
+          y: 0,
+          originalY: 0
+        });
+      }
+      
+      return points;
+    };
+    
+    /**
+     * Update wave points
+     * @param {Array} points - Array of wave points
+     * @param {number} height - Canvas height
+     * @param {number} time - Current time
+     * @param {number} amplitude - Wave amplitude
+     * @param {number} frequency - Wave frequency
+     */
+    const updateWavePoints = (points, height, time, amplitude, frequency) => {
+      const centerY = height / 2;
+      
+      for (let i = 0; i < points.length; i++) {
+        const point = points[i];
+        const x = point.x;
+        
+        // Calculate wave offset
+        const offset = Math.sin(x * frequency + time) * amplitude;
+        
+        // Add some noise for natural movement
+        const noise = Math.sin(x * 0.02 + time * 0.1) * (amplitude * 0.2);
+        
+        point.y = centerY + offset + noise;
+        point.originalY = centerY;
+      }
+    };
+    
+    /**
+     * Draw waves on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * @param {Array} points - Array of wave points
+     * @param {number} height - Canvas height
+     * @param {string} color - Wave color
+     */
+    const drawWave = (ctx, points, height, color) => {
+      if (points.length < 2) return;
+      
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      
+      // Draw curve through points with smoother transitions
+      for (let i = 1; i < points.length - 1; i++) {
+        const xc = (points[i].x + points[i + 1].x) / 2;
+        const yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+      }
+      
+      // Last point
+      ctx.quadraticCurveTo(
+        points[points.length - 2].x, 
+        points[points.length - 2].y, 
+        points[points.length - 1].x, 
+        points[points.length - 1].y
+      );
+      
+      // Complete the wave by drawing to the bottom corners
+      ctx.lineTo(points[points.length - 1].x, height);
+      ctx.lineTo(points[0].x, height);
+      ctx.closePath();
+      
+      // Apply fill
+      ctx.fillStyle = color;
+      ctx.fill();
+    };
+
+    // 
+    // ========================================
+    // Particle Systems
+    // ========================================
+    //
+
+    /**
+     * Create particles for the background
+     * @param {number} count - Number of particles
+     * @param {number} width - Canvas width
+     * @param {number} height - Canvas height
+     * @returns {Array} - Array of particle objects
+     */
+    const createParticles = (count, width, height) => {
+      const particles = [];
+      
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: random(CONFIG.particleSizeMin, CONFIG.particleSizeMax),
+          speedX: random(-CONFIG.particleSpeed, CONFIG.particleSpeed),
+          speedY: random(-CONFIG.particleSpeed, CONFIG.particleSpeed),
+          opacity: random(0.1, CONFIG.particleOpacity)
+        });
+      }
+      
+      return particles;
+    };
+    
+    /**
+     * Update particle positions
+     * @param {Array} particles - Array of particle objects
+     * @param {number} width - Canvas width
+     * @param {number} height - Canvas height
+     * @param {Object} mouse - Mouse position object
+     */
+    const updateParticles = (particles, width, height, mouse) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        // Move particles
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        // Mouse interaction
+        if (mouse.x && mouse.y) {
+          const dist = distance(p.x, p.y, mouse.x, mouse.y);
+          if (dist < 100) {
+            const angle = Math.atan2(p.y - mouse.y, p.x - mouse.x);
+            p.x += Math.cos(angle) * 0.2;
+            p.y += Math.sin(angle) * 0.2;
+          }
+        }
+        
+        // Boundary check with wrap-around
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+      }
+    };
+    
+    /**
+     * Draw particles on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * @param {Array} particles - Array of particle objects
+     * @param {number} width - Canvas width
+     * @param {number} height - Canvas height
+     * @param {Object} mouse - Mouse position object
+     */
+    const drawParticles = (ctx, particles, width, height, mouse) => {
+      // Draw particles
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = `rgba(180, 180, 180, ${p.opacity})`;
+        ctx.fill();
+      }
+      
+      // Draw connections
+      ctx.lineWidth = 0.3;
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = distance(p1.x, p1.y, p2.x, p2.y);
+          
+          if (dist < CONFIG.particleConnectionDistance) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            const opacity = 0.08 * (1 - dist / CONFIG.particleConnectionDistance);
+            ctx.strokeStyle = `rgba(180, 180, 180, ${opacity})`;
+            ctx.stroke();
+          }
+        }
+        
+        // Connect to mouse with subtle effect
+        if (mouse.x && mouse.y) {
+          const dist = distance(p1.x, p1.y, mouse.x, mouse.y);
+          if (dist < CONFIG.particleConnectionDistance * 1.2) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            const opacity = 0.12 * (1 - dist / (CONFIG.particleConnectionDistance * 1.2));
+            ctx.strokeStyle = `rgba(160, 160, 160, ${opacity})`;
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    // 
+    // ========================================
+    // Circuit Animation
+    // ========================================
+    //
+    
+    /**
+     * Create circuit nodes
+     * @param {number} count - Number of nodes
+     * @param {number} width - Canvas width
+     * @param {number} height - Canvas height
+     * @returns {Array} - Array of circuit nodes
+     */
+    const createCircuitNodes = (count, width, height) => {
+      const nodes = [];
+      
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          connections: []
+        });
+      }
+      
+      // Create connections between nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        const connectionCount = Math.floor(Math.random() * 3) + 1; // 1-3 connections
+        
+        for (let j = 0; j < connectionCount; j++) {
+          const targetIndex = Math.floor(Math.random() * nodes.length);
+          if (targetIndex !== i) {
+            node.connections.push(targetIndex);
+          }
+        }
+      }
+      
+      return nodes;
+    };
+    
+    /**
+     * Draw circuit on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     * @param {Array} nodes - Array of circuit nodes
+     * @param {number} time - Current time
+     */
+    const drawCircuit = (ctx, nodes, time) => {
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        
+        for (let j = 0; j < node.connections.length; j++) {
+          const targetNode = nodes[node.connections[j]];
+          
+          // Calculate pulse position
+          const dist = distance(node.x, node.y, targetNode.x, targetNode.y);
+          const pulseSpeed = 0.0003;
+          const pulsePos = (time * pulseSpeed) % 1;
+          const pulseX = node.x + (targetNode.x - node.x) * pulsePos;
+          const pulseY = node.y + (targetNode.y - node.y) * pulsePos;
+          
+          // Draw line
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(targetNode.x, targetNode.y);
+          ctx.strokeStyle = 'rgba(180, 180, 180, 0.1)';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+          
+          // Draw pulse
+          ctx.beginPath();
+          ctx.arc(pulseX, pulseY, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(180, 180, 180, 0.4)';
+          ctx.fill();
+        }
+      }
+      
+      // Draw nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(180, 180, 180, 0.3)';
+        ctx.fill();
+      }
+    };
+
+    // 
+    // ========================================
+    // GitHub Profile Image
+    // ========================================
+    //
+    
+    /**
+     * Fetch GitHub profile image
+     * @param {string} username - GitHub username
+     * @param {number} size - Image size
+     * @returns {Promise} - Promise that resolves with the image URL
+     */
+    const fetchGitHubAvatar = async (username, size = 400) => {
+      try {
+        // Try primary method first - direct from GitHub
+        const primaryUrl = `https://github.com/${username}.png?size=${size}`;
+        
+        // Create a new image to test loading
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        
+        // Return a promise that tries the primary URL
+        const result = await new Promise((resolve, reject) => {
+          img.onload = () => resolve(primaryUrl);
+          img.onerror = () => reject(new Error('Failed to load GitHub avatar from primary URL'));
+          img.src = primaryUrl;
+        }).catch(async (error) => {
+          // Try fallback method - using githubusercontent.com
+          console.log('Trying fallback avatar URL...');
+          const fallbackUrl = `https://avatars.githubusercontent.com/u/${username}?v=4&s=${size}`;
+          
+          const fallbackImg = new Image();
+          fallbackImg.crossOrigin = 'anonymous';
+          
+          return new Promise((resolve, reject) => {
+            fallbackImg.onload = () => resolve(fallbackUrl);
+            fallbackImg.onerror = () => reject(new Error('Failed to load GitHub avatar from fallback URL'));
+            fallbackImg.src = fallbackUrl;
+          });
+        });
+        
+        return result;
+      } catch (error) {
+        console.error('Error fetching GitHub avatar:', error);
+        throw error;
+      }
+    };
+    
+    /**
+     * Set profile image from URL
+     * @param {string} url - Image URL
+     */
+    const setProfileImage = (url) => {
+      const profileImage = $('#profile-image');
+      const placeholder = $('#profile-image-placeholder');
+      
+      if (profileImage) {
+        profileImage.style.backgroundImage = `url(${url})`;
+        
+        // Hide placeholder when image is loaded
+        if (placeholder) {
+          placeholder.style.display = 'none';
+        }
+      }
+    };
+
+    // 
+    // ========================================
+    // Launch Animation
+    // ========================================
+    //
+    
+    /**
+     * Initialize and run the launch animation
+     */
+    function initLaunchAnimation() {
+      const overlay = $('#launch-overlay');
+      const logo = $('#launch-logo');
+      const canvas = $('#launch-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Skip animation if reduced motion is preferred
+      if (CONFIG.reducedMotion) {
+        document.body.classList.add('loaded');
+        overlay.classList.add('hidden');
+        $('#app').classList.add('visible');
+        $('#main-nav').classList.add('visible');
+        revealHomeElements();
+        initIntersectionObservers();
+        return;
+      }
+      
+      // Set up canvas
+      resizeCanvas(canvas, ctx);
+      
+      // Create particles
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const particles = createParticles(CONFIG.particleCount, width, height);
+      
+      // Mouse tracking
+      const mouse = { x: null, y: null };
+      
+      canvas.addEventListener('mousemove', (e) => {
+        mouse.x = e.offsetX;
+        mouse.y = e.offsetY;
+      });
+      
+      canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+      
+      // Animate logo
+      setTimeout(() => {
+        overlay.classList.add('active');
+      }, 100);
+      
+      // Animation loop
+      let frameId;
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        resizeCanvas(canvas, ctx);
+        updateParticles(particles, width, height, mouse);
+        drawParticles(ctx, particles, width, height, mouse);
+        frameId = raf(animate);
+      };
+      
+      animate();
+      
+      // End launch animation
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+        
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          caf(frameId);
+          
+          // Fade in main content
+          setTimeout(() => {
+            $('#app').classList.add('visible');
+            $('#main-nav').classList.add('visible');
+            revealHomeElements();
+            initIntersectionObservers();
+            initBackgroundAnimation();
+            initCircuitAnimation();
+          }, 500);
+        }, 800);
+      }, CONFIG.launchDuration);
+    }
+
+    // 
+    // ========================================
+    // Background Animation
+    // ========================================
+    //
+    
+    /**
+     * Initialize background animation
+     */
+    function initBackgroundAnimation() {
+      if (CONFIG.reducedMotion) return;
+      
+      const canvas = $('#background-canvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      
+      // Set up canvas
+      resizeCanvas(canvas, ctx);
+      
+      // Create particles
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const particles = createParticles(CONFIG.particleCount, width, height);
+      
+      // Create wave points
+      const wavePointCount = Math.floor(width / 20); // One point every 20px
+      const waves = [];
+      
+      for (let i = 0; i < CONFIG.waveCount; i++) {
+        waves.push({
+          points: createWavePoints(width, wavePointCount),
+          color: CONFIG.waveColors[i % CONFIG.waveColors.length],
+          amplitude: CONFIG.waveAmplitude * (1 - i * 0.2),
+          frequency: CONFIG.waveFrequency * (1 + i * 0.1)
+        });
+      }
+      
+      // Mouse tracking
+      const mouse = { x: null, y: null };
+      
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+      
+      // FPS counter
+      const fpsCounter = new FPSCounter();
+      
+      // Animation loop
+      let startTime = Date.now();
+      const animate = () => {
+        const time = Date.now() - startTime;
+        
+        // Update FPS counter
+        if (CONFIG.debugMode) {
+          const fps = fpsCounter.update();
+          $('#fps-counter').textContent = fps;
+          $('#particle-counter').textContent = particles.length;
+          $('#wave-counter').textContent = waves.reduce((acc, wave) => acc + wave.points.length, 0);
+        }
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Resize canvas if needed
+        resizeCanvas(canvas, ctx);
+        
+        // Draw based on animation type
+        if (CONFIG.animationType === 'wave' || CONFIG.animationType === 'combined') {
+          // Update and draw waves
+          for (let i = 0; i < waves.length; i++) {
+            const wave = waves[i];
+            updateWavePoints(
+              wave.points, 
+              canvas.height, 
+              time * CONFIG.waveSpeed, 
+              wave.amplitude, 
+              wave.frequency
+            );
+            drawWave(ctx, wave.points, canvas.height, wave.color);
+          }
+        }
+        
+        if (CONFIG.animationType === 'particles' || CONFIG.animationType === 'combined') {
+          // Update and draw particles
+          updateParticles(particles, canvas.width, canvas.height, mouse);
+          drawParticles(ctx, particles, canvas.width, canvas.height, mouse);
+        }
+        
+        raf(animate);
+      };
+      
+      animate();
+      canvas.classList.add('active');
+      
+      // Handle window resize
+      window.addEventListener('resize', debounce(() => {
+        resizeCanvas(canvas, ctx);
+      }, 200));
+    }
+
+    // 
+    // ========================================
+    // Circuit Animation
+    // ========================================
+    //
+    
+    /**
+     * Initialize circuit animation
+     */
+    function initCircuitAnimation() {
+      if (CONFIG.reducedMotion) return;
+      
+      const canvas = $('#circuit-canvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      
+      // Set up canvas
+      resizeCanvas(canvas, ctx);
+      
+      // Create circuit nodes
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const nodes = createCircuitNodes(CONFIG.circuitNodeCount, width, height);
+      
+      // Animation loop
+      let startTime = Date.now();
+      const animate = () => {
+        const time = Date.now() - startTime;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Resize canvas if needed
+        resizeCanvas(canvas, ctx);
+        
+        // Only draw if animation type includes circuit
+        if (CONFIG.animationType === 'circuit' || CONFIG.animationType === 'combined') {
+          // Draw circuit
+          drawCircuit(ctx, nodes, time);
+        }
+        
+        raf(animate);
+      };
+      
+      animate();
+      canvas.classList.add('active');
+      
+      // Handle window resize
+      window.addEventListener('resize', debounce(() => {
+        resizeCanvas(canvas, ctx);
+      }, 200));
+      
+      // Handle section visibility
+      const aboutSection = $('#about');
+      if (aboutSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              canvas.style.opacity = '1';
+            } else {
+              canvas.style.opacity = '0';
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        observer.observe(aboutSection);
+      }
+    }
+
+    // 
+    // ========================================
+    // Text Animation Functions
+    // ========================================
+    //
+    
+    /**
+     * Animate characters in a text element
+     * @param {Element} element - Text element to animate
+     */
+    function animateCharacters(element) {
+      if (!element) return;
+      
+      const text = element.textContent;
+      element.textContent = '';
+      
+      // Create spans for each character
+      for (let i = 0; i < text.length; i++) {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'char';
+        charSpan.textContent = text[i];
+        charSpan.style.transitionDelay = `${i * 0.05}s`;
+        element.appendChild(charSpan);
+      }
+      
+      // Add visible class to trigger animation
+      setTimeout(() => {
+        element.classList.add('visible');
+      }, 100);
+    }
+
+    /**
+     * Reveal home section elements with animation
+     */
+    function revealHomeElements() {
+      const name = $('#home-title');
+      const profileContainer = $('#profile-container');
+      const tagline = $('#tagline');
+      const scrollIndicator = $('#scroll-indicator');
+      
+      // Animate elements
+      setTimeout(() => {
+        profileContainer.classList.add('visible');
+        
+        setTimeout(() => {
+          animateCharacters(name);
+          
+          setTimeout(() => {
+            tagline.classList.add('visible');
+            
+            setTimeout(() => {
+              scrollIndicator.classList.add('visible');
+            }, 400);
+          }, 400);
+        }, 300);
+      }, 300);
+    }
+
+    // 
+    // ========================================
+    // Intersection Observers
+    // ========================================
+    //
+    
+    /**
+     * Initialize intersection observers for scroll animations
+     */
+    function initIntersectionObservers() {
+      // Create observer for sections
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observe all sections
+      $$('.section').forEach(section => {
+        sectionObserver.observe(section);
+      });
+      
+      // Create observer for section content
+      const contentObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '-50px' });
+      
+      // Observe all section content
+      $$('.section-content').forEach(content => {
+        contentObserver.observe(content);
+      });
+      
+      // Create observer for text elements
+      const textObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '-50px' });
+      
+      // Observe all headings, paragraphs, etc.
+      $$('h2, p, .bio-subsection h3').forEach(element => {
+        textObserver.observe(element);
+      });
+      
+      // Create observer for skills
+      const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const skills = entry.target.querySelectorAll('.skill-item');
+            skills.forEach((skill, index) => {
+              setTimeout(() => {
+                skill.classList.add('in-view');
+              }, index * 50);
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observe skills grid
+      const skillsGrid = $('#skills-grid');
+      if (skillsGrid) {
+        skillsObserver.observe(skillsGrid);
+      }
+      
+      // Create observer for social links
+      const socialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const links = entry.target.querySelectorAll('.social-link');
+            links.forEach((link, index) => {
+              setTimeout(() => {
+                link.classList.add('in-view');
+              }, index * 150);
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observe social links
+      const socialLinks = $('#social-links');
+      if (socialLinks) {
+        socialObserver.observe(socialLinks);
+      }
+    }
+
+    // 
+    // ========================================
+    // Skills Data
+    // ========================================
+    //
+
+    // Skills data
+    const skills = [
+      { name: 'HTML', shortName: 'HTML' },
+      { name: 'CSS', shortName: 'CSS' },
+      { name: 'JavaScript', shortName: 'JS' },
+      { name: 'TypeScript', shortName: 'TS' },
+      { name: 'TSX', shortName: 'TSX' },
+      { name: 'JSX', shortName: 'JSX' },
+      { name: 'Ruby', shortName: 'RB' },
+      { name: 'Python', shortName: 'PY' },
+      { name: 'SQL', shortName: 'SQL' },
+      { name: 'Kotlin', shortName: 'KT' },
+      { name: 'PHP', shortName: 'PHP' },
+      { name: 'C#', shortName: 'C#' },
+      { name: 'C++', shortName: 'C++' },
+      { name: 'Objective-C', shortName: 'OC' },
+      { name: 'Swift', shortName: 'SW' },
+      { name: 'SwiftUI', shortName: 'SUI' },
+      { name: 'React Native', shortName: 'RN' }
+    ];
+
+    // 
+    // ========================================
+    // Initialization
+    // ========================================
+    //
+
+    /**
+     * Populate the skills grid with skill items
+     */
+    function populateSkills() {
+      const skillsGrid = $('#skills-grid');
+      if (!skillsGrid) return;
+      
+      skillsGrid.innerHTML = '';
+      
+      skills.forEach(skill => {
+        const skillItem = document.createElement('div');
+        skillItem.className = 'skill-item';
+        skillItem.dataset.skill = skill.name.toLowerCase();
+        
+        skillItem.innerHTML = `
+          <div class="skill-icon">${skill.shortName}</div>
+          <span class="skill-name">${skill.name}</span>
+        `;
+        
+        skillsGrid.appendChild(skillItem);
+      });
+    }
+
+    /**
+     * Initialize navigation
+     */
+    function initNavigation() {
+      // Get all navigation links
+      const navLinks = $$('.nav-link');
+      const navIndicator = $('#nav-indicator');
+      
+      // Update active navigation link on scroll
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        let closestSection = null;
+        let closestDistance = Infinity;
+        
+        // Find the current section based on scroll position
+        $$('.section').forEach(section => {
+          const rect = section.getBoundingClientRect();
+          const distanceFromViewport = Math.abs(rect.top);
+          
+          if (distanceFromViewport < closestDistance) {
+            closestDistance = distanceFromViewport;
+            closestSection = section;
+          }
+        });
+        
+        if (closestSection) {
+          currentSection = closestSection.getAttribute('id');
+        }
+        
+        // Update active class and nav indicator
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href');
+          
+          if (href === `#${currentSection}`) {
+            link.classList.add('active');
+            
+            // Update nav indicator position
+            if (navIndicator) {
+              const linkRect = link.getBoundingClientRect();
+              const navRect = link.parentElement.parentElement.getBoundingClientRect();
+              
+              navIndicator.style.left = `${linkRect.left - navRect.left}px`;
+              navIndicator.style.width = `${linkRect.width}px`;
+              navIndicator.classList.add('visible');
+            }
+          }
+        });
+        
+        // Make nav background darker on scroll
+        const nav = $('#main-nav');
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+      
+      // Add click event listeners to navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get the target section ID from the href attribute
+          const targetId = this.getAttribute('href');
+          const targetSection = $(targetId);
+          
+          if (targetSection) {
+            // Smooth scroll to the target section
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    /**
+     * Initialize scroll indicator
+     */
+    function initScrollIndicator() {
+      const scrollIndicator = $('#scroll-indicator');
+      if (!scrollIndicator) return;
+      
+      scrollIndicator.addEventListener('click', () => {
+        const aboutSection = $('#about');
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    /**
+     * Initialize back to top button
+     */
+    function initBackToTop() {
+      const backToTopBtn = $('#back-to-top');
+      if (!backToTopBtn) return;
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+      
+      // Scroll to top when button is clicked
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    /**
+     * Initialize accessibility features
+     */
+    function initAccessibility() {
+      // Add keyboard navigation class for focus styles
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-navigation');
+        }
+      });
+
+      document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+      });
+    }
+
+    /**
+     * Initialize animation settings panel
+     */
+    function initAnimationSettings() {
+      const settingsPanel = $('#animation-settings');
+      const debugPanel = $('#debug-panel');
+      const toggleDebugBtn = $('#toggle-debug');
+      const resetBtn = $('#reset-settings');
+      const closeBtn = $('#close-settings');
+      const animationTypeSelect = $('#animation-type');
+      const particleDensityInput = $('#particle-density');
+      const waveAmplitudeInput = $('#wave-amplitude');
+      const animationSpeedInput = $('#animation-speed');
+      
+      // Toggle debug panel
+      toggleDebugBtn.addEventListener('click', () => {
+        debugPanel.classList.toggle('visible');
+        CONFIG.debugMode = debugPanel.classList.contains('visible');
+      });
+      
+      // Reset settings
+      resetBtn.addEventListener('click', () => {
+        CONFIG.animationType = 'combined';
+        CONFIG.particleCount = 100;
+        CONFIG.waveAmplitude = 20;
+        CONFIG.waveSpeed = 0.05;
+        
+        animationTypeSelect.value = CONFIG.animationType;
+        particleDensityInput.value = CONFIG.particleCount;
+        waveAmplitudeInput.value = CONFIG.waveAmplitude;
+        animationSpeedInput.value = CONFIG.waveSpeed;
+      });
+      
+      // Close settings panel
+      closeBtn.addEventListener('click', () => {
+        settingsPanel.classList.remove('visible');
+      });
+      
+      // Animation type change
+      animationTypeSelect.addEventListener('change', () => {
+        CONFIG.animationType = animationTypeSelect.value;
+      });
+      
+      // Particle density change
+      particleDensityInput.addEventListener('input', () => {
+        CONFIG.particleCount = parseInt(particleDensityInput.value);
+      });
+      
+      // Wave amplitude change
+      waveAmplitudeInput.addEventListener('input', () => {
+        CONFIG.waveAmplitude = parseInt(waveAmplitudeInput.value);
+      });
+      
+      // Animation speed change
+      animationSpeedInput.addEventListener('input', () => {
+        CONFIG.waveSpeed = parseFloat(animationSpeedInput.value);
+      });
+      
+      // Secret key combo to show settings panel (Shift + Alt + S)
+      document.addEventListener('keydown', (e) => {
+        if (e.shiftKey && e.altKey && e.key === 'S') {
+          settingsPanel.classList.toggle('visible');
+        }
+      });
+    }
+
+    /**
+     * Ensure all content is visible (fallback)
+     */
+    function ensureVisibility() {
+      // Make sure all sections are visible
+      $$('.section').forEach(section => {
+        section.classList.add('in-view');
+      });
+      
+      // Make sure all content is visible
+      $$('.section-content').forEach(content => {
+        content.classList.add('in-view');
+      });
+      
+      // Make sure all text is visible
+      $$('h2, p, .bio-subsection h3').forEach(element => {
+        element.classList.add('in-view');
+      });
+      
+      // Make sure all skills are visible
+      $$('.skill-item').forEach(skill => {
+        skill.classList.add('in-view');
+      });
+      
+      // Make sure all social links are visible
+      $$('.social-link').forEach(link => {
+        link.classList.add('in-view');
+      });
+      
+      // Make sure home elements are visible
+      $('#profile-container').classList.add('visible');
+      $('#home-title').classList.add('visible');
+      $('#tagline').classList.add('visible');
+      $('#scroll-indicator').classList.add('visible');
+    }
+
+    /**
+     * Detect low power mode
+     */
+    function detectLowPowerMode() {
+      // Check battery API if available
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+          CONFIG.lowPowerMode = battery.charging === false && battery.level < 0.2;
+          
+          // Reduce effects if in low power mode
+          if (CONFIG.lowPowerMode) {
+            CONFIG.particleCount = Math.floor(CONFIG.particleCount * 0.5);
+            CONFIG.waveCount = Math.min(CONFIG.waveCount, 2);
+            CONFIG.fps = 30;
+          }
+        });
+      }
+      
+      // Also check for reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        CONFIG.reducedMotion = true;
+      }
+    }
+
+    // Main initialization function
+    function init() {
+      if (window.portfolioInitialized) {
+        console.log('Init already called, ignoring duplicate call');
+        return;
+      }
+      
+      console.log('Initializing application...');
+      
+      // Force immediate visibility
+      document.body.style.opacity = '1';
+      document.body.classList.add('loaded');
+      
+      // Detect low power mode
+      detectLowPowerMode();
+      
+      // Set up navigation
+      initNavigation();
+      
+      // Set up scroll indicator
+      initScrollIndicator();
+      
+      // Set up accessibility
+      initAccessibility();
+      
+      // Initialize dark mode
+      initDarkMode();
+      
+      // Try to fetch GitHub avatar
+      fetchGitHubAvatar(CONFIG.githubUsername, CONFIG.githubAvatarSize)
+        .then(url => {
+          setProfileImage(url);
+        })
+        .catch(error => {
+          console.warn('Could not load GitHub avatar:', error);
+        });
+      
+      // Make content visible immediately
+      document.body.classList.add('loaded');
+      const appElement = $('#app');
+      if (appElement) appElement.classList.add('visible');
+      const navElement = $('#main-nav');
+      if (navElement) navElement.classList.add('visible');
+      ensureVisibility();
+      
+      // Initialize animations if motion is not reduced
+      if (!CONFIG.reducedMotion) {
+        // Start any animations here
+        const circuitAnimation = initializeCircuitAnimation();
+      }
+        
+      // Mark as initialized
+      window.portfolioInitialized = true;
+    }
+
+    // 
+    // ========================================
+    // Error Handling
+    // ========================================
+    //
+
+    /**
+     * Global error handler
+     */
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error('Error:', message, 'at', source, lineno, colno);
+      
+      // Force immediate visibility of all content
+      document.body.style.opacity = '1';
+      document.body.style.visibility = 'visible';
+      document.body.classList.add('loaded');
+      
+      const appElement = document.getElementById('app');
+      if (appElement) {
+        appElement.style.opacity = '1';
+        appElement.style.visibility = 'visible'; 
+        appElement.classList.add('visible');
+      }
+      
+      const navElement = document.getElementById('main-nav');
+      if (navElement) {
+        navElement.style.opacity = '1';
+        navElement.style.visibility = 'visible';
+        navElement.classList.add('visible');
+      }
+      
+      // Ensure content is visible even if there's an error
+      ensureVisibility();
+      
+      return true; // Prevent default error handling
+    };
+
+    // 
+    // ========================================
+    // Initialize Application
+    // ========================================
+    //
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      // DOM already loaded, run init immediately
+      console.log('DOM already loaded, initializing now');
+      init();
+    }
+
+    // Also add a window load event as backup
+    window.addEventListener('load', function() {
+      console.log('Window loaded');
+      // If init hasn't run yet for some reason, run it now
+      if (!window.portfolioInitialized) {
+        console.log('Running init from window load event');
+        init();
+      }
+    });
+
+    /**
+     * Toggle dark mode with smooth transition
+     * @param {boolean} enableDark - Whether to enable dark mode
+     */
+    const toggleDarkMode = (enableDark) => {
+      const root = document.documentElement;
+      const darkModeToggle = $('#dark-mode-toggle');
+      
+      // Add transition class for smooth color changes
+      root.classList.add('color-transition');
+      
+      if (enableDark) {
+        root.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.setAttribute('aria-checked', 'true');
+        localStorage.setItem('prefersDarkMode', 'true');
+      } else {
+        root.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.setAttribute('aria-checked', 'false');
+        localStorage.setItem('prefersDarkMode', 'false');
+      }
+      
+      // Remove transition class after animation completes
+      setTimeout(() => {
+        root.classList.remove('color-transition');
+      }, 800);
+    };
+    
+    /**
+     * Initialize dark mode based on user preference
+     */
+    const initDarkMode = () => {
+      const darkModeToggle = $('#dark-mode-toggle');
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedPreference = localStorage.getItem('prefersDarkMode');
+      
+      // Set initial state based on saved preference or system preference
+      if (savedPreference !== null) {
+        toggleDarkMode(savedPreference === 'true');
+      } else {
+        toggleDarkMode(prefersDarkMode);
+      }
+      
+      // Add event listener to toggle
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+          const isDarkMode = document.documentElement.classList.contains('dark-mode');
+          toggleDarkMode(!isDarkMode);
+        });
+      }
+      
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only change if user hasn't set a preference
+        if (localStorage.getItem('prefersDarkMode') === null) {
+          toggleDarkMode(e.matches);
+        }
+      });
+    };
+
+    // Add circuit animation and About section observer
+    function initializeCircuitAnimation() {
+      const canvas = document.getElementById('circuitCanvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+      
+      // Handle canvas resize
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      });
+      
+      // Circuit nodes and connections
+      const nodes = [];
+      const connections = [];
+      const nodeCount = 120;
+      const connectionDistance = 100;
+      const pulseSpeed = 0.5;
+      
+      // Colors
+      let primaryColor = '#ffffff';
+      let secondaryColor = '#999999';
+      const accentRedColor = '#b0121b';
+      let useAccentColor = false;
+      
+      // Create nodes
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.5 + 0.5,
+        });
+      }
+      
+      // Create connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < connectionDistance) {
+            connections.push({
+              start: i,
+              end: j,
+              distance: distance,
+              pulsePosition: Math.random(),
+              pulseDirection: Math.random() > 0.5 ? 1 : -1,
+              width: Math.random() * 0.5 + 0.5,
+            });
+          }
+        }
+      }
+      
+      // Animation variables
+      let animationStartTime = null;
+      let animationId = null;
+      
+      // Draw the circuit
+      function drawCircuit(timestamp) {
+        if (!animationStartTime) animationStartTime = timestamp;
+        const elapsedTime = timestamp - animationStartTime;
+        
+        // Switch to accent color after 45 seconds
+        if (elapsedTime > 45000 && !useAccentColor) {
+          useAccentColor = true;
+        }
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw connections
+        for (const conn of connections) {
+          const start = nodes[conn.start];
+          const end = nodes[conn.end];
+          
+          // Update pulse position
+          conn.pulsePosition += (pulseSpeed / conn.distance) * conn.pulseDirection;
+          if (conn.pulsePosition > 1 || conn.pulsePosition < 0) {
+            conn.pulseDirection *= -1;
+            conn.pulsePosition = Math.max(0, Math.min(1, conn.pulsePosition));
+          }
+          
+          // Draw connection line
+          ctx.beginPath();
+          ctx.moveTo(start.x, start.y);
+          ctx.lineTo(end.x, end.y);
+          ctx.strokeStyle = secondaryColor;
+          ctx.lineWidth = conn.width * 0.5;
+          ctx.stroke();
+          
+          // Draw pulse
+          const pulseX = start.x + (end.x - start.x) * conn.pulsePosition;
+          const pulseY = start.y + (end.y - start.y) * conn.pulsePosition;
+          
+          ctx.beginPath();
+          ctx.arc(pulseX, pulseY, conn.width * 2, 0, Math.PI * 2);
+          
+          // Use accent color for some pulses after 45 seconds
+          if (useAccentColor && Math.random() > 0.7) {
+            ctx.fillStyle = accentRedColor;
+          } else {
+            ctx.fillStyle = primaryColor;
+          }
+          
+          ctx.fill();
+        }
+        
+        // Draw nodes
+        for (const node of nodes) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = primaryColor;
+          ctx.fill();
+        }
+        
+        animationId = requestAnimationFrame(drawCircuit);
+      }
+      
+      // Start animation
+      animationId = requestAnimationFrame(drawCircuit);
+      
+      return {
+        start: () => {
+          if (!animationId) {
+            animationStartTime = null;
+            animationId = requestAnimationFrame(drawCircuit);
+          }
+        },
+        stop: () => {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+          }
+        }
+      };
+    }
+    
+    // Initialize Intersection Observer for animations
+    function initializeAboutObserver() {
+      const bioContainer = document.querySelector('.bio-container');
+      if (!bioContainer) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      observer.observe(bioContainer);
+    }
+
+    // Emergency visibility fix
+    window.onload = function() {
+      setTimeout(function() {
+        if (document.body.offsetHeight === 0 || !document.body.offsetWidth) {
+          console.log("Emergency visibility fix applied");
+          document.body.style.opacity = '1';
+          document.body.style.visibility = 'visible';
+          
+          const app = document.getElementById('app');
+          if (app) {
+            app.style.opacity = '1';
+            app.style.visibility = 'visible';
+          }
+          
+          const nav = document.getElementById('main-nav');
+          if (nav) {
+            nav.style.opacity = '1';
+            nav.style.visibility = 'visible';
+          }
+          
+          const sections = document.querySelectorAll('.section');
+          sections.forEach(function(section) {
+            section.style.opacity = '1';
+            section.style.visibility = 'visible';
+          });
+        }
+      }, 1000);
+    };
+  </script>
+</body>
+</html>
