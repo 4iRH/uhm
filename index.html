@@ -8,11 +8,11 @@
   <meta property="og:description" content="Cybersecurity professional with expertise in penetration testing, iOS exploit development, and reverse engineering">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mw3s.github.io/portfolio/">
-  <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjMDAwIi8+PHRleHQgeD0iNjAwIiB5PSIzMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+bXczczwvdGV4dD48L3N2Zz4=">
+  <meta property="og:image" content="https://github.com/mw3s.png?size=400">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="mw3s | Portfolio">
   <meta name="twitter:description" content="Cybersecurity professional with expertise in penetration testing, iOS exploit development, and reverse engineering">
-  <meta name="twitter:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjMDAwIi8+PHRleHQgeD0iNjAwIiB5PSIzMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+bXczczwvdGV4dD48L3N2Zz4=">
+  <meta name="twitter:image" content="https://github.com/mw3s.png?size=400">
   <meta name="theme-color" content="#000000">
   <title>mw3s | Portfolio</title>
   
@@ -43,29 +43,31 @@
     */
     :root {
       /* Color Palette */
-      --color-black: #000000;
-      --color-dark-gray: #1d1d1f;
-      --color-medium-gray: #555555;
-      --color-light-gray: #86868b;
-      --color-lighter-gray: #dddddd;
+      --color-black: #050505;
+      --color-dark-gray: #121214;
+      --color-medium-gray: #2e2e36;
+      --color-light-gray: #8f8f9d;
+      --color-lighter-gray: #e2e2e8;
       --color-white: #ffffff;
-      --color-accent: rgba(255, 255, 255, 0.8);
-      --color-accent-glow: rgba(255, 255, 255, 0.15);
+      --color-accent: rgba(132, 94, 247, 0.8);
+      --color-accent-alt: rgba(66, 153, 225, 0.8);
+      --color-accent-glow: rgba(132, 94, 247, 0.2);
       
       /* Gradients */
-      --gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-      --gradient-subtle: linear-gradient(to right, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 100%);
-      --gradient-glow: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      --gradient-dark: linear-gradient(135deg, #050505 0%, #121214 100%);
+      --gradient-accent: linear-gradient(135deg, rgba(132, 94, 247, 0.6) 0%, rgba(66, 153, 225, 0.6) 100%);
+      --gradient-subtle: linear-gradient(to right, rgba(132, 94, 247, 0.05) 0%, rgba(66, 153, 225, 0.08) 100%);
+      --gradient-glow: radial-gradient(circle, rgba(132, 94, 247, 0.15) 0%, rgba(66, 153, 225, 0) 70%);
       
       /* Wave Animation Colors */
-      --wave-color-1: rgba(40, 40, 45, 0.6);
-      --wave-color-2: rgba(60, 60, 65, 0.4);
-      --wave-color-3: rgba(80, 80, 85, 0.2);
+      --wave-color-1: rgba(132, 94, 247, 0.3);
+      --wave-color-2: rgba(66, 153, 225, 0.2);
+      --wave-color-3: rgba(94, 104, 186, 0.1);
       
       /* Circuit Animation Colors */
-      --circuit-color-1: rgba(100, 100, 110, 0.15);
-      --circuit-color-2: rgba(120, 120, 130, 0.1);
-      --circuit-color-glow: rgba(150, 150, 160, 0.05);
+      --circuit-color-1: rgba(132, 94, 247, 0.15);
+      --circuit-color-2: rgba(66, 153, 225, 0.1);
+      --circuit-color-glow: rgba(94, 104, 186, 0.08);
       
       /* Typography */
       --font-primary: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Inter, sans-serif;
@@ -91,30 +93,31 @@
       --nav-height: 60px;
       
       /* Effects */
-      --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.1);
-      --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.2);
-      --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.3);
+      --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.15);
+      --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.25);
+      --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --shadow-accent: 0 10px 25px rgba(132, 94, 247, 0.15);
       
       --blur-subtle: blur(10px);
       --blur-medium: blur(20px);
       --blur-strong: blur(30px);
       
       /* Shapes */
-      --border-radius-sm: 8px;
-      --border-radius-md: 12px;
-      --border-radius-lg: 20px;
+      --border-radius-sm: 12px;
+      --border-radius-md: 16px;
+      --border-radius-lg: 24px;
       --border-radius-round: 50%;
       
       /* Animation */
-      --wave-amplitude: 20;
-      --wave-frequency: 0.02;
-      --wave-speed: 0.05;
-      --particle-count: 100;
-      --particle-connection-distance: 150;
+      --wave-amplitude: 30;
+      --wave-frequency: 0.025;
+      --wave-speed: 0.08;
+      --particle-count: 150;
+      --particle-connection-distance: 180;
       --particle-size-min: 1;
-      --particle-size-max: 3;
-      --particle-speed: 0.5;
-      --particle-opacity: 0.7;
+      --particle-size-max: 4;
+      --particle-speed: 0.7;
+      --particle-opacity: 0.8;
     }
 
     /* Base HTML and Body styles */
@@ -579,8 +582,8 @@
       transition: transform var(--transition-medium) ease, 
                   box-shadow var(--transition-medium) ease,
                   filter var(--transition-medium) ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
-                  0 0 0 1px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                  0 0 0 2px rgba(132, 94, 247, 0.1);
       margin: 0 auto;
       filter: brightness(1);
     }
@@ -601,12 +604,12 @@
     .profile-image:hover {
       transform: scale(1.05) translateY(-5px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
-                  0 0 0 1px rgba(255, 255, 255, 0.15);
+                  0 0 0 2px rgba(132, 94, 247, 0.3);
       filter: brightness(1.1);
     }
 
     .profile-image:hover::before {
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .profile-image-placeholder {
@@ -617,7 +620,7 @@
       justify-content: center;
       font-size: 3rem;
       color: var(--color-light-gray);
-      background-color: var(--color-dark-gray);
+      background: var(--gradient-dark);
     }
 
     .name {
@@ -746,15 +749,17 @@
     }
 
     .bio-container {
-      background-color: rgba(0, 0, 0, 0.7);
+      background: rgba(18, 18, 20, 0.7);
       padding: 3rem;
       border-radius: var(--border-radius-md);
-      box-shadow: var(--shadow-medium);
-      backdrop-filter: var(--blur-subtle);
-      -webkit-backdrop-filter: var(--blur-subtle);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: var(--shadow-medium),
+                  0 5px 20px rgba(132, 94, 247, 0.1);
+      backdrop-filter: var(--blur-medium);
+      -webkit-backdrop-filter: var(--blur-medium);
+      border: 1px solid rgba(132, 94, 247, 0.1);
       overflow: hidden;
       position: relative;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     .bio-container::before {
@@ -862,7 +867,7 @@
       width: 70px;
       height: 70px;
       border-radius: var(--border-radius-md);
-      background-color: var(--color-dark-gray);
+      background: rgba(18, 18, 20, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -873,7 +878,9 @@
       position: relative;
       transition: all var(--transition-medium) ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
-                  0 0 0 1px rgba(255, 255, 255, 0.05);
+                  0 0 0 1px rgba(132, 94, 247, 0.1);
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
       overflow: hidden;
     }
 
@@ -890,11 +897,12 @@
     }
 
     .skill-item:hover .skill-icon {
-      background-color: var(--color-medium-gray);
+      transform: translateY(-5px);
+      background: rgba(30, 30, 35, 0.8);
       color: var(--color-white);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
-                  0 0 0 1px rgba(255, 255, 255, 0.1),
-                  0 0 20px 5px rgba(255, 255, 255, 0.05);
+                  0 0 0 1px rgba(132, 94, 247, 0.3),
+                  0 0 20px 5px rgba(132, 94, 247, 0.1);
     }
 
     .skill-item:hover .skill-icon::before {
@@ -1560,29 +1568,31 @@
     const CONFIG = {
       // Animation Settings
       launchDuration: 2000, // ms
-      waveAmplitude: 20,
-      waveFrequency: 0.02,
-      waveSpeed: 0.05,
-      waveCount: 3,
+      waveAmplitude: 30,
+      waveFrequency: 0.025,
+      waveSpeed: 0.08,
+      waveCount: 5,
       waveColors: [
-        'rgba(40, 40, 45, 0.6)',
-        'rgba(60, 60, 65, 0.4)',
-        'rgba(80, 80, 85, 0.2)'
+        'rgba(132, 94, 247, 0.3)',
+        'rgba(66, 153, 225, 0.25)',
+        'rgba(94, 104, 186, 0.2)',
+        'rgba(132, 94, 247, 0.15)',
+        'rgba(66, 153, 225, 0.1)'
       ],
-      particleCount: 100,
-      particleConnectionDistance: 150,
+      particleCount: 180,
+      particleConnectionDistance: 180,
       particleSizeMin: 1,
-      particleSizeMax: 3,
-      particleSpeed: 0.5,
-      particleOpacity: 0.7,
+      particleSizeMax: 4,
+      particleSpeed: 0.7,
+      particleOpacity: 0.8,
       
       // Circuit Animation
-      circuitLineCount: 20,
-      circuitNodeCount: 30,
+      circuitLineCount: 30,
+      circuitNodeCount: 40,
       circuitColors: [
-        'rgba(100, 100, 110, 0.15)',
-        'rgba(120, 120, 130, 0.1)',
-        'rgba(150, 150, 160, 0.05)'
+        'rgba(132, 94, 247, 0.2)',
+        'rgba(66, 153, 225, 0.15)',
+        'rgba(94, 104, 186, 0.1)'
       ],
       
       // Profile Image
@@ -1850,10 +1860,26 @@
     const drawWave = (ctx, points, height, color) => {
       if (points.length < 2) return;
       
+      // Create gradient for the wave
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      
+      // Parse the color to get the base color values
+      const colorMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),\s*([.\d]+)\)/);
+      if (!colorMatch) return;
+      
+      const r = parseInt(colorMatch[1], 10);
+      const g = parseInt(colorMatch[2], 10);
+      const b = parseInt(colorMatch[3], 10);
+      const a = parseFloat(colorMatch[4]);
+      
+      // Create a gradient from more opaque at top to transparent at bottom
+      gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${a})`);
+      gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+      
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
       
-      // Draw curve through points
+      // Draw curve through points with smoother transitions
       for (let i = 1; i < points.length - 1; i++) {
         const xc = (points[i].x + points[i + 1].x) / 2;
         const yc = (points[i].y + points[i + 1].y) / 2;
@@ -1873,8 +1899,30 @@
       ctx.lineTo(points[0].x, height);
       ctx.closePath();
       
-      ctx.fillStyle = color;
+      // Apply gradient fill
+      ctx.fillStyle = gradient;
       ctx.fill();
+      
+      // Add a subtle highlight line along the top of the wave
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      
+      for (let i = 1; i < points.length - 1; i++) {
+        const xc = (points[i].x + points[i + 1].x) / 2;
+        const yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+      }
+      
+      ctx.quadraticCurveTo(
+        points[points.length - 2].x, 
+        points[points.length - 2].y, 
+        points[points.length - 1].x, 
+        points[points.length - 1].y
+      );
+      
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = `rgba(${r + 50}, ${g + 50}, ${b + 50}, ${a * 1.5})`;
+      ctx.stroke();
     };
 
     // 
@@ -1953,14 +2001,22 @@
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         
+        // Create gradient for particles
+        const gradientSize = p.size * 2;
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, gradientSize);
+        
+        // Use different colors based on position for visual interest
+        const hue = (p.x / width * 60) + 240; // Range from purple (240) to blue (300)
+        gradient.addColorStop(0, `hsla(${hue}, 100%, 70%, ${p.opacity})`);
+        gradient.addColorStop(1, `hsla(${hue}, 100%, 50%, 0)`);
+        
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.arc(p.x, p.y, gradientSize, 0, Math.PI * 2, false);
+        ctx.fillStyle = gradient;
         ctx.fill();
       }
       
       // Draw connections
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
       ctx.lineWidth = 0.5;
       
       for (let i = 0; i < particles.length; i++) {
@@ -1971,23 +2027,45 @@
           const dist = distance(p1.x, p1.y, p2.x, p2.y);
           
           if (dist < CONFIG.particleConnectionDistance) {
+            // Create gradient for connections
+            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+            const opacity = 0.15 * (1 - dist / CONFIG.particleConnectionDistance);
+            
+            // Use colors from our color scheme
+            gradient.addColorStop(0, `rgba(132, 94, 247, ${opacity})`);
+            gradient.addColorStop(1, `rgba(66, 153, 225, ${opacity})`);
+            
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / CONFIG.particleConnectionDistance)})`;
+            ctx.strokeStyle = gradient;
             ctx.stroke();
           }
         }
         
-        // Connect to mouse
+        // Connect to mouse with special effect
         if (mouse.x && mouse.y) {
           const dist = distance(p1.x, p1.y, mouse.x, mouse.y);
           if (dist < CONFIG.particleConnectionDistance * 1.5) {
+            const gradient = ctx.createLinearGradient(p1.x, p1.y, mouse.x, mouse.y);
+            const opacity = 0.25 * (1 - dist / (CONFIG.particleConnectionDistance * 1.5));
+            
+            gradient.addColorStop(0, `rgba(132, 94, 247, ${opacity})`);
+            gradient.addColorStop(1, `rgba(66, 153, 225, ${opacity * 1.5})`);
+            
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist / (CONFIG.particleConnectionDistance * 1.5))})`;
+            ctx.strokeStyle = gradient;
             ctx.stroke();
+            
+            // Add a glow effect around the mouse
+            if (dist < 80) {
+              ctx.beginPath();
+              ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(132, 94, 247, 0.8)';
+              ctx.fill();
+            }
           }
         }
       }
@@ -2054,18 +2132,36 @@
           const pulseX = node.x + (targetNode.x - node.x) * pulsePos;
           const pulseY = node.y + (targetNode.y - node.y) * pulsePos;
           
-          // Draw line
+          // Create gradient for the line
+          const gradient = ctx.createLinearGradient(node.x, node.y, targetNode.x, targetNode.y);
+          gradient.addColorStop(0, 'rgba(132, 94, 247, 0.2)');
+          gradient.addColorStop(1, 'rgba(66, 153, 225, 0.2)');
+          
+          // Draw line with gradient
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(targetNode.x, targetNode.y);
-          ctx.strokeStyle = CONFIG.circuitColors[0];
+          ctx.strokeStyle = gradient;
           ctx.lineWidth = 1;
           ctx.stroke();
           
-          // Draw pulse
+          // Draw pulse with glow effect
+          const glowSize = 5 + Math.sin(time * 0.005) * 2;
+          
+          // Outer glow
+          ctx.beginPath();
+          ctx.arc(pulseX, pulseY, glowSize, 0, Math.PI * 2);
+          const pulseGradient = ctx.createRadialGradient(pulseX, pulseY, 0, pulseX, pulseY, glowSize);
+          pulseGradient.addColorStop(0, 'rgba(132, 94, 247, 0.6)');
+          pulseGradient.addColorStop(0.5, 'rgba(66, 153, 225, 0.3)');
+          pulseGradient.addColorStop(1, 'rgba(66, 153, 225, 0)');
+          ctx.fillStyle = pulseGradient;
+          ctx.fill();
+          
+          // Inner pulse
           ctx.beginPath();
           ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
-          ctx.fillStyle = CONFIG.circuitColors[1];
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
           ctx.fill();
         }
       }
@@ -2073,10 +2169,22 @@
       // Draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
+        const nodeSize = 3 + (node.connections.length * 0.5);
         
+        // Node glow
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = CONFIG.circuitColors[2];
+        ctx.arc(node.x, node.y, nodeSize + 4, 0, Math.PI * 2);
+        const nodeGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, nodeSize + 4);
+        nodeGradient.addColorStop(0, 'rgba(132, 94, 247, 0.5)');
+        nodeGradient.addColorStop(0.5, 'rgba(66, 153, 225, 0.2)');
+        nodeGradient.addColorStop(1, 'rgba(66, 153, 225, 0)');
+        ctx.fillStyle = nodeGradient;
+        ctx.fill();
+        
+        // Node center
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(132, 94, 247, 0.8)';
         ctx.fill();
       }
     };
