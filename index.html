@@ -105,15 +105,15 @@
       --particle-opacity: 0.5;
       
       /* Colors */
-      --color-primary: #1a1a1a;
-      --color-secondary: #333333;
+      --color-primary: #f5f5f5;
+      --color-secondary: #e0e0e0;
       --color-accent: #b0121b;
-      --color-text: #ffffff;
-      --color-text-muted: #999999;
-      --color-background: #000000;
-      --color-border: #333333;
-      --color-card: #1a1a1a;
-      --color-overlay: rgba(0, 0, 0, 0.8);
+      --color-text: #333333;
+      --color-text-muted: #666666;
+      --color-background: #ffffff;
+      --color-border: #dddddd;
+      --color-card: #ffffff;
+      --color-overlay: rgba(255, 255, 255, 0.8);
       
       /* Dark mode colors */
       --dark-color-primary: #1a1a1a;
@@ -213,10 +213,12 @@
       background-color: var(--color-background);
       color: var(--color-text);
       overflow-x: hidden;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     body.loaded {
-      opacity: 1;
+      opacity: 1 !important;
     }
 
     * {
@@ -525,21 +527,21 @@
     ========================================
     */
     .app-container {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       width: 100%;
-      overflow: visible;
-      padding-top: var(--nav-height); /* Add space for fixed nav */
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-      transition-delay: 0.5s;
+      height: 100%;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
-
+    
     .app-container.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    /* Make sure sections are visible */
+    .section {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     /* 
@@ -557,18 +559,16 @@
       padding: 1rem 2rem;
       z-index: 100;
       transition: background-color var(--transition-normal);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(-10px);
+      opacity: 1 !important;
+      visibility: visible !important;
     }
-
+    
     .main-nav.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
     }
-
+    
     .main-nav.scrolled {
       background-color: rgba(255, 255, 255, 0.95);
     }
@@ -1600,7 +1600,7 @@
   Navigation
   ========================================
   -->
-  <nav id="main-nav" class="main-nav">
+  <nav id="main-nav" class="main-nav visible" style="opacity: 1; visibility: visible;">
     <ul class="nav-list">
       <li><a href="#home" class="nav-link active">Home</a></li>
       <li><a href="#about" class="nav-link">About</a></li>
@@ -1620,7 +1620,7 @@
   Main Container
   ========================================
   -->
-  <div id="app" class="app-container">
+  <div id="app" class="app-container visible" style="opacity: 1; visibility: visible;">
     <!-- Home Section -->
     <section id="home" class="section" role="region" aria-labelledby="home-title">
       <div class="section-content home-content">
@@ -3076,6 +3076,10 @@
       
       console.log('Initializing application...');
       
+      // Force immediate visibility
+      document.body.style.opacity = '1';
+      document.body.classList.add('loaded');
+      
       // Detect low power mode
       detectLowPowerMode();
       
@@ -3102,8 +3106,10 @@
       
       // Make content visible immediately
       document.body.classList.add('loaded');
-      $('#app').classList.add('visible');
-      $('#main-nav').classList.add('visible');
+      const appElement = $('#app');
+      if (appElement) appElement.classList.add('visible');
+      const navElement = $('#main-nav');
+      if (navElement) navElement.classList.add('visible');
       ensureVisibility();
       
       // Initialize animations if motion is not reduced
@@ -3127,11 +3133,29 @@
      */
     window.onerror = function(message, source, lineno, colno, error) {
       console.error('Error:', message, 'at', source, lineno, colno);
-      // Ensure content is visible even if there's an error
+      
+      // Force immediate visibility of all content
+      document.body.style.opacity = '1';
+      document.body.style.visibility = 'visible';
       document.body.classList.add('loaded');
-      $('#app').classList.add('visible');
-      $('#main-nav').classList.add('visible');
+      
+      const appElement = document.getElementById('app');
+      if (appElement) {
+        appElement.style.opacity = '1';
+        appElement.style.visibility = 'visible'; 
+        appElement.classList.add('visible');
+      }
+      
+      const navElement = document.getElementById('main-nav');
+      if (navElement) {
+        navElement.style.opacity = '1';
+        navElement.style.visibility = 'visible';
+        navElement.classList.add('visible');
+      }
+      
+      // Ensure content is visible even if there's an error
       ensureVisibility();
+      
       return true; // Prevent default error handling
     };
 
@@ -3376,6 +3400,35 @@
       
       observer.observe(bioContainer);
     }
+
+    // Emergency visibility fix
+    window.onload = function() {
+      setTimeout(function() {
+        if (document.body.offsetHeight === 0 || !document.body.offsetWidth) {
+          console.log("Emergency visibility fix applied");
+          document.body.style.opacity = '1';
+          document.body.style.visibility = 'visible';
+          
+          const app = document.getElementById('app');
+          if (app) {
+            app.style.opacity = '1';
+            app.style.visibility = 'visible';
+          }
+          
+          const nav = document.getElementById('main-nav');
+          if (nav) {
+            nav.style.opacity = '1';
+            nav.style.visibility = 'visible';
+          }
+          
+          const sections = document.querySelectorAll('.section');
+          sections.forEach(function(section) {
+            section.style.opacity = '1';
+            section.style.visibility = 'visible';
+          });
+        }
+      }, 1000);
+    };
   </script>
 </body>
 </html>
