@@ -16,13 +16,25 @@
   <meta name="theme-color" content="#000000">
   <title>mw3s | Portfolio</title>
   
-  <!-- Preconnect to Google Fonts -->
+  <!-- Apple System Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Inline Styles -->
   <style>
+    /* 
+    ========================================
+    PORTFOLIO WEBSITE LAYOUT FIXES
+    ========================================
+    - Fixed content visibility issues
+    - Improved scrolling behavior
+    - Added proper Apple-style typography
+    - Fixed background animations
+    - Ensured proper section alignment
+    - Optimized for all devices
+    */
+    
     /* 
     ========================================
     CSS Variables & Reset
@@ -30,12 +42,12 @@
     */
     :root {
       --color-black: #000000;
-      --color-dark-gray: #222222;
+      --color-dark-gray: #1d1d1f;
       --color-medium-gray: #555555;
-      --color-light-gray: #888888;
+      --color-light-gray: #86868b;
       --color-lighter-gray: #dddddd;
       --color-white: #ffffff;
-      --font-primary: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Inter, sans-serif;
       --transition-speed: 0.3s;
       --animation-duration: 0.8s;
       --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
@@ -45,28 +57,35 @@
       --spacing-lg: 3rem;
       --spacing-xl: 5rem;
       --section-padding: 5rem 2rem;
-      --section-min-height: 100vh;
       --nav-height: 60px;
     }
 
     /* Base HTML and Body styles */
-    html, body {
+    html {
       height: 100%;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      overflow-y: auto;
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
       font-family: var(--font-primary);
       background-color: var(--color-black);
       color: var(--color-white);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
     * {
@@ -81,32 +100,30 @@
     ========================================
     */
     h1, h2, h3, h4, h5, h6 {
-      font-weight: 300;
+      font-weight: 500;
       line-height: 1.2;
       margin-bottom: var(--spacing-md);
+      letter-spacing: -0.02em;
     }
 
     h1 {
       font-size: 3.5rem;
-      letter-spacing: -1px;
+      letter-spacing: -0.03em;
+      font-weight: 600;
     }
 
     h2 {
       font-size: 2.5rem;
       margin-bottom: var(--spacing-lg);
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1 !important;
+      transform: none !important;
       transition: opacity 0.8s var(--animation-timing), 
                   transform 0.8s var(--animation-timing);
     }
 
-    .in-view h2 {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     p {
       margin-bottom: var(--spacing-md);
+      font-weight: 400;
     }
 
     a {
@@ -129,7 +146,7 @@
       flex-direction: column;
       min-height: 100vh;
       width: 100%;
-      overflow: hidden;
+      overflow: visible;
       padding-top: var(--nav-height); /* Add space for fixed nav */
     }
 
@@ -145,9 +162,9 @@
       width: 100%;
       height: var(--nav-height);
       background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -170,8 +187,8 @@
       color: var(--color-light-gray);
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
       text-transform: uppercase;
       transition: color var(--transition-speed) ease;
       position: relative;
@@ -214,11 +231,12 @@
       min-height: 100vh;
       width: 100%;
       overflow: visible;
+      z-index: 1;
     }
 
     .section-content {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       max-width: 1200px;
       width: 100%;
       opacity: 1 !important; /* Force visibility */
@@ -238,6 +256,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      width: 100%;
     }
 
     .profile-container {
@@ -256,6 +275,7 @@
       transition: transform var(--transition-speed) ease, 
                   box-shadow var(--transition-speed) ease;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin: 0 auto;
     }
 
     .profile-image:hover {
@@ -265,8 +285,8 @@
 
     .name {
       font-size: 3.5rem;
-      font-weight: 300;
-      letter-spacing: -1px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
       margin-top: 1rem;
       color: var(--color-white);
     }
@@ -280,6 +300,7 @@
       height: 50px;
       cursor: pointer;
       animation: pulse 2s infinite;
+      z-index: 10;
     }
 
     .scroll-arrow {
@@ -334,7 +355,8 @@
       max-width: 800px;
       width: 100%;
       padding: 3rem;
-      z-index: 2;
+      z-index: 10;
+      margin: 0 auto;
     }
 
     .circuit-background {
@@ -363,9 +385,11 @@
     .bio-container {
       background-color: rgba(0, 0, 0, 0.8);
       padding: 3rem;
-      border-radius: 8px;
+      border-radius: 12px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       animation: fadeIn 1s ease-out;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     @keyframes fadeIn {
@@ -381,15 +405,17 @@
 
     .bio-container h2 {
       font-size: 2.5rem;
-      font-weight: 300;
+      font-weight: 500;
       margin-bottom: 1.5rem;
       color: var(--color-white);
+      letter-spacing: -0.02em;
     }
 
     .bio {
       font-size: 1.2rem;
       line-height: 1.8;
       color: var(--color-lighter-gray);
+      font-weight: 400;
     }
 
     /* 
@@ -402,15 +428,17 @@
       width: 100%;
       max-width: 1000px;
       padding: 2rem;
-      z-index: 2;
+      z-index: 10;
+      margin: 0 auto;
     }
 
     .skills-content h2 {
       text-align: center;
       font-size: 2.5rem;
-      font-weight: 300;
+      font-weight: 500;
       margin-bottom: 3rem;
       color: var(--color-white);
+      letter-spacing: -0.02em;
     }
 
     .skills-grid {
@@ -425,31 +453,8 @@
       flex-direction: column;
       align-items: center;
       transition: transform var(--transition-speed) ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .in-view .skill-item {
-      animation: fadeInUp 0.6s forwards;
-    }
-
-    .in-view .skill-item:nth-child(2n) {
-      animation-delay: 0.1s;
-    }
-
-    .in-view .skill-item:nth-child(3n) {
-      animation-delay: 0.2s;
-    }
-
-    .in-view .skill-item:nth-child(4n) {
-      animation-delay: 0.3s;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     .skill-item:hover {
@@ -487,16 +492,6 @@
       color: var(--color-white);
     }
 
-    #code-animation {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.05;
-    }
-
     /* 
     ========================================
     Social Section
@@ -506,13 +501,15 @@
       text-align: center;
       max-width: 600px;
       width: 100%;
+      margin: 0 auto;
     }
 
     .social-content h2 {
       font-size: 2.5rem;
-      font-weight: 300;
+      font-weight: 500;
       margin-bottom: 3rem;
       color: var(--color-white);
+      letter-spacing: -0.02em;
     }
 
     .social-links {
@@ -547,15 +544,10 @@
 
     .instagram-icon {
       background-color: var(--color-dark-gray);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888888'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2386868b'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 30px;
-    }
-
-    .social-link:hover .social-icon {
-      background-color: var(--color-medium-gray);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E");
     }
 
     .social-username {
@@ -593,7 +585,7 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
-      z-index: 100;
+      z-index: 1000;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       border: none;
     }
@@ -626,6 +618,7 @@
       text-align: center;
       background-color: var(--color-black);
       border-top: 1px solid var(--color-dark-gray);
+      width: 100%;
     }
 
     .footer p {
@@ -658,6 +651,46 @@
 
     /* 
     ========================================
+    Background Animations
+    ========================================
+    */
+    .section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .home-bg {
+      background: radial-gradient(circle at center, #1d1d1f 0%, #000 100%);
+    }
+
+    .about-bg {
+      background: linear-gradient(135deg, #000 0%, #1d1d1f 100%);
+    }
+
+    .skills-bg {
+      background: linear-gradient(45deg, #000 0%, #1d1d1f 100%);
+    }
+
+    .social-bg {
+      background: radial-gradient(ellipse at bottom, #1d1d1f 0%, #000 100%);
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    /* 
+    ========================================
     Print Styles
     ========================================
     */
@@ -675,7 +708,8 @@
 
       .back-to-top,
       .scroll-indicator,
-      canvas {
+      canvas,
+      .star {
         display: none !important;
       }
 
@@ -825,31 +859,6 @@
         animation: none !important;
       }
     }
-
-    /* Add this to the CSS section */
-    .home-section-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, #222 0%, #000 100%);
-      z-index: 1;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background-color: white;
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: twinkle 4s infinite;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.8; }
-    }
   </style>
 </head>
 <body>
@@ -875,6 +884,7 @@
   <div id="app" class="app-container">
     <!-- Home Section -->
     <section id="home" class="section" role="region" aria-labelledby="home-title">
+      <div class="section-bg home-bg"></div>
       <div class="section-content home-content">
         <div class="profile-container">
           <div class="profile-image" aria-label="Profile picture"></div>
@@ -885,34 +895,34 @@
       <div class="scroll-indicator" aria-hidden="true">
         <div class="scroll-arrow"></div>
       </div>
-      <canvas id="home-canvas" aria-hidden="true"></canvas>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section" role="region" aria-labelledby="about-title">
+      <div class="section-bg about-bg"></div>
+      <div class="circuit-background" aria-hidden="true"></div>
       <div class="section-content about-content">
-        <div class="circuit-background" aria-hidden="true"></div>
         <div class="bio-container">
           <h2 id="about-title">About Me</h2>
           <p class="bio">I am a passionate cybersecurity student specializing in penetration testing, iOS exploit development, and reverse engineering, dedicated to building secure and innovative digital solutions.</p>
         </div>
       </div>
-      <canvas id="about-canvas" aria-hidden="true"></canvas>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section" role="region" aria-labelledby="skills-title">
+      <div class="section-bg skills-bg"></div>
       <div class="section-content skills-content">
         <h2 id="skills-title">Technical Skills</h2>
         <div class="skills-grid" id="skills-grid">
           <!-- Skills will be populated by JavaScript -->
         </div>
-        <canvas id="code-animation" aria-hidden="true"></canvas>
       </div>
     </section>
 
     <!-- Social Section -->
     <section id="social" class="section" role="region" aria-labelledby="social-title">
+      <div class="section-bg social-bg"></div>
       <div class="section-content social-content">
         <h2 id="social-title">Connect With Me</h2>
         <div class="social-links">
@@ -922,7 +932,6 @@
           </a>
         </div>
       </div>
-      <canvas id="social-canvas" aria-hidden="true"></canvas>
     </section>
 
     <!-- Footer -->
@@ -1072,18 +1081,11 @@
         heading.style.transform = 'translateY(0)';
       });
 
-      document.querySelectorAll('.skill-item').forEach(item => {
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      });
       // Populate skills grid
       populateSkills();
       
       // Initialize animations
-      initAnimations();
-      
-      // Initialize intersection observers
-      initIntersectionObservers();
+      createStars();
       
       // Initialize back to top button
       initBackToTop();
@@ -1099,9 +1101,6 @@
       
       // Ensure content is visible
       ensureVisibility();
-
-      // Call this function
-      createStars();
     }
 
     /**
@@ -1197,62 +1196,6 @@
     }
 
     /**
-     * Initialize all canvas animations
-     */
-    function initAnimations() {
-      // Initialize home canvas animation
-      initHomeCanvas();
-      
-      // Initialize about canvas animation
-      initAboutCanvas();
-      
-      // Initialize code animation
-      initCodeAnimation();
-      
-      // Initialize social canvas animation
-      initSocialCanvas();
-    }
-
-    /**
-     * Initialize intersection observers for animations
-     */
-    function initIntersectionObservers() {
-      try {
-        // Check if IntersectionObserver is supported
-        if (!('IntersectionObserver' in window)) {
-          // Fallback for browsers that don't support IntersectionObserver
-          $$('.section').forEach(section => {
-            section.classList.add('in-view');
-          });
-          return;
-        }
-        
-        // Create observer for sections
-        const sectionObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -10% 0px' // Trigger slightly before element comes into view
-        });
-        
-        // Observe all sections
-        $$('.section').forEach(section => {
-          sectionObserver.observe(section);
-        });
-      } catch (error) {
-        console.error('Error initializing intersection observers:', error);
-        // Fallback if there's an error
-        $$('.section').forEach(section => {
-          section.classList.add('in-view');
-        });
-      }
-    }
-
-    /**
      * Initialize back to top button
      */
     function initBackToTop() {
@@ -1308,398 +1251,27 @@
       });
     }
 
-    // 
-    // ========================================
-    // Canvas Animations - Apple-inspired
-    // ========================================
-    //
-
     /**
-     * Initialize the home canvas animation
-     * Apple-inspired floating particles with connections
+     * Create stars for background
      */
-    function initHomeCanvas() {
-      const canvas = $('#home-canvas');
-      if (!canvas) return;
-      
-      // Set canvas dimensions with device pixel ratio for sharper rendering
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      
-      const ctx = canvas.getContext('2d');
-      ctx.scale(dpr, dpr);
-      
-      // Particles configuration
-      const particles = [];
-      const particleCount = Math.min(50, Math.floor(window.innerWidth / 20)); // Responsive particle count
-      
-      // Create particles
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width / dpr,
-          y: Math.random() * canvas.height / dpr,
-          radius: Math.random() * 2 + 1,
-          color: `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.1})`,
-          speedX: Math.random() * 0.5 - 0.25,
-          speedY: Math.random() * 0.5 - 0.25
-        });
-      }
-      
-      // Animation loop with requestAnimationFrame timing
-      let lastTime = 0;
-      function animate(timestamp) {
-        if (!lastTime) lastTime = timestamp;
-        const deltaTime = timestamp - lastTime;
-        lastTime = timestamp;
-        
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-        
-        // Update and draw particles
-        particles.forEach(particle => {
-          // Update position with delta time for consistent speed
-          particle.x += particle.speedX * (deltaTime / 16);
-          particle.y += particle.speedY * (deltaTime / 16);
-          
-          // Wrap around edges
-          if (particle.x < 0) particle.x = canvas.width / dpr;
-          if (particle.x > canvas.width / dpr) particle.x = 0;
-          if (particle.y < 0) particle.y = canvas.height / dpr;
-          if (particle.y > canvas.height / dpr) particle.y = 0;
-          
-          // Draw particle
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color;
-          ctx.fill();
-        });
-        
-        // Draw connections between particles
-        particles.forEach((particle, i) => {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particle.x - particles[j].x;
-            const dy = particle.y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 100) {
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
-              ctx.lineWidth = 0.5;
-              ctx.moveTo(particle.x, particle.y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.stroke();
-            }
-          }
-        });
-        
-        requestAnimationFrame(animate);
-      }
-      
-      // Start animation
-      animate(0);
-      
-      // Resize canvas on window resize with debounce
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          canvas.width = window.innerWidth * dpr;
-          canvas.height = window.innerHeight * dpr;
-          canvas.style.width = `${window.innerWidth}px`;
-          canvas.style.height = `${window.innerHeight}px`;
-          ctx.scale(dpr, dpr);
-        }, 250);
-      });
-    }
-
-    /**
-     * Initialize the about canvas animation
-     * Apple-inspired subtle grid pattern
-     */
-    function initAboutCanvas() {
-      const canvas = $('#about-canvas');
-      if (!canvas) return;
-      
-      // Set canvas dimensions
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      
-      const ctx = canvas.getContext('2d');
-      ctx.scale(dpr, dpr);
-      
-      // Grid configuration
-      const gridSize = 30;
-      const dotSize = 1;
-      const dotColor = 'rgba(255, 255, 255, 0.2)';
-      
-      // Animation variables
-      let offset = 0;
-      
-      // Animation loop
-      function animate() {
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-        
-        // Update offset
-        offset += 0.1;
-        
-        // Draw grid
-        for (let x = 0; x < canvas.width / dpr; x += gridSize) {
-          for (let y = 0; y < canvas.height / dpr; y += gridSize) {
-            // Add subtle movement to dots
-            const offsetX = Math.sin((y / 100) + offset) * 2;
-            const offsetY = Math.cos((x / 100) + offset) * 2;
-            
-            ctx.beginPath();
-            ctx.arc(x + offsetX, y + offsetY, dotSize, 0, Math.PI * 2);
-            ctx.fillStyle = dotColor;
-            ctx.fill();
-          }
-        }
-        
-        requestAnimationFrame(animate);
-      }
-      
-      // Start animation
-      animate();
-      
-      // Resize canvas on window resize
-      window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth * dpr;
-        canvas.height = window.innerHeight * dpr;
-        canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight}px`;
-        ctx.scale(dpr, dpr);
-      });
-    }
-
-    /**
-     * Initialize the code animation on the skills section
-     * Apple-inspired matrix code rain effect
-     */
-    function initCodeAnimation() {
-      const codeCanvas = $('#code-animation');
-      if (!codeCanvas) return;
-
-      const dpr = window.devicePixelRatio || 1;
-      codeCanvas.width = window.innerWidth * dpr;
-      codeCanvas.height = window.innerHeight * dpr;
-      codeCanvas.style.width = `${window.innerWidth}px`;
-      codeCanvas.style.height = `${window.innerHeight}px`;
-      
-      const ctx = codeCanvas.getContext('2d');
-      ctx.scale(dpr, dpr);
-      
-      const width = codeCanvas.width / dpr;
-      const height = codeCanvas.height / dpr;
-
-      // Code rain configuration
-      const fontSize = 14;
-      const columns = Math.floor(width / fontSize);
-      const drops = [];
-
-      // Initialize drops
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.floor(Math.random() * -100);
-      }
-
-      // Characters to display
-      const chars = '01010101010101010101';
-
-      // Animation timing
-      let lastTime = 0;
-      const frameRate = 1000 / CONFIG.codeAnimationFPS;
-
-      // Animation loop
-      function draw(timestamp) {
-        // Throttle to target frame rate
-        if (timestamp - lastTime < frameRate) {
-          requestAnimationFrame(draw);
-          return;
-        }
-        lastTime = timestamp;
-        
-        // Semi-transparent black background to create fade effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.fillStyle = '#555'; // Medium gray color for text
-        ctx.font = `${fontSize}px monospace`;
-
-        // Loop through drops
-        for (let i = 0; i < drops.length; i++) {
-          // Get random character
-          const text = chars[Math.floor(Math.random() * chars.length)];
-
-          // Draw character
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-          // Move drop down
-          if (drops[i] * fontSize > height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-
-          drops[i]++;
-        }
-
-        requestAnimationFrame(draw);
-      }
-
-      // Start animation
-      requestAnimationFrame(draw);
-      
-      // Resize handler
-      window.addEventListener('resize', () => {
-        codeCanvas.width = window.innerWidth * dpr;
-        codeCanvas.height = window.innerHeight * dpr;
-        codeCanvas.style.width = `${window.innerWidth}px`;
-        codeCanvas.style.height = `${window.innerHeight}px`;
-        ctx.scale(dpr, dpr);
-        
-        // Update dimensions
-        const width = codeCanvas.width / dpr;
-        const height = codeCanvas.height / dpr;
-        
-        // Recalculate columns
-        const newColumns = Math.floor(width / fontSize);
-        
-        // Adjust drops array
-        if (newColumns > columns) {
-          // Add new drops
-          for (let i = columns; i < newColumns; i++) {
-            drops[i] = Math.floor(Math.random() * -100);
-          }
-        } else {
-          // Remove excess drops
-          drops.length = newColumns;
-        }
-      });
-    }
-
-    /**
-     * Initialize the social canvas animation
-     * Apple-inspired smooth wave animation
-     */
-    function initSocialCanvas() {
-      const canvas = $('#social-canvas');
-      if (!canvas) return;
-      
-      // Set canvas dimensions
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      
-      const ctx = canvas.getContext('2d');
-      ctx.scale(dpr, dpr);
-      
-      const width = canvas.width / dpr;
-      const height = canvas.height / dpr;
-      
-      // Waves configuration
-      const waves = [];
-      const waveCount = 3;
-      
-      // Create waves
-      for (let i = 0; i < waveCount; i++) {
-        waves.push({
-          y: height / 2,
-          amplitude: 50 + i * 20,
-          frequency: 0.01 - i * 0.002,
-          speed: 0.05 + i * 0.01,
-          offset: 0,
-          color: `rgba(255, 255, 255, ${0.05 - i * 0.01})`
-        });
-      }
-      
-      // Animation timing
-      let lastTime = 0;
-      const frameRate = 1000 / 60; // Target 60fps
-      
-      // Animation loop
-      function animate(timestamp) {
-        // Throttle to target frame rate
-        if (timestamp - lastTime < frameRate) {
-          requestAnimationFrame(animate);
-          return;
-        }
-        lastTime = timestamp;
-        
-        // Clear canvas
-        ctx.clearRect(0, 0, width, height);
-        
-        // Update and draw waves
-        waves.forEach(wave => {
-          // Update offset
-          wave.offset += wave.speed;
-          
-          // Draw wave
-          ctx.beginPath();
-          ctx.moveTo(0, wave.y);
-          
-          for (let x = 0; x < width; x++) {
-            const y = wave.y + Math.sin(x * wave.frequency + wave.offset) * wave.amplitude;
-            ctx.lineTo(x, y);
-          }
-          
-          ctx.lineTo(width, height);
-          ctx.lineTo(0, height);
-          ctx.closePath();
-          
-          ctx.fillStyle = wave.color;
-          ctx.fill();
-        });
-        
-        requestAnimationFrame(animate);
-      }
-      
-      // Start animation
-      requestAnimationFrame(animate);
-      
-      // Resize canvas on window resize
-      window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth * dpr;
-        canvas.height = window.innerHeight * dpr;
-        canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight}px`;
-        ctx.scale(dpr, dpr);
-        
-        const width = canvas.width / dpr;
-        const height = canvas.height / dpr;
-        
-        // Update wave positions
-        waves.forEach(wave => {
-          wave.y = height / 2;
-        });
-      });
-    }
-
-    // Create static stars as fallback for canvas animation
     function createStars() {
-      const homeSection = document.getElementById('home');
-      if (!homeSection) return;
+      const sections = document.querySelectorAll('.section');
       
-      // Add background div
-      const bg = document.createElement('div');
-      bg.className = 'home-section-bg';
-      homeSection.appendChild(bg);
-      
-      // Add stars
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 4}s`;
-        homeSection.appendChild(star);
-      }
+      sections.forEach(section => {
+        // Add stars
+        for (let i = 0; i < 100; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.opacity = Math.random() * 0.7 + 0.1;
+          star.style.width = `${Math.random() * 2 + 1}px`;
+          star.style.height = star.style.width;
+          star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+          star.style.animationDelay = `${Math.random() * 5}s`;
+          section.appendChild(star);
+        }
+      });
     }
 
     // 
@@ -1743,6 +1315,16 @@
       }
       ensureVisibility();
     });
+
+    // Add animation for stars
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.8; }
+        }
+      </style>
+    `);
   </script>
 </body>
 </html>
